@@ -1,4 +1,4 @@
-﻿using Deliveriamo.ViewModels.Login;
+﻿using Deliveriamo.DTOs.Login;
 
 namespace Deliveriamo.Services.Interfaces
 {

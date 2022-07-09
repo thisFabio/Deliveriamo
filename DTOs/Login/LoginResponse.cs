@@ -1,4 +1,4 @@
-﻿namespace Deliveriamo.ViewModels.Login
+﻿namespace Deliveriamo.DTOs.Login
 {
     public class LoginResponse
     {
