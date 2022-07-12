@@ -8,6 +8,11 @@ namespace Deliveriamo.Controllers
     {
         private readonly ILoginService _service;
 
+        public LoginController(ILoginService service)
+        {
+            _service = service;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {

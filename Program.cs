@@ -12,14 +12,15 @@ var key = Encoding.ASCII.GetBytes(builder.Configuration.GetValue(typeof(string),
 
 // Add services to the container.
 
-builder.Services.AddSingleton<IConfiguration>();
+builder.Services.AddDbContext<DeliveriamoContext>(options => options.UseSqlServer(builder.Configuration
+                           .GetConnectionString("DeliveriamoDB")
+                            .Replace("@machine",Environment.MachineName)));
+
+builder.Services.AddSingleton<IConfiguration>(provider=> builder.Configuration);
 
 builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddTransient<ICryptoService, CryptoService>();
 
-builder.Services.AddDbContext<DeliveriamoContext>(options => options.UseSqlServer(builder.Configuration
-                           .GetConnectionString("DeliveriamoDB")
-                            .Replace("@machine",Environment.MachineName))); 
 
 
 builder.Services.AddControllers();
