@@ -9,7 +9,9 @@
         public string Lastname { get; set; }
         public DateTime Dob { get; set; }
         public char Gender { get; set; }
-        public int Role { get; set; }
+        public int RoleId { get; set; }
         public bool Enabled { get; set; }
+
+        public Role Role { get; set; }
     }
 }

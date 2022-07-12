@@ -21,7 +21,7 @@ namespace Deliveriamo.Services.Implementations
                 Firstname = request.Firstname,
                 Lastname = request.Lastname,
                 Dob = Convert.ToDateTime(request.Dob),
-                Role = 2,
+                RoleId = 2,
                 Gender = request.Gender,
                 Enabled = true
 

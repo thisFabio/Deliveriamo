@@ -4,14 +4,22 @@ using Deliveriamo.Services.Interfaces;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Deliveriamo.Entity;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 var key = Encoding.ASCII.GetBytes(builder.Configuration.GetValue(typeof(string),"JwtEncryptionKey").ToString());
 
 // Add services to the container.
+
+builder.Services.AddSingleton<IConfiguration>();
+
 builder.Services.AddTransient<ILoginService, LoginService>();
 builder.Services.AddTransient<ICryptoService, CryptoService>();
 
+builder.Services.AddDbContext<DeliveriamoContext>(options => options.UseSqlServer(builder.Configuration
+                           .GetConnectionString("DeliveriamoDB")
+                            .Replace("@machine",Environment.MachineName))); 
 
 
 builder.Services.AddControllers();

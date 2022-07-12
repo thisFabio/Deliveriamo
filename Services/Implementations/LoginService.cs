@@ -1,4 +1,5 @@
 ﻿using Deliveriamo.DTOs.Login;
+using Deliveriamo.Entity;
 using Deliveriamo.Services.Interfaces;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,10 +12,13 @@ namespace Deliveriamo.Services.Implementations
     {
         private readonly IConfiguration _configuration;
         private readonly ICryptoService _cryptoService;
+        private readonly DeliveriamoContext _context;
 
-        public LoginService(IConfiguration configuration)
+        public LoginService(IConfiguration configuration, DeliveriamoContext context, ICryptoService cryptoService = null)
         {
             _configuration = configuration;
+            _context = context;
+            _cryptoService = cryptoService;
         }
 
         public async Task<LoginResponse> Login(LoginRequest request)
@@ -36,7 +40,7 @@ namespace Deliveriamo.Services.Implementations
             return output;
         }
 
-        private string GenerateToken()
+        private string GenerateToken(string role)
         {
             var result = string.Empty;
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -49,7 +53,7 @@ namespace Deliveriamo.Services.Implementations
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     new Claim("userid","1"),
-                    new Claim(ClaimTypes.Role, "Admin") // ruolo definito 
+                    new Claim(ClaimTypes.Role, role) // ruolo definito TODO: Fix the role 
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(60),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
