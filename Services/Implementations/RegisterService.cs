@@ -8,6 +8,13 @@ namespace Deliveriamo.Services.Implementations
     public class RegisterService : IRegisterService
     {
         private readonly ICryptoService _CryptoService;
+        private readonly DeliveriamoContext _context;
+
+        public RegisterService(ICryptoService cryptoService, DeliveriamoContext context)
+        {
+            _CryptoService = cryptoService;
+            _context = context;
+        }
 
         async Task<RegisterResponse> IRegisterService.AddUser(RegisterRequest request)
         {
@@ -28,7 +35,9 @@ namespace Deliveriamo.Services.Implementations
 
             };
 
-            //TODO: save user into DB
+            //save user into DB
+            _context.User.Add(user);
+            _context.SaveChanges();
 
             response.Id = user.Id;
             return response;

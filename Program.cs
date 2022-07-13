@@ -19,6 +19,7 @@ builder.Services.AddDbContext<DeliveriamoContext>(options => options.UseSqlServe
 builder.Services.AddSingleton<IConfiguration>(provider=> builder.Configuration);
 
 builder.Services.AddTransient<ILoginService, LoginService>();
+builder.Services.AddTransient<IRegisterService, RegisterService>();
 builder.Services.AddTransient<ICryptoService, CryptoService>();
 
 

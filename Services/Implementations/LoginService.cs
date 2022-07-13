@@ -30,11 +30,17 @@ namespace Deliveriamo.Services.Implementations
             {
                 // hashing of password provided
                 var hash = _cryptoService.CreateMD5(request.Password);
-                // TODO:look into DB to see if username and password are valid (compare pwd with hash),
+                
+                // look into DB to see if username and password are valid (compare pwd with hash),
+                var user = _context.User.FirstOrDefault(x => x.Username == request.Username && x.Password == hash);
+
+                if ( user != null)
+                {
+                    // if there is association, generate token
+                    output.Token = GenerateToken(user.Role.Id.ToString());
+                };
+                
                 // else return empt obj
-
-                // TODO: if there is association, generate token
-
             }
 
             return output;

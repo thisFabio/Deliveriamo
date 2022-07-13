@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Deliveriamo.Migrations
 {
     [DbContext(typeof(DeliveriamoContext))]
-    [Migration("20220712054510_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20220712055930_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
