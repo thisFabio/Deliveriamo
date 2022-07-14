@@ -4,8 +4,11 @@ namespace Deliveriamo.Entity
 {
     public class DeliveriamoContext : DbContext
     {
-        
 
+        public DeliveriamoContext()
+        {
+
+        }
         public DeliveriamoContext(DbContextOptions<DeliveriamoContext> context)
             : base(context)
         {

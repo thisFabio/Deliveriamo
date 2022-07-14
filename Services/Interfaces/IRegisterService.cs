@@ -4,6 +4,6 @@ namespace Deliveriamo.Services.Interfaces
 {
     public interface IRegisterService
     {
-        Task<RegisterResponse> AddUser(RegisterRequest request);
+        Task<RegisterResponse> AddUser(RegisterRequestDto request);
     }
 }

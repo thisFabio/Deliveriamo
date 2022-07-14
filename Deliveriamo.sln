@@ -7,7 +7,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Deliveriamo", "Deliveriamo.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTest.Deliveriamo", "..\TestDeliveriamo\UnitTest.Deliveriamo.csproj", "{55360491-C08C-47DF-B6CF-2C550F73F479}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTest.Deliveriamo", "..\IntegrationTest.Deliveriamo\IntegrationTest.Deliveriamo.csproj", "{8C0C3240-198A-479C-A7B9-5F1D33D99E20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "IntegrationTest.Deliveriamo", "..\IntegrationTest.Deliveriamo\IntegrationTest.Deliveriamo.csproj", "{8C0C3240-198A-479C-A7B9-5F1D33D99E20}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{29C85F6E-CBC8-4680-B797-91AAE81D4CCD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "IntegrationTests", "IntegrationTests", "{4F57B3A2-2EA5-49B2-AB10-B70AF9D941E9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{61644CF3-6B7A-4E53-9087-95F52730127C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +36,12 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{55360491-C08C-47DF-B6CF-2C550F73F479} = {61644CF3-6B7A-4E53-9087-95F52730127C}
+		{8C0C3240-198A-479C-A7B9-5F1D33D99E20} = {4F57B3A2-2EA5-49B2-AB10-B70AF9D941E9}
+		{4F57B3A2-2EA5-49B2-AB10-B70AF9D941E9} = {29C85F6E-CBC8-4680-B797-91AAE81D4CCD}
+		{61644CF3-6B7A-4E53-9087-95F52730127C} = {29C85F6E-CBC8-4680-B797-91AAE81D4CCD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E6A653A-73A4-4CE5-A183-9FC5EB61C3ED}

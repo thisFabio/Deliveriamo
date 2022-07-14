@@ -1,6 +1,7 @@
 ﻿using Deliveriamo.DTOs.Login;
 using Deliveriamo.Entity;
 using Deliveriamo.Services.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -24,24 +25,31 @@ namespace Deliveriamo.Services.Implementations
         public async Task<LoginResponse> Login(LoginRequest request)
         {
             var output = new LoginResponse();
+            User user = new User();
+
+            if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))
+            {
+                return output;
+            }
+
 
             // if credential provided are not null
-            if (request.Username != null && request.Password != null)
-            {
-                // hashing of password provided
-                var hash = _cryptoService.CreateMD5(request.Password);
-                
-                // look into DB to see if username and password are valid (compare pwd with hash),
-                var user = _context.User.FirstOrDefault(x => x.Username == request.Username && x.Password == hash);
 
-                if ( user != null)
-                {
-                    // if there is association, generate token
-                    output.Token = GenerateToken(user.Role.Id.ToString());
-                };
-                
-                // else return empt obj
-            }
+            // hashing of password provided
+            var hash = _cryptoService.CreateMD5(request.Password);
+
+            // look into DB to see if username and password are valid (compare pwd with hash),
+            user = await _context.User.FirstOrDefaultAsync(x => x.Username == request.Username && x.Password == hash);
+
+            if (user != null)
+            {
+                // if there is association, generate token
+                output.Token = GenerateToken(user.Role.Id.ToString());
+               
+            };
+
+            // else return empt obj
+
 
             return output;
         }

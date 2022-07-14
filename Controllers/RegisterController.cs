@@ -14,7 +14,7 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register([FromBody] RegisterRequest request)
+        public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {
             var result = await _service.AddUser(request);
             return new ObjectResult(result);

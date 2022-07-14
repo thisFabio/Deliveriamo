@@ -16,7 +16,7 @@ namespace Deliveriamo.Services.Implementations
             _context = context;
         }
 
-        async Task<RegisterResponse> IRegisterService.AddUser(RegisterRequest request)
+        public async Task<RegisterResponse> AddUser(RegisterRequestDto request)
         {
             var response = new RegisterResponse();
             
@@ -31,12 +31,10 @@ namespace Deliveriamo.Services.Implementations
                 RoleId = 2,
                 Gender = request.Gender,
                 Enabled = true
-
-
             };
 
             //save user into DB
-            _context.User.Add(user);
+            await _context.User.AddAsync(user);
             _context.SaveChanges();
 
             response.Id = user.Id;
