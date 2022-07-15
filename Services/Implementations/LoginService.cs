@@ -22,9 +22,9 @@ namespace Deliveriamo.Services.Implementations
             _cryptoService = cryptoService;
         }
 
-        public async Task<LoginResponse> Login(LoginRequest request)
+        public async Task<LoginResponseDto> Login(LoginRequestDto request)
         {
-            var output = new LoginResponse();
+            var output = new LoginResponseDto();
             User user = new User();
 
             if (string.IsNullOrEmpty(request.Username) || string.IsNullOrEmpty(request.Password))

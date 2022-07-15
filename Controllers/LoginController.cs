@@ -14,7 +14,7 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginRequestDto request)
         {
             var result = await _service.Login(request);
             return new ObjectResult(result);

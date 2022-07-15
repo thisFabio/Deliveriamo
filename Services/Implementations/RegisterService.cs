@@ -16,9 +16,9 @@ namespace Deliveriamo.Services.Implementations
             _context = context;
         }
 
-        public async Task<RegisterResponse> AddUser(RegisterRequestDto request)
+        public async Task<RegisterResponseDto> AddUser(RegisterRequestDto request)
         {
-            var response = new RegisterResponse();
+            var response = new RegisterResponseDto();
             
 
             User user = new User()

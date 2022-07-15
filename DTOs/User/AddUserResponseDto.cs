@@ -1,6 +1,6 @@
 ﻿namespace Deliveriamo.DTOs.User
 {
-    public class UserResponseDto
+    public class AddUserResponseDto
     {
         public int Id { get; set; }
     }

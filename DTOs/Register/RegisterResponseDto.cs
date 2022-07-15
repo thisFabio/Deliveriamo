@@ -1,6 +1,6 @@
 ﻿namespace Deliveriamo.DTOs.Register
 {
-    public class RegisterResponse
+    public class RegisterResponseDto
     {
         public int Id { get; set; }
     }
