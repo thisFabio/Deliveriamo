@@ -20,8 +20,8 @@ namespace TestDeliveriamo
         {
             // arrange
             var fakeContext = new Mock<DeliveriamoContext>();
-            var username = "ciccio";
-            var password = "57FFEC0A0664048A8D7142D12D9ED6EB";
+            var username = user;
+            var password = pass;
             var fakeUsers = new List<User>()
             {
                 new User()
