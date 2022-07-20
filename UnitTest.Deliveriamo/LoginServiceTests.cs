@@ -10,7 +10,7 @@ using DeliveriamoRepository.Entity;
 
 namespace TestDeliveriamo
 {
-    public class LoginTests
+    public class LoginServiceTests
     {
         [Theory]
         [InlineData("", "", false)]
@@ -52,12 +52,6 @@ namespace TestDeliveriamo
             }
 
             fakeContext.Setup(x => x.CheckLogin(username, hash)).Returns(Task.FromResult(fakeUser));
-            //var mock = fakeUsers.AsQueryable().BuildMockDbSet();
-            //mock.Setup( x => x.FirstOrDefaultAsync(x=> x.Username == username && x.Password == password).Result..Returns((object[] ids) =>
-            //{
-
-            //    return fakeUsers.FirstOrDefault();
-            //});
 
             //Arrange
             var inMemorySettings = new Dictionary<string, string> {

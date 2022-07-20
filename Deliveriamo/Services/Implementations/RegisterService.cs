@@ -19,6 +19,7 @@ namespace Deliveriamo.Services.Implementations
 
         public async Task<RegisterResponseDto> AddUser(RegisterRequestDto request)
         {
+            
             var response = new RegisterResponseDto();
             var hashedPassword = _CryptoService.CreateMD5(request.Password);
             User user = request.ToEntity(hashedPassword);
@@ -32,5 +33,6 @@ namespace Deliveriamo.Services.Implementations
         }
 
 
+        
     }
 }
