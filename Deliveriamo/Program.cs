@@ -4,8 +4,8 @@ using Deliveriamo.Services.Interfaces;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Deliveriamo.Entity;
 using Microsoft.EntityFrameworkCore;
+using DeliveriamoRepository;
 
 namespace DeliveriamoMain
 {
@@ -24,7 +24,7 @@ namespace DeliveriamoMain
                                         .Replace("@machine", Environment.MachineName)));
 
             builder.Services.AddSingleton<IConfiguration>(provider => builder.Configuration);
-
+            builder.Services.AddTransient<IRepository, Repository>();
             builder.Services.AddTransient<ILoginService, LoginService>();
             builder.Services.AddTransient<IRegisterService, RegisterService>();
             builder.Services.AddTransient<ICryptoService, CryptoService>();

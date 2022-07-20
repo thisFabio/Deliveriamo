@@ -1,4 +1,6 @@
-﻿using Deliveriamo.Entity;
+﻿
+using DeliveriamoRepository;
+using DeliveriamoRepository.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;

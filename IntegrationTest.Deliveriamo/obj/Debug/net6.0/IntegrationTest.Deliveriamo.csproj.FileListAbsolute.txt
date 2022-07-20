@@ -890,3 +890,5 @@ C:\Users\fabio\source\repos\thisFabio\Deliveriamo\IntegrationTest.Deliveriamo\ob
 C:\Users\fabio\source\repos\thisFabio\Deliveriamo\IntegrationTest.Deliveriamo\obj\Debug\net6.0\IntegrationTest.Deliveriamo.pdb
 C:\Users\fabio\source\repos\thisFabio\Deliveriamo\IntegrationTest.Deliveriamo\obj\Debug\net6.0\IntegrationTest.Deliveriamo.genruntimeconfig.cache
 C:\Users\fabio\source\repos\thisFabio\Deliveriamo\IntegrationTest.Deliveriamo\obj\Debug\net6.0\ref\IntegrationTest.Deliveriamo.dll
+C:\Users\fabio\source\repos\thisFabio\Deliveriamo\IntegrationTest.Deliveriamo\bin\Debug\net6.0\DeliveriamoRepository.dll
+C:\Users\fabio\source\repos\thisFabio\Deliveriamo\IntegrationTest.Deliveriamo\bin\Debug\net6.0\DeliveriamoRepository.pdb

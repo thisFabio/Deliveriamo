@@ -4,6 +4,76 @@
     "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj": {}
   },
   "projects": {
+    "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj",
+        "projectName": "DeliveriamoRepository",
+        "projectPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj",
+        "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.6, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
     "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj": {
       "version": "1.0.0",
       "restore": {
@@ -27,7 +97,11 @@
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj": {
+                "projectPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj"
+              }
+            }
           }
         },
         "warningProperties": {

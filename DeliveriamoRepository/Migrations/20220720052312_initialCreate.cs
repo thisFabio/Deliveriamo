@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Deliveriamo.Migrations
+namespace DeliveriamoRepository.Migrations
 {
-    public partial class Initial : Migration
+    public partial class initialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -52,6 +52,8 @@ namespace Deliveriamo.Migrations
                 name: "IX_User_RoleId",
                 table: "User",
                 column: "RoleId");
+
+            
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

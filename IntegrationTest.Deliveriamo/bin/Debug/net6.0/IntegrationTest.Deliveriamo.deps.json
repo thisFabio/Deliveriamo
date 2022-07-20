@@ -2208,6 +2208,7 @@
       "xunit.runner.visualstudio/2.4.3": {},
       "Deliveriamo/1.0.0": {
         "dependencies": {
+          "DeliveriamoRepository": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.6",
           "Microsoft.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6",
@@ -2221,6 +2222,18 @@
         },
         "compile": {
           "Deliveriamo.dll": {}
+        }
+      },
+      "DeliveriamoRepository/1.0.0": {
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.6",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6"
+        },
+        "runtime": {
+          "DeliveriamoRepository.dll": {}
+        },
+        "compile": {
+          "DeliveriamoRepository.dll": {}
         }
       },
       "Microsoft.AspNetCore.Antiforgery/6.0.0.0": {
@@ -5115,6 +5128,11 @@
       "hashPath": "xunit.runner.visualstudio.2.4.3.nupkg.sha512"
     },
     "Deliveriamo/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DeliveriamoRepository/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

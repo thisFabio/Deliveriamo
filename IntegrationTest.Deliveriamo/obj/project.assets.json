@@ -2758,6 +2758,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
+          "DeliveriamoRepository": "1.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "6.0.6",
           "Microsoft.EntityFrameworkCore": "6.0.6",
           "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6",
@@ -2775,6 +2776,20 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
+      },
+      "DeliveriamoRepository/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "dependencies": {
+          "Microsoft.EntityFrameworkCore": "6.0.6",
+          "Microsoft.EntityFrameworkCore.SqlServer": "6.0.6"
+        },
+        "compile": {
+          "bin/placeholder/DeliveriamoRepository.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DeliveriamoRepository.dll": {}
+        }
       }
     }
   },
@@ -8971,6 +8986,11 @@
       "type": "project",
       "path": "../Deliveriamo/Deliveriamo.csproj",
       "msbuildProject": "../Deliveriamo/Deliveriamo.csproj"
+    },
+    "DeliveriamoRepository/1.0.0": {
+      "type": "project",
+      "path": "../DeliveriamoRepository/DeliveriamoRepository.csproj",
+      "msbuildProject": "../DeliveriamoRepository/DeliveriamoRepository.csproj"
     }
   },
   "projectFileDependencyGroups": {

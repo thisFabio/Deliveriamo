@@ -1,4 +1,4 @@
-﻿namespace Deliveriamo.Entity
+﻿namespace DeliveriamoRepository.Entity
 {
     public class User
     {

@@ -1,44 +1,36 @@
-﻿using Deliveriamo.DTOs.Register;
-using Deliveriamo.Entity;
+﻿using Deliveriamo.DTOs;
+using Deliveriamo.DTOs.Register;
 using Deliveriamo.Services.Interfaces;
-
+using DeliveriamoRepository;
+using DeliveriamoRepository.Entity;
 
 namespace Deliveriamo.Services.Implementations
 {
     public class RegisterService : IRegisterService
     {
         private readonly ICryptoService _CryptoService;
-        private readonly DeliveriamoContext _context;
+        private readonly IRepository _repository;
 
-        public RegisterService(ICryptoService cryptoService, DeliveriamoContext context)
+        public RegisterService(ICryptoService cryptoService, IRepository repository)
         {
             _CryptoService = cryptoService;
-            _context = context;
+            _repository = repository;
         }
 
         public async Task<RegisterResponseDto> AddUser(RegisterRequestDto request)
         {
             var response = new RegisterResponseDto();
-            
-
-            User user = new User()
-            {
-                Username = request.Username,
-                Password = _CryptoService.CreateMD5(request.Password),
-                Firstname = request.Firstname,
-                Lastname = request.Lastname,
-                Dob = Convert.ToDateTime(request.Dob),
-                RoleId = 2,
-                Gender = request.Gender,
-                Enabled = true
-            };
+            var hashedPassword = _CryptoService.CreateMD5(request.Password);
+            User user = request.ToEntity(hashedPassword);
 
             //save user into DB
-            await _context.User.AddAsync(user);
-            _context.SaveChanges();
+            await _repository.AddUser(user);
+            await _repository.SaveChanges();
 
             response.Id = user.Id;
             return response;
         }
+
+
     }
 }

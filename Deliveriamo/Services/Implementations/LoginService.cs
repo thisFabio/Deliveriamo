@@ -1,6 +1,7 @@
 ﻿using Deliveriamo.DTOs.Login;
-using Deliveriamo.Entity;
 using Deliveriamo.Services.Interfaces;
+using DeliveriamoRepository;
+using DeliveriamoRepository.Entity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -13,12 +14,12 @@ namespace Deliveriamo.Services.Implementations
     {
         private readonly IConfiguration _configuration;
         private readonly ICryptoService _cryptoService;
-        private readonly DeliveriamoContext _context;
+        private readonly IRepository _repository;
 
-        public LoginService(IConfiguration configuration, DeliveriamoContext context, ICryptoService cryptoService = null)
+        public LoginService(IConfiguration configuration, IRepository repository, ICryptoService cryptoService = null)
         {
             _configuration = configuration;
-            _context = context;
+            _repository = repository;
             _cryptoService = cryptoService;
         }
 
@@ -39,8 +40,7 @@ namespace Deliveriamo.Services.Implementations
             var hash = _cryptoService.CreateMD5(request.Password).ToLower();
 
             // look into DB to see if username and password are valid (compare pwd with hash),
-            user = await _context.User.Include(x=> x.Role)
-                .FirstOrDefaultAsync(x => x.Username == request.Username && x.Password == hash);
+            user = await _repository.CheckLogin(request.Username, hash);
 
             if (user != null)
             {
