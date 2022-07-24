@@ -33,18 +33,28 @@ namespace IntegrationTest.Deliveriamo
         //[Theory]
         //[InlindeData("user","pass",expected)
 
+        public async void LoginControllerWhenUserDoesNotExist_Returns_EmptyToken()
+        {
+
+        }
 
 
 
+        [Theory]
+        [InlineData("ciccio","torta", true)]
+        [InlineData("", "torta", false)]
+        [InlineData("ciccio", "", false)]
+        [InlineData(null, "torta", false)]
+        [InlineData("ciccio",null, false)]
+        [InlineData("antonio", "rossi", false)]
 
-        [Fact]
-        public async void LoginControllerWhenUserExists_Returns_Token ()
+        public async void LoginControllerWhenUserExists_Returns_Token (string username, string password, bool result)
         {
             // arrange
             var request = new LoginRequestDto()
             {
-                Username = "ciccio",
-                Password = "torta"
+                Username = username,
+                Password = password
             };
             HttpContent httpContent = SetPostRequest(request);
 
@@ -53,8 +63,17 @@ namespace IntegrationTest.Deliveriamo
             // leggo il content della generica HttpresponseMessage, e la deserializzo in un oggetto
             var deserializedRepsonse = JsonConvert.DeserializeObject<LoginResponseDto>(await response.Content.ReadAsStringAsync());
             // Assert
-            Assert.True(response.IsSuccessStatusCode);
-            deserializedRepsonse.Token.Should().NotBeNull();
+
+            bool isTokenValid = !String.IsNullOrEmpty(deserializedRepsonse.Token);
+            if (response.IsSuccessStatusCode)
+            {
+                Assert.Equal(result.ToString(), isTokenValid.ToString());
+            }
+            else
+            {
+
+                throw new Exception("no success code");
+            }
         }
 
         private static HttpContent SetPostRequest(object request)

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DeliveriamoRepository
 {
-    public interface IRepository 
+    public interface IRepositoryService
     {
         Task<User> CheckLogin (string username,string hash);
 

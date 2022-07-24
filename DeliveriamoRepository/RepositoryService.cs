@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace DeliveriamoRepository
 {
-    public class Repository : IRepository
+    public class RepositoryService : IRepositoryService
     {
         private readonly DeliveriamoContext _context;
 
-        public Repository(DeliveriamoContext context)
+        public RepositoryService(DeliveriamoContext context)
         {
             _context = context;
         }
@@ -25,6 +25,7 @@ namespace DeliveriamoRepository
 
         public async Task<User> CheckLogin(string username, string hash)
         {
+
             // look into DB to see if username and password are valid (compare pwd with hash),
            return await _context.User.Include(x => x.Role)
                 .FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == hash.ToLower());

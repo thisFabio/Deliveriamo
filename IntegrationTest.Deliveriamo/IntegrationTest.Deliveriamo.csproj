@@ -30,8 +30,4 @@
     <ProjectReference Include="..\Deliveriamo\Deliveriamo.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ServiceTests\" />
-  </ItemGroup>
-
 </Project>

@@ -1,4 +1,5 @@
-﻿using Deliveriamo.DTOs.Register;
+﻿using Deliveriamo.DTOs;
+using Deliveriamo.DTOs.Register;
 using Deliveriamo.Services.Implementations;
 using Deliveriamo.Services.Interfaces;
 using DeliveriamoRepository;
@@ -17,70 +18,40 @@ namespace UnitTest.Deliveriamo
     public class RegisterServiceTests 
     {
 
-        [Fact]
-        public bool AddUser_Should_Be_Complete()
-        {
-            // Arrange:
-            var _cryptoService = new CryptoService();
-
-            var _repositoryService = new Mock<IRepository>();
-
-            var fakeUser = new User()
-            {
-                Firstname = "Francesco",
-                Lastname = "Arrighini",
-                Dob = new DateTime(1986, 3, 5),
-                Gender = 'M',
-                Username = "francesco.arrighini@GMAIL.com",
-                Password = "romagnamia",
-                Enabled = true,
-                RoleId = 1,
-                Role = new Role() { Id = 1, RoleName = "admin" },
-                Id = 1
-            };
-            var fakeRequest = new RegisterRequestDto()
-            {
-                Firstname = "Francesco",
-                Lastname = "Arrighini",
-                Dob = new DateTime(1986, 3, 5),
-                Gender = 'M',
-                Username = "francesco.arrighini@GMAIL.com",
-                Password = "romagnamia",
-
-            };
-            var fakeResponse = new RegisterResponseDto();
-            
-            // mock della repository di salvataggio dati su DB
-             _repositoryService.Setup(x => x.AddUser(It.IsAny<User>())).Returns(Task.FromResult(fakeUser));
-            
-
-            // mock save changes
-            _repositoryService.Setup(x=>x.SaveChanges()).Returns(Task.FromResult(fakeResponse));
-       
-            var _fakeRegisterService = new RegisterService(_cryptoService, _repositoryService.Object);
-
-            // Act:
-            // fare test di add user del register service.
-            var actual = _fakeRegisterService.AddUser(fakeRequest);
-
-            //Assert:
-            if (actual.Id >= 1)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
+        /// <summary>
+        ///     Testing AddUser() Method and all possible entries into CREATE Operation
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="firstname"></param>
+        /// <param name="lastname"></param>
+        /// <param name="dob"></param>
+        /// <param name="gender"></param>
+        /// <param name="username"></param>
+        /// <param name="password"></param>
+        /// <param name="expected"></param>
         [Theory]
-        [InlineData("", "Teodorio", "1976-04-27", 'M', "giovaTEO@protonmail.com", "GattoMatto", false)]
-        [InlineData("Giovanni","Teodorio","",'M',"giovaTEO@protonmail.com", "GattoMatto", false)]
-        [InlineData("Giovanni","Teodorio","",'M',"", "GattoMatto", false)]
-        [InlineData("Giovanni", "Teodorio", "", null, "giovaTEO@protonmail.com", "GattoMatto", false)]
-        [InlineData("Giovanni","Teodorio","1976-04-27",'M',"giovaTEO@protonmail.com", "GattoMatto", true)]
+        [InlineData(1,null, "Teodorio", "1976-04-27", 'M', "giovaTEO@protonmail.com", "GattoMatto", false)]
+        [InlineData(1,"Giovanni", null, "1976-04-27", 'M', "giovaTEO@protonmail.com", "GattoMatto", false)]
+        [InlineData(1,"Giovanni","Teodorio",null,'M',"giovaTEO@protonmail.com", "GattoMatto", false)]
+        [InlineData(1, "Giovanni", "Teodorio", "1976-04-27", null, "giovaTEO@protonmail.com", "GattoMatto", false)]
+        [InlineData(1, "Giovanni", "Teodorio", "1976-04-27", 'M', null, "GattoMatto", false)]
+        [InlineData(1, "Giovanni", "Teodorio", "1976-04-27", 'M', "giovaTEO@protonmail.com",null , false)]
+        //empty string values 
+        [InlineData(1, "", "Teodorio", "1976-04-27", 'M', "giovaTEO@protonmail.com", "GattoMatto", false)]
+        [InlineData(1, "Giovanni", "", "1976-04-27", 'M', "giovaTEO@protonmail.com", "GattoMatto", false)]
+        [InlineData(1, "Giovanni", "Teodorio", "", 'M', "giovaTEO@protonmail.com", "GattoMatto", false)]
+        [InlineData(1, "Giovanni", "Teodorio", "1976-04-27", 'M', "", "GattoMatto", false)]
+        [InlineData(1, "Giovanni", "Teodorio", "1976-04-27", 'M', "giovaTEO@protonmail.com", "", false)]
+        // wrong charachter
+        [InlineData(1, "Giovanni", "Teodorio", "1976-04-27",'1' , "giovaTEO@protonmail.com", "GattoMatto", false)]
+        //not valid datetime
+        [InlineData(1,"Giovanni","Teodorio","1",'M',"giovaTEO@protonmail.com", "GattoMatto", false)]
+        // correct insert
+        [InlineData(1, "Giovanni", "Teodorio", "1976 - 04 - 27", 'M', "giovaTEO@protonmail.com", "GattoMatto", true)]
+
+
         public void AddUser_Should_Work_Properly(
+            int id,
             string firstname,
             string lastname,
             string dob,
@@ -91,30 +62,33 @@ namespace UnitTest.Deliveriamo
             )
         {
             // Arrange:
-            var actual = false;
-            bool result;
+            
+           
             var _cryptoService = new CryptoService();
 
-            var _repositoryService = new Mock<IRepository>();
+            var _repositoryService = new Mock<IRepositoryService>();
+
+            DateTime DOB;
+            DateTime.TryParse(dob, out DOB);
 
             var fakeUser = new User()
             {
                 Firstname = firstname,
                 Lastname = lastname,
-                Dob = DateTime.Parse(dob),
+                Dob = DOB,
                 Gender = gender,
                 Username = username,
                 Password = password,
                 Enabled = true,
                 RoleId = 1,
                 Role = new Role() { Id = 1, RoleName = "admin" },
-                Id = 1
+                Id = id
             };
             var fakeRequest = new RegisterRequestDto()
             {
                 Firstname = firstname,
                 Lastname = lastname,
-                Dob = DateTime.Parse(dob),
+                Dob = DOB,
                 Gender = gender,
                 Username = username,
                 Password = password
@@ -125,11 +99,11 @@ namespace UnitTest.Deliveriamo
             // DRIVERS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
             
             // mock della repository di salvataggio dati su DB --> AddUser()
-            _repositoryService.Setup(x => x.AddUser(It.IsAny<User>())).Returns(Task.FromResult(fakeUser));
+            _repositoryService.Setup(x => x.AddUser(fakeRequest.ToEntity(""))).Returns(Task.FromResult(fakeRequest.ToEntity("")));
 
 
             // mock SaveChanges() METHOD
-            _repositoryService.Setup(x => x.SaveChanges()).Returns(Task.FromResult(fakeResponse));
+            _repositoryService.Setup(x => x.SaveChanges()).Returns(Task.CompletedTask);
 
             var _fakeRegisterService = new RegisterService(_cryptoService, _repositoryService.Object);
             
@@ -140,16 +114,22 @@ namespace UnitTest.Deliveriamo
             var testAddUser = _fakeRegisterService.AddUser(fakeRequest);
 
             //Assert:
-            if (testAddUser.Id >= 1)
+            //Assert.Equal(expected, testAddUser.Id == id);
+            if (expected)
             {
-                actual = true;
-                 Assert.Equal(expected, actual);
+                _repositoryService.Verify(x => x.AddUser(It.IsAny<User>()),Times.Once());
+                _repositoryService.Verify(x => x.SaveChanges(),Times.Once());
+
             }
             else
             {
-                
-                Assert.Equal(expected, actual);
+                _repositoryService.Verify(x => x.AddUser(It.IsAny<User>()), Times.Never());
+                _repositoryService.Verify(x => x.SaveChanges(), Times.Never());
             }
+
+           
+
         }
+
     }
 }

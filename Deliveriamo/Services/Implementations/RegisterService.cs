@@ -9,9 +9,9 @@ namespace Deliveriamo.Services.Implementations
     public class RegisterService : IRegisterService
     {
         private readonly ICryptoService _CryptoService;
-        private readonly IRepository _repository;
+        private readonly IRepositoryService _repository;
 
-        public RegisterService(ICryptoService cryptoService, IRepository repository)
+        public RegisterService(ICryptoService cryptoService, IRepositoryService repository)
         {
             _CryptoService = cryptoService;
             _repository = repository;
@@ -21,14 +21,18 @@ namespace Deliveriamo.Services.Implementations
         {
             
             var response = new RegisterResponseDto();
+            //new RegisterRequestDto.FixRegisterRequestToLower()
             var hashedPassword = _CryptoService.CreateMD5(request.Password);
             User user = request.ToEntity(hashedPassword);
+            if (user != null)
+            {
+                await _repository.AddUser(user);
+                await _repository.SaveChanges();
+                response.Id = user.Id;
 
+            }
             //save user into DB
-            await _repository.AddUser(user);
-            await _repository.SaveChanges();
 
-            response.Id = user.Id;
             return response;
         }
 

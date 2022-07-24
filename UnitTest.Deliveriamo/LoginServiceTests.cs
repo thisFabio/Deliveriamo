@@ -12,6 +12,13 @@ namespace TestDeliveriamo
 {
     public class LoginServiceTests
     {
+
+        /// <summary>
+        /// Testing LOGIN() Method
+        /// </summary>
+        /// <param name="user"></param>
+        /// <param name="pass"></param>
+        /// <param name="expected"></param>
         [Theory]
         [InlineData("", "", false)]
         [InlineData(null, null, false)]
@@ -19,10 +26,11 @@ namespace TestDeliveriamo
         [InlineData("ciccio", "ciccio", true)]
         [InlineData("", null, false)]
         [InlineData(null, "", false)]
+        // Testing Login() Method
         public async void WhenUserLogin_ReturnAccordingly(string user, string pass, bool expected)
         {
             // arrange
-            var fakeContext = new Mock<IRepository>();
+            var fakeContext = new Mock<IRepositoryService>();
             var username = user;
             var password = pass;
             var fakeUser = new User()

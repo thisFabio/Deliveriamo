@@ -14,9 +14,9 @@ namespace Deliveriamo.Services.Implementations
     {
         private readonly IConfiguration _configuration;
         private readonly ICryptoService _cryptoService;
-        private readonly IRepository _repository;
+        private readonly IRepositoryService _repository;
 
-        public LoginService(IConfiguration configuration, IRepository repository, ICryptoService cryptoService = null)
+        public LoginService(IConfiguration configuration, IRepositoryService repository, ICryptoService cryptoService = null)
         {
             _configuration = configuration;
             _repository = repository;
@@ -68,6 +68,7 @@ namespace Deliveriamo.Services.Implementations
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
+                    
                     new Claim("userid","1"),
                     new Claim(ClaimTypes.Role, role) 
                 }),

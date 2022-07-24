@@ -32,6 +32,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Deliveriamo\Deliveriamo.csproj" />
+    <ProjectReference Include="..\IntegrationTest.Deliveriamo\IntegrationTest.Deliveriamo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

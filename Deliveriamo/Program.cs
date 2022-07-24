@@ -24,7 +24,7 @@ namespace DeliveriamoMain
                                         .Replace("@machine", Environment.MachineName)));
 
             builder.Services.AddSingleton<IConfiguration>(provider => builder.Configuration);
-            builder.Services.AddTransient<IRepository, Repository>();
+            builder.Services.AddTransient<IRepositoryService, RepositoryService>();
             builder.Services.AddTransient<ILoginService, LoginService>();
             builder.Services.AddTransient<IRegisterService, RegisterService>();
             builder.Services.AddTransient<ICryptoService, CryptoService>();
