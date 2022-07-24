@@ -29,7 +29,7 @@ namespace IntegrationTest.Deliveriamo
                 .WithLastname("Rossi")
                 .WithGender('M')
                 .WithRole(role)
-                .WithRoleId(1)
+                .WithRoleId(2)
                 .WithId(1)
                 .Build();
 

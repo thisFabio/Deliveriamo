@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveriamoRepository.Migrations
 {
     [DbContext(typeof(DeliveriamoContext))]
-    [Migration("20220720052312_initialCreate")]
-    partial class initialCreate
+    [Migration("20220724154717_Sporcata")]
+    partial class Sporcata
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -61,6 +61,7 @@ namespace DeliveriamoRepository.Migrations
 
                     b.Property<string>("Gender")
                         .IsRequired()
+                        .HasMaxLength(1)
                         .HasColumnType("nvarchar(1)");
 
                     b.Property<string>("Lastname")

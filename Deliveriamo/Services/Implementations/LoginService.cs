@@ -52,7 +52,6 @@ namespace Deliveriamo.Services.Implementations
 
             // else return empt obj
 
-
             return output;
         }
 

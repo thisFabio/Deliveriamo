@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DeliveriamoRepository.Migrations
 {
-    public partial class initialCreate : Migration
+    public partial class Sporcata : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -33,9 +33,9 @@ namespace DeliveriamoRepository.Migrations
                     Firstname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Lastname = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Dob = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Gender = table.Column<string>(type: "nvarchar(1)", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false),
-                    Enabled = table.Column<bool>(type: "bit", nullable: false)
+                    Gender = table.Column<string>(type: "nvarchar(1)", maxLength: 1, nullable: false),
+                    Enabled = table.Column<bool>(type: "bit", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,8 +52,6 @@ namespace DeliveriamoRepository.Migrations
                 name: "IX_User_RoleId",
                 table: "User",
                 column: "RoleId");
-
-            
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

@@ -80,8 +80,8 @@ namespace UnitTest.Deliveriamo
                 Username = username,
                 Password = password,
                 Enabled = true,
-                RoleId = 1,
                 Role = new Role() { Id = 1, RoleName = "admin" },
+                RoleId = 1,
                 Id = id
             };
             var fakeRequest = new RegisterRequestDto()

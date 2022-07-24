@@ -7,8 +7,10 @@ using MockQueryable.Moq;
 using FluentAssertions;
 using DeliveriamoRepository;
 using DeliveriamoRepository.Entity;
+using Xunit;
+using Deliveriamo.DTOs.Login;
 
-namespace TestDeliveriamo
+namespace UnitTest.Deliveriamo
 {
     public class LoginServiceTests
     {
@@ -43,8 +45,8 @@ namespace TestDeliveriamo
                 Enabled = true,
                 Username = username,
                 Password = password,// torta
-                RoleId = 1,
                 Role = new Role() { Id = 1, RoleName = "admin" },
+                RoleId = 1,
                 Id = 1
             };
             var fakeUsers = new List<User>();
@@ -76,7 +78,7 @@ namespace TestDeliveriamo
             var _serviceMocked = new LoginService(configuration, fakeContext.Object, _cryptoService);
 
             // act
-            var result = await _serviceMocked.Login(new Deliveriamo.DTOs.Login.LoginRequestDto()
+            var result = await _serviceMocked.Login(new LoginRequestDto()
             {
                 Username = user,
                 Password = pass

@@ -25,10 +25,27 @@ namespace DeliveriamoRepository
 
         public async Task<User> CheckLogin(string username, string hash)
         {
+            User output = null;
+            
+            try
+            {
+                if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(hash))
+                {
+                    return null;
+                }
 
-            // look into DB to see if username and password are valid (compare pwd with hash),
-           return await _context.User.Include(x => x.Role)
-                .FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == hash.ToLower());
+                // look into DB to see if username and password are valid (compare pwd with hash),
+                output = await _context.User.Include(x => x.Role)
+                    .FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == hash.ToLower());
+
+            }
+            catch (Exception)
+            {
+
+                throw new NullReferenceException();
+            }
+
+            return output;
         }
 
         public async Task SaveChanges()

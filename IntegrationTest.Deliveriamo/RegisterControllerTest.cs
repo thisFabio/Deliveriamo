@@ -1,46 +1,39 @@
-using Deliveriamo.DTOs.Login;
-using DeliveriamoMain;
-using FluentAssertions;
+﻿using DeliveriamoMain;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IntegrationTest.Deliveriamo
-   
 {
-    public class LoginControllerTests : IClassFixture<CustomWebApplicationFactory<DeliveriamoMain.Program>>
+    internal class RegisterControllerTest : IClassFixture<CustomWebApplicationFactory<DeliveriamoMain.Program>>
     {
         private readonly CustomWebApplicationFactory<DeliveriamoMain.Program> _factory;
         private HttpClient _httpClient;
 
-        public LoginControllerTests(CustomWebApplicationFactory<Program> factory)
+        public RegisterControllerTest(CustomWebApplicationFactory<Program> factory)
         {
             _factory = factory;
-            _httpClient = _factory.CreateClient(new WebApplicationFactoryClientOptions{
+            _httpClient = _factory.CreateClient(new WebApplicationFactoryClientOptions
+            {
                 AllowAutoRedirect = true
             });
             _httpClient.DefaultRequestHeaders.Add("accept", "application/json");
+
         }
 
-        // DONE
-        //quando username e pass errati token vuoto
-
-        //quando username vuoto e pass piena non scoppia
-
-        //quando username pieno e pass vuota non scoppia
-
-        //quando username e pass entrambi vuoti non scoppia
-
-
         [Theory]
-        [InlineData("ciccio","torta", true)]
+        [InlineData("ciccio", "torta", true)]
         [InlineData("", "torta", false)]
         [InlineData("ciccio", "", false)]
         [InlineData(null, "torta", false)]
-        [InlineData("ciccio",null, false)]
+        [InlineData("ciccio", null, false)]
         [InlineData("antonio", "rossi", false)]
 
-        public async void LoginControllerWhenUserExists_Returns_Token (string username, string password, bool result)
+        public async void RegisterController_Returns_Created_User(string username, string password, bool result)
         {
             // arrange
             var request = new LoginRequestDto()
@@ -67,6 +60,12 @@ namespace IntegrationTest.Deliveriamo
                 throw new Exception("no success code");
             }
         }
+
+        public async void RegisterController_Returns_error_USer_Already_Created() { }
+        public async void RegisterController_Returns_Empty_User_If_There_Are_No_Valid_Entries() { }
+
+
+
 
         private static HttpContent SetPostRequest(object request)
         {

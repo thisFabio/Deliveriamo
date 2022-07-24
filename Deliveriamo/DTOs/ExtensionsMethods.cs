@@ -37,7 +37,7 @@ namespace Deliveriamo.DTOs
             catch (Exception ex)
             {
 
-                
+                    
             }
             
             return user;

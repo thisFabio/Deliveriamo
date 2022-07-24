@@ -53,7 +53,6 @@ namespace UnittestDeliveriamo.Entity
             user.Gender = Gender;
             return this;
         }
-
         public UserBuilder WithRoleId(int RoleId)
         {
             user.RoleId = RoleId;
