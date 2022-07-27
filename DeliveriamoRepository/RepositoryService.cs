@@ -19,8 +19,14 @@ namespace DeliveriamoRepository
 
         public async Task<User> AddUser(User user)
         {
+
             await _context.User.AddAsync(user);
             return user;
+        }
+
+        public async Task<User> AddUserShop(User user)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task<User> CheckLogin(string username, string hash)
@@ -51,6 +57,11 @@ namespace DeliveriamoRepository
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<bool> UsernameAlreadyExist(string username)
+        {
+            return _context.User.Any(x => x.Username == username);
         }
     }
 }

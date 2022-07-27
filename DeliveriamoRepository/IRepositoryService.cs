@@ -13,8 +13,11 @@ namespace DeliveriamoRepository
 
         Task<User> AddUser (User user);
 
+        Task<bool> UsernameAlreadyExist(string username);
+
         Task SaveChanges();
 
+        Task<User> AddUserShop(User user);
 
     }
 }

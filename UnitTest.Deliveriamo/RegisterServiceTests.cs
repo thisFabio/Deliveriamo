@@ -71,19 +71,19 @@ namespace UnitTest.Deliveriamo
             DateTime DOB;
             DateTime.TryParse(dob, out DOB);
 
-            var fakeUser = new User()
-            {
-                Firstname = firstname,
-                Lastname = lastname,
-                Dob = DOB,
-                Gender = gender,
-                Username = username,
-                Password = password,
-                Enabled = true,
-                Role = new Role() { Id = 1, RoleName = "admin" },
-                RoleId = 1,
-                Id = id
-            };
+            //var fakeUser = new User()
+            //{
+            //    Firstname = firstname,
+            //    Lastname = lastname,
+            //    Dob = DOB,
+            //    Gender = gender,
+            //    Username = username,
+            //    Password = password,
+            //    Enabled = true,
+            //    Role = new Role() { Id = 1, RoleName = "admin" },
+            //    RoleId = 1,
+            //    Id = id
+            //};
             var fakeRequest = new RegisterRequestDto()
             {
                 Firstname = firstname,
@@ -94,16 +94,18 @@ namespace UnitTest.Deliveriamo
                 Password = password
 
             };
-            var fakeResponse = new RegisterResponseDto();
+
+            //var fakeResponse = new RegisterResponseDto();
 
             // DRIVERS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-            
+
             // mock della repository di salvataggio dati su DB --> AddUser()
             _repositoryService.Setup(x => x.AddUser(fakeRequest.ToEntity(""))).Returns(Task.FromResult(fakeRequest.ToEntity("")));
 
 
             // mock SaveChanges() METHOD
             _repositoryService.Setup(x => x.SaveChanges()).Returns(Task.CompletedTask);
+
 
             var _fakeRegisterService = new RegisterService(_cryptoService, _repositoryService.Object);
             
@@ -113,22 +115,95 @@ namespace UnitTest.Deliveriamo
             // fare test di add user del register service.
             var testAddUser = _fakeRegisterService.AddUser(fakeRequest);
 
+
             //Assert:
             //Assert.Equal(expected, testAddUser.Id == id);
-            if (expected)
+            try
             {
-                _repositoryService.Verify(x => x.AddUser(It.IsAny<User>()),Times.Once());
-                _repositoryService.Verify(x => x.SaveChanges(),Times.Once());
+                if (expected)
+                {
+                    _repositoryService.Verify(x => x.AddUser(It.IsAny<User>()),Times.Once());
+                    _repositoryService.Verify(x => x.SaveChanges(),Times.Once());
+
+                }
+                else
+                {
+                    _repositoryService.Verify(x => x.AddUser(It.IsAny<User>()), Times.Never());
+                    _repositoryService.Verify(x => x.SaveChanges(), Times.Never());
+                }
 
             }
-            else
+            catch (Exception)
             {
-                _repositoryService.Verify(x => x.AddUser(It.IsAny<User>()), Times.Never());
-                _repositoryService.Verify(x => x.SaveChanges(), Times.Never());
+
+                throw new NotImplementedException();
+                   
             }
 
            
 
+        }
+
+        [Theory]
+        [InlineData("Fabio","Aimano","09-09-1995",'M', "giovaTEO@protonmail.com", "cicciobello",false)]
+        public void AddUser_Should_Reject_Already_Existing_User(
+        string firstname,
+        string lastname,
+        string dob,
+        char gender,
+        string username,
+        string password,
+        bool expected
+        )
+        {
+            // Arrange:
+            var _cryptoService = new CryptoService();
+            var _repositoryService = new Mock<IRepositoryService>();
+
+            DateTime DOB;
+            DateTime.TryParse(dob, out DOB);
+            
+            var fakeRequest = new RegisterRequestDto()
+            {
+                Firstname = firstname,
+                Lastname = lastname,
+                Dob = DOB,
+                Gender = gender,
+                Username = username,
+                Password = password
+
+            };
+
+            var fakeRequest2 = new RegisterRequestDto()
+            {
+                Firstname = "Giovanni",
+                Lastname = "Teodorio",
+                Dob = DOB,
+                Gender = 'M',
+                Username = "giovaTEO@protonmail.com",
+                Password = "GattoMatto"
+
+            };
+
+            // DRIVERS :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+            // mock della repository di salvataggio dati su DB --> AddUser()
+            _repositoryService.Setup(x => x.AddUser(fakeRequest.ToEntity(""))).Returns(Task.FromResult(fakeRequest.ToEntity("")));
+            _repositoryService.Setup(x => x.AddUser(fakeRequest2.ToEntity(""))).Returns(Task.FromResult(fakeRequest2.ToEntity("")));
+
+            // mock SaveChanges() METHOD
+            _repositoryService.Setup(x => x.SaveChanges()).Returns(Task.CompletedTask);
+
+            var _fakeRegisterService = new RegisterService(_cryptoService, _repositoryService.Object);
+
+            //:::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+            // Act:
+            // fare test di add user del register service.
+            var testAddUser = _fakeRegisterService.AddUser(fakeRequest);
+            var testAddUser2 = _fakeRegisterService.AddUser(fakeRequest2);
+
+            Assert.True(testAddUser2 != null);
         }
 
     }

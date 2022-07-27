@@ -1,5 +1,6 @@
 ﻿using Deliveriamo.DTOs;
 using Deliveriamo.DTOs.Register;
+using Deliveriamo.Services.Exceptions;
 using Deliveriamo.Services.Interfaces;
 using DeliveriamoRepository;
 using DeliveriamoRepository.Entity;
@@ -21,7 +22,12 @@ namespace Deliveriamo.Services.Implementations
         {
             
             var response = new RegisterResponseDto();
+            if(await _repository.UsernameAlreadyExist(request.Username))
+            {
+                throw new UserAlreadyExistException($"username {request.Username} already exist.");
+            }
             //new RegisterRequestDto.FixRegisterRequestToLower()
+
             var hashedPassword = _CryptoService.CreateMD5(request.Password);
             User user = request.ToEntity(hashedPassword);
             if (user != null)
