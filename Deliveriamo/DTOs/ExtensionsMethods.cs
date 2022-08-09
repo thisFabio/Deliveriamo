@@ -43,6 +43,64 @@ namespace Deliveriamo.DTOs
             return user;
         }
 
+        public static DeliveriamoRepository.Entity.User ToEntity(this RegisterShopRequestDto request, string hashedPassword)
+        {
+            DeliveriamoRepository.Entity.User user = null;
+            try
+            {
+                if (
+                String.IsNullOrEmpty(request.Username) ||
+                String.IsNullOrEmpty(request.Password) ||
+                String.IsNullOrEmpty(request.Firstname) ||
+                String.IsNullOrEmpty(request.Lastname) ||
+                !(request.Dob <= DateTime.Now && request.Dob >= new DateTime(1900, 1, 1)) ||
+                !Char.IsLetter(request.Gender) ||
+                String.IsNullOrEmpty(request.BusinessTypeName) ||
+                String.IsNullOrEmpty(request.ExtendedCompanyName) ||
+                String.IsNullOrEmpty(request.BusinessName) ||
+                String.IsNullOrEmpty(request.VatNumber) ||
+                String.IsNullOrEmpty(request.CompanyStreetAddress) ||
+                String.IsNullOrEmpty(request.CompanyCivicNumber) ||
+                String.IsNullOrEmpty(request.CompanyPostalCode) ||
+                String.IsNullOrEmpty(request.CompanyCity) ||
+                String.IsNullOrEmpty(request.CompanyCountry))
+
+
+                {
+                    return user;
+                }
+                user = new DeliveriamoRepository.Entity.User()
+                {
+                    Username = request.Username.ToLower(),
+                    Password = hashedPassword,
+                    Firstname = request.Firstname,
+                    Lastname = request.Lastname,
+                    Dob = Convert.ToDateTime(request.Dob),
+                    RoleId = 2,
+                    Role = new Role() { Id = 2, RoleName = "user" },
+                    Gender = request.Gender,
+                    Enabled = true,
+                    ShopKeeper = true,
+                    BusinessTypeName = request.BusinessTypeName.ToLower(),
+                    ExtendedCompanyName = request.ExtendedCompanyName.ToLower(),
+                    BusinessName = request.BusinessName.ToLower(),
+                    VatNumber = request.VatNumber.ToLower(),
+                    CompanyStreetAddress = request.CompanyStreetAddress.ToLower(),
+                    CompanyCivicNumber = request.CompanyCivicNumber.ToLower(),
+                    CompanyPostalCode = request.CompanyPostalCode.ToLower(),
+                    CompanyCountry = request.CompanyCountry.ToLower(),
+                    CompanyCity = request.CompanyCity.ToLower()
+                };
+            }
+            catch (Exception ex)
+            {
+
+
+            }
+
+            return user;
+        }
+
         public static RegisterRequestDto FixRegisterRequestToLower(this RegisterRequestDto request)
         {
             return new RegisterRequestDto()

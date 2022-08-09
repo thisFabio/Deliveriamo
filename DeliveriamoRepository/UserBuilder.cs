@@ -70,8 +70,68 @@ namespace UnittestDeliveriamo.Entity
             user.Role = Role;
             return this;
         }
+        public UserBuilder WithPhoneNumber(string PhoneNumber)
+        {
+            user.PhoneNumber = PhoneNumber;
+            return this;
+        }
 
+        public UserBuilder WithShopKeeper(bool ShopKeeper)
+        {
+            user.ShopKeeper = ShopKeeper;
+            return this;
+        }
 
+        public UserBuilder WithBusinessTypeName(string BusinessTypeName)
+        {
+            user.BusinessTypeName = BusinessTypeName;
+            return this;
+        }
+        public UserBuilder WithBusinessName(string BusinessName)
+        {
+            user.BusinessName = BusinessName;
+            return this;
+        }
+        public UserBuilder WithExtendedCompanyName(string ExtendedCompanyName)
+        {
+            user.ExtendedCompanyName = ExtendedCompanyName;
+            return this;
+        }
+
+        public UserBuilder WithVatNumber(string VatNumber)
+        {
+            user.VatNumber = VatNumber;
+            return this;
+        }
+
+        public UserBuilder WithCompanyStreetAddress(string CompanyStreetAddress)
+        {
+            user.CompanyStreetAddress = CompanyStreetAddress;
+            return this;
+        }
+
+        public UserBuilder WithCompanyCivicNumber(string CompanyCivicNumber)
+        {
+            user.CompanyCivicNumber = CompanyCivicNumber;
+            return this;
+        }
+
+        public UserBuilder WithCompanyCity(string CompanyCity)
+        {
+            user.CompanyCity = CompanyCity;
+            return this;
+        }
+
+        public UserBuilder WithCompanyPostalCode(string CompanyPostalCode)
+        {
+            user.CompanyPostalCode = CompanyPostalCode;
+            return this;
+        }
+        public UserBuilder WithCompanyCountry(string CompanyCountry)
+        {
+            user.CompanyCountry = CompanyCountry;
+            return this;
+        }
 
         public User Build()
         {

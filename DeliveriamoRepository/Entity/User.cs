@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace DeliveriamoRepository.Entity
 {
@@ -34,13 +35,18 @@ namespace DeliveriamoRepository.Entity
         public Role Role { get; set; }
         [Required]
         public bool ShopKeeper { get; set; } = false;
-        public string CompanyName { get; set; }
+
+        [ForeignKey("BusinessTypeName")]
+        public string BusinessTypeName { get; set; }
+        public string ExtendedCompanyName { get; set; }
         public string BusinessName { get; set; }
         public string VatNumber { get; set; }
         public string CompanyStreetAddress { get; set; }
         public string CompanyCivicNumber { get; set; }
-        public string CompanyCity { get; set; }
         public string CompanyPostalCode { get; set; }
+        public string CompanyCity { get; set; }
+        public string CompanyCountry { get; set; }
+
 
 
 

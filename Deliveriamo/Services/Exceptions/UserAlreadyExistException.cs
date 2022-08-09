@@ -3,7 +3,7 @@
 namespace Deliveriamo.Services.Exceptions
 {
     [Serializable]
-    internal class UserAlreadyExistException : Exception
+    public class UserAlreadyExistException : Exception
     {
         public UserAlreadyExistException()
         {

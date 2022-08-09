@@ -42,7 +42,23 @@ namespace Deliveriamo.Services.Implementations
             return response;
         }
 
+        public async Task<RegisterResponseDto> AddUserShop(RegisterShopRequestDto request)
+        {
+            var response = new RegisterResponseDto();
+            if (await _repository.UsernameAlreadyExist(request.Username))
+            {
+                throw new UserAlreadyExistException($"username {request.Username} already exist.");
+            }
+            var hashedPassword = _CryptoService.CreateMD5(request.Password);
+            User user = request.ToEntity(hashedPassword);
+            if (user != null)
+            {
+                await _repository.AddUser(user);
+                await _repository.SaveChanges();
+                response.Id = user.Id;
+            }
+            return response;
 
-        
+        }
     }
 }

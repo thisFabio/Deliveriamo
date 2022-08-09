@@ -26,7 +26,8 @@ namespace DeliveriamoRepository
 
         public async Task<User> AddUserShop(User user)
         {
-            throw new NotImplementedException();
+            await _context.User.AddAsync(user);
+            return user;
         }
 
         public async Task<User> CheckLogin(string username, string hash)
