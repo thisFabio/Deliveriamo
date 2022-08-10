@@ -29,7 +29,7 @@ namespace Deliveriamo.DTOs
                     Lastname = request.Lastname,
                     Dob = Convert.ToDateTime(request.Dob),
                     RoleId = 2,
-                    Role = new Role() { Id = 2, RoleName = "user" },
+                    //Role = new Role() { Id = 2, RoleName = "user" },
                     Gender = request.Gender,
                     Enabled = true
                 };
@@ -81,15 +81,15 @@ namespace Deliveriamo.DTOs
                     Gender = request.Gender,
                     Enabled = true,
                     ShopKeeper = true,
-                    BusinessTypeName = request.BusinessTypeName.ToLower(),
-                    ExtendedCompanyName = request.ExtendedCompanyName.ToLower(),
-                    BusinessName = request.BusinessName.ToLower(),
-                    VatNumber = request.VatNumber.ToLower(),
-                    CompanyStreetAddress = request.CompanyStreetAddress.ToLower(),
-                    CompanyCivicNumber = request.CompanyCivicNumber.ToLower(),
-                    CompanyPostalCode = request.CompanyPostalCode.ToLower(),
-                    CompanyCountry = request.CompanyCountry.ToLower(),
-                    CompanyCity = request.CompanyCity.ToLower()
+                    BusinessTypeName = request.BusinessTypeName,
+                    ExtendedCompanyName = request.ExtendedCompanyName,
+                    BusinessName = request.BusinessName,
+                    VatNumber = request.VatNumber,
+                    CompanyStreetAddress = request.CompanyStreetAddress,
+                    CompanyCivicNumber = request.CompanyCivicNumber,
+                    CompanyPostalCode = request.CompanyPostalCode,
+                    CompanyCountry = request.CompanyCountry,
+                    CompanyCity = request.CompanyCity
                 };
             }
             catch (Exception ex)

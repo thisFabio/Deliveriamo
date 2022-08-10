@@ -7,6 +7,7 @@ namespace DeliveriamoRepository.Entity
     {
         
         [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         [Required(AllowEmptyStrings = false)]
         [MinLength(2)]

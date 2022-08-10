@@ -62,7 +62,7 @@ namespace IntegrationTest.Deliveriamo
         }
 
         [Theory]
-        [InlineData("ciccio", "cicc", true)]
+        [InlineData("ciccio", "ciccio", true)]
         public async void RegisterController_Returns_error_User_Already_Created(string username, string secondUsername, bool result) 
         {
             // arrange

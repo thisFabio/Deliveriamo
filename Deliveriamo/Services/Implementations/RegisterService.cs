@@ -32,8 +32,20 @@ namespace Deliveriamo.Services.Implementations
             User user = request.ToEntity(hashedPassword);
             if (user != null)
             {
-                await _repository.AddUser(user);
-                await _repository.SaveChanges();
+                try
+                {
+
+                    await _repository.AddUser(user);
+                    await _repository.SaveChanges();
+                }
+                catch (Exception ex)
+                {
+
+                    throw ex;
+                }
+                
+               
+               
                 response.Id = user.Id;
 
             }
