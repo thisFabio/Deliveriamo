@@ -58,6 +58,7 @@ namespace Deliveriamo.DTOs
                 String.IsNullOrEmpty(request.BusinessTypeName) ||
                 String.IsNullOrEmpty(request.ExtendedCompanyName) ||
                 String.IsNullOrEmpty(request.BusinessName) ||
+                String.IsNullOrEmpty(request.PhoneNumber) ||
                 String.IsNullOrEmpty(request.VatNumber) ||
                 String.IsNullOrEmpty(request.CompanyStreetAddress) ||
                 String.IsNullOrEmpty(request.CompanyCivicNumber) ||
@@ -77,13 +78,14 @@ namespace Deliveriamo.DTOs
                     Lastname = request.Lastname,
                     Dob = Convert.ToDateTime(request.Dob),
                     RoleId = 2,
-                    Role = new Role() { Id = 2, RoleName = "user" },
+                    //Role = new Role() { Id = 2, RoleName = "user" },
                     Gender = request.Gender,
                     Enabled = true,
                     ShopKeeper = true,
                     BusinessTypeName = request.BusinessTypeName,
                     ExtendedCompanyName = request.ExtendedCompanyName,
                     BusinessName = request.BusinessName,
+                    PhoneNumber = request.PhoneNumber,
                     VatNumber = request.VatNumber,
                     CompanyStreetAddress = request.CompanyStreetAddress,
                     CompanyCivicNumber = request.CompanyCivicNumber,

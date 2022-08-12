@@ -64,10 +64,13 @@ namespace Deliveriamo.Services.Implementations
             var hashedPassword = _CryptoService.CreateMD5(request.Password);
             User user = request.ToEntity(hashedPassword);
             if (user != null)
-            {
+            { 
                 await _repository.AddUser(user);
                 await _repository.SaveChanges();
-                response.Id = user.Id;
+                response.Id = user.Id; }
+            else
+            {
+                throw new InvalidOperationException($"username is null");
             }
             return response;
 

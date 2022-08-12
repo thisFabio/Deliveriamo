@@ -216,6 +216,7 @@ namespace UnitTest.Deliveriamo
                 BusinessTypeName = "supermercato",
                 BusinessName = "provazienda",
                 ExtendedCompanyName = "prova azienda srl",
+                PhoneNumber = "0987654321",
                 VatNumber = "987654321",
                 CompanyStreetAddress = "via delle rose",
                 CompanyCivicNumber = "11",
