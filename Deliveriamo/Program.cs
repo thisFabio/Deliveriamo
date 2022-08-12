@@ -28,7 +28,9 @@ namespace DeliveriamoMain
             builder.Services.AddTransient<ILoginService, LoginService>();
             builder.Services.AddTransient<IRegisterService, RegisterService>();
             builder.Services.AddTransient<ICryptoService, CryptoService>();
-           
+            builder.Services.AddTransient<IProductService, ProductService>();
+
+
 
 
 

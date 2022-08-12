@@ -12,14 +12,21 @@ namespace DeliveriamoRepository.Entity
         [Required(AllowEmptyStrings = false)]
         [MinLength(2)]
         public string Name { get; set; }
+
+        [Required]
+        public decimal PriceUnit { get; set; }
+        
         [Required(AllowEmptyStrings = false)]
         [MinLength(2)]
         public string Description { get; set; }
-        [Required(AllowEmptyStrings = false)]
-        [MinLength(2)]
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
         public Category Category { get; set; }
-        public string BarCode { get; set; }
+
+        public string Barcode { get; set; }
+
+        public string UrlImage { get; set; }
+
+        public bool Status { get; set; } = true;
 
     }
 }
