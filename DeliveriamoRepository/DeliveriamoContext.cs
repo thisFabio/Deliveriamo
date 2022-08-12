@@ -19,6 +19,9 @@ namespace DeliveriamoRepository
         public DbSet<User> User { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<BusinessType> BusinessType { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Category> Category { get; set; }
+        public DbSet<UserProduct> UserProduct { get; set; }
 
 
 
@@ -27,7 +30,7 @@ namespace DeliveriamoRepository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=DeliveriamoDB;User Id=deliveriamoadm;password=Delivery123!;");
+                optionsBuilder.UseSqlServer(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=DeliveriamoDB;User Id=deliveriamoadm;password=Delivery123!;");
             }
         }
 
