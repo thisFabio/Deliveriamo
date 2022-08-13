@@ -77,6 +77,7 @@ namespace UnitTest.Deliveriamo
                 .WithId(1)
                 .WithFirstname("pippo")
                 .WithLastname("pluto")
+                .WithEnabled(true)
                 .WithGender('f')
                 .WithPassword("b1f3676cce8d9cb94e3a8e152f78c713")
                 .WithDob(DateTime.Now)

@@ -1,6 +1,7 @@
 ﻿using Deliveriamo.DTOs.Login;
 using Deliveriamo.DTOs.Register;
 using DeliveriamoMain;
+using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using System;
@@ -44,21 +45,12 @@ namespace IntegrationTest.Deliveriamo
             HttpContent httpContent = SetPostRequest(request);
 
             //act 
-            var response = await _httpClient.PostAsync("/api/Login/Login", httpContent); //api/[controller]/[action]
+            var response = await _httpClient.PostAsync("/api/Register/Register", httpContent); //api/[controller]/[action]
             // leggo il content della generica HttpresponseMessage, e la deserializzo in un oggetto
-            var deserializedRepsonse = JsonConvert.DeserializeObject<LoginResponseDto>(await response.Content.ReadAsStringAsync());
+            var deserializedRepsonse = JsonConvert.DeserializeObject<RegisterResponseDto>(await response.Content.ReadAsStringAsync());
             // Assert
 
-            bool isTokenValid = !String.IsNullOrEmpty(deserializedRepsonse.Token);
-            if (response.IsSuccessStatusCode)
-            {
-                Assert.Equal(result.ToString(), isTokenValid.ToString());
-            }
-            else
-            {
-
-                throw new Exception("no success code");
-            }
+            Assert.True(response.IsSuccessStatusCode);
         }
 
         [Theory]
@@ -87,30 +79,22 @@ namespace IntegrationTest.Deliveriamo
             HttpContent httpContent = SetPostRequest(request);
 
             //act 
-            var response = await _httpClient.PostAsync("/api/Login/Login", httpContent); //api/[controller]/[action]
+            var response = await _httpClient.PostAsync("/api/Register/Register", httpContent); //api/[controller]/[action]
             // leggo il content della generica HttpresponseMessage, e la deserializzo in un oggetto
-            var deserializedRepsonse = JsonConvert.DeserializeObject<LoginResponseDto>(await response.Content.ReadAsStringAsync());
+            var deserializedRepsonse = JsonConvert.DeserializeObject<RegisterResponseDto>(await response.Content.ReadAsStringAsync());
            
             
             httpContent = SetPostRequest(secondRequest);
-            response = await _httpClient.PostAsync("/api/Login/Login", httpContent); //api/[controller]/[action]
-            var deserializedSecondRepsonse = JsonConvert.DeserializeObject<LoginResponseDto>(await response.Content.ReadAsStringAsync());
-            
-            
+            response = await _httpClient.PostAsync("/api/Register/Register", httpContent); //api/[controller]/[action]
+            var deserializedSecondRepsonse = JsonConvert.DeserializeObject<RegisterResponseDto>(await response.Content.ReadAsStringAsync());
+
+
             // Assert
 
 
-
-            bool isTokenValid = !String.IsNullOrEmpty(deserializedRepsonse.Token) || !String.IsNullOrEmpty(deserializedSecondRepsonse.Token);
-            if (response.IsSuccessStatusCode)
-            {
-                Assert.Equal(result.ToString(), isTokenValid.ToString());
-            }
-            else
-            {
-
-                throw new Exception("no success code");
-            }
+            Assert.True(response.IsSuccessStatusCode);
+            deserializedRepsonse.Success.Should().Be(false);
+            deserializedRepsonse.ErrorMessage.Should().NotBe(null);
         }
         [Theory]
         [InlineData("ciccio", "torta", true)]
@@ -125,21 +109,13 @@ namespace IntegrationTest.Deliveriamo
             HttpContent httpContent = SetPostRequest(request);
 
             //act 
-            var response = await _httpClient.PostAsync("/api/Login/Login", httpContent); //api/[controller]/[action]
+            var response = await _httpClient.PostAsync("/api/Register/Register", httpContent); //api/[controller]/[action]
             // leggo il content della generica HttpresponseMessage, e la deserializzo in un oggetto
-            var deserializedRepsonse = JsonConvert.DeserializeObject<LoginResponseDto>(await response.Content.ReadAsStringAsync());
+            var deserializedRepsonse = JsonConvert.DeserializeObject<RegisterResponseDto>(await response.Content.ReadAsStringAsync());
             // Assert
-
-            bool isTokenValid = !String.IsNullOrEmpty(deserializedRepsonse.Token);
-            if (response.IsSuccessStatusCode)
-            {
-                Assert.Equal(result.ToString(), isTokenValid.ToString());
-            }
-            else
-            {
-
-                throw new Exception("no success code");
-            }
+            Assert.True(response.IsSuccessStatusCode);
+            deserializedRepsonse.Success.Should().Be(false);
+            deserializedRepsonse.Id.Should().Be(0);
         }
 
 

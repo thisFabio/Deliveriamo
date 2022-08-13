@@ -6,6 +6,7 @@
         public string BusinessTypeName { get; set; }
         public string ExtendedCompanyName { get; set; }
         public string BusinessName { get; set; }
+        public string PhoneNumber { get; set; }
         public string VatNumber { get; set; }
         public string CompanyStreetAddress { get; set; }
         public string CompanyCivicNumber { get; set; }
