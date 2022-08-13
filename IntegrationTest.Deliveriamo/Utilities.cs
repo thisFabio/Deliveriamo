@@ -20,6 +20,16 @@ namespace IntegrationTest.Deliveriamo
                 RoleName = "Admin"
             };
 
+            var category = new Category()
+            {
+                Id = 1,
+                Name = "Category 1",
+                Description = "Category 1 Description"
+            };
+
+            db.Category.Add(category);
+            db.SaveChanges();
+
             var user= new UserBuilder()
                 .WithEnabled(true)
                 .WithUsername("ciccio")

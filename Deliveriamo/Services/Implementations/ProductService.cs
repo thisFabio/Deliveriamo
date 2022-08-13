@@ -9,8 +9,12 @@ namespace Deliveriamo.Services.Implementations
     public class ProductService : IProductService
     {
 
-        private readonly ICryptoService _CryptoService;
         private readonly IRepositoryService _repository;
+
+        public ProductService( IRepositoryService repository)
+        {
+            _repository = repository;
+        }
 
         public async Task<AddProductResponseDto> AddProduct(AddProductRequestDto request)
         {
@@ -21,11 +25,7 @@ namespace Deliveriamo.Services.Implementations
                 Name = request.Name,
                 Description = request.Description,
                 PriceUnit = request.PriceUnit,
-                Category = new Category()
-                {
-                    Id = request.CategoryId,
-                    Name = request.Name
-                }
+                CategoryId = request.CategoryId
             };
             if (product != null)
             {
@@ -43,7 +43,7 @@ namespace Deliveriamo.Services.Implementations
                 }
             }
 
-                 
+
             response.Id = product.Id;
             return response;
         }

@@ -30,7 +30,7 @@ namespace DeliveriamoRepository
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(@"Data Source=localhost;Initial Catalog=DeliveriamoDB;User Id=deliveriamoadm;password=Delivery123!;");
+                optionsBuilder.UseSqlServer(@"Data Source=localhost\SQLEXPRESS;Initial Catalog=DeliveriamoDB;User Id=deliveriamoadm;password=Delivery123!;");
             }
         }
 

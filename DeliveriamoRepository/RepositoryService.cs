@@ -52,7 +52,7 @@ namespace DeliveriamoRepository
                     .FirstOrDefaultAsync(x => x.Username.ToLower() == username.ToLower() && x.Password == hash.ToLower());
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 throw new NullReferenceException();
