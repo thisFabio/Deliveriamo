@@ -23,6 +23,12 @@ namespace DeliveriamoRepository
             return product;
         }
 
+        public async Task<Product> DeleteProduct(Product product)
+        {
+            _context.Product.Remove(product);
+            return product;
+        }
+
         public async Task<User> AddUser(User user)
         {
 

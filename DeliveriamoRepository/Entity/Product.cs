@@ -20,7 +20,6 @@ namespace DeliveriamoRepository.Entity
         [MinLength(2)]
         public string Description { get; set; }
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
 
         public string Barcode { get; set; }
 
