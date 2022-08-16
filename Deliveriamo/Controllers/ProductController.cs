@@ -19,7 +19,7 @@ namespace Deliveriamo.Controllers
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequestDto request)
         {
             var result = await _productService.AddProduct(request);
-            return new ObjectResult(request);
+            return new ObjectResult(result);
         }
     }
 }

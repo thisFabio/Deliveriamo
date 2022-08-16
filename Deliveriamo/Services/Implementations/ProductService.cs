@@ -9,8 +9,12 @@ namespace Deliveriamo.Services.Implementations
     public class ProductService : IProductService
     {
 
-        private readonly ICryptoService _CryptoService;
         private readonly IRepositoryService _repository;
+
+        public ProductService( IRepositoryService repository)
+        {
+            _repository = repository;
+        }
 
         public async Task<AddProductResponseDto> AddProduct(AddProductRequestDto request)
         {
@@ -21,8 +25,7 @@ namespace Deliveriamo.Services.Implementations
                 Name = request.Name,
                 Description = request.Description,
                 PriceUnit = request.PriceUnit,
-                CategoryId = request.CategoryId,
-
+                CategoryId = request.CategoryId
             };
             if (product != null)
             {
@@ -40,24 +43,10 @@ namespace Deliveriamo.Services.Implementations
                 }
             }
 
-                  
+
             response.Id = product.Id;
             return response;
         }
 
-        public async Task<DeleteProductResponseDto> DeleteProduct(DeleteProductRequestDto request)
-        {
-            var response = new DeleteProductResponseDto();
-
-            Product product = _repository.Product.FirstOrdDefault()
-
-            return response;
-
-        }
-
-        public async Task<UpdateProductResponseDto> UpdateProduct(UpdateProductRequestDto request)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
