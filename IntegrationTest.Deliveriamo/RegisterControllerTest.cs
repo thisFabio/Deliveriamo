@@ -5,6 +5,7 @@ using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using System;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -23,7 +24,10 @@ namespace IntegrationTest.Deliveriamo
                 AllowAutoRedirect = true
             });
             _httpClient.DefaultRequestHeaders.Add("accept", "application/json");
-
+            _httpClient.DefaultRequestHeaders.Add("accept", "application/json");
+            var token = GetToken().Result;
+            _httpClient.DefaultRequestHeaders.Authorization =
+    new AuthenticationHeaderValue("Bearer", token);
         }
 
         [Theory]
@@ -127,6 +131,23 @@ namespace IntegrationTest.Deliveriamo
             httpContent.Headers.Remove("Content-Type");
             httpContent.Headers.Add("Content-Type", "application/json");
             return httpContent;
+        }
+
+        private async Task<string> GetToken()
+        {
+            var request = new LoginRequestDto()
+            {
+                Username = "ciccio",
+                Password = "torta"
+            };
+            HttpContent httpContent = SetPostRequest(request);
+
+            //act 
+            var response = await _httpClient.PostAsync("/api/Login/Login", httpContent); //api/[controller]/[action]
+            // leggo il content della generica HttpresponseMessage, e la deserializzo in un oggetto
+            var deserializedRepsonse = JsonConvert.DeserializeObject<LoginResponseDto>(await response.Content.ReadAsStringAsync());
+            // Assert
+            return deserializedRepsonse.Token;
         }
     }
 }
