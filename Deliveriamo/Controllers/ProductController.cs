@@ -18,7 +18,22 @@ namespace Deliveriamo.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequestDto request)
         {
-            var result = await _productService.AddProduct(request);
+            var userId = User.Claims.First(x => x.Type == "userid").Value;
+            var result = await _productService.AddProduct(request, userId);
+            return new ObjectResult(result);
+        }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductRequestDto request)
+        {
+            var result = await _productService.UpdateProduct(request);
+            return new ObjectResult(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductRequestDto request)
+        {
+            var result = await _productService.DeleteProduct(request);
             return new ObjectResult(result);
         }
     }

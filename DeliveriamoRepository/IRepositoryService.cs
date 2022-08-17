@@ -11,15 +11,21 @@ namespace DeliveriamoRepository
     {
         Task<User> CheckLogin (string username,string hash);
 
+
+        /*************************** USER ************************************/
         Task<User> AddUser (User user);
-
-        Task<Product> AddProduct (Product product);
-
+        Task<User> AddUserShop(User user);
         Task<bool> UsernameAlreadyExist(string username);
 
+        /*************************** PRODUCT ************************************/
+
+        Task<Product> AddProduct (Product product, string userId);
+        Task<Product> UpdateProduct(Product product);
+        Task<Product> DeleteProduct(Product product);
+
+        /*************************** GENERAL ************************************/
         Task SaveChanges();
 
-        Task<User> AddUserShop(User user);
 
     }
 }

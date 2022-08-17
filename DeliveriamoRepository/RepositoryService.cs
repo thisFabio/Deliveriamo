@@ -16,12 +16,31 @@ namespace DeliveriamoRepository
         {
             _context = context;
         }
-
-        public async Task<Product> AddProduct(Product product)
+        /****************************** PRODUCT *******************************/
+        public async Task<Product> AddProduct(Product product, string userId)
         {
             await _context.Product.AddAsync(product);
+            await _context.UserProduct.AddAsync(new UserProduct()
+            {
+                ProductId = product.Id,
+                UserId = Convert.ToInt32(userId)
+            });
             return product;
         }
+
+        public async Task<Product> DeleteProduct(Product product)
+        {
+             _context.Product.Remove(product);
+            return product;
+        }
+
+        public async Task<Product> UpdateProduct(Product product)
+        {
+            _context.Product.Update(product);
+            return product;
+        }
+        /****************************** USER *******************************/
+
 
         public async Task<User> AddUser(User user)
         {
@@ -60,15 +79,19 @@ namespace DeliveriamoRepository
 
             return output;
         }
+        public async Task<bool> UsernameAlreadyExist(string username)
+        {
+            return _context.User.Any(x => x.Username == username);
+        }
+
+        /****************************** GENERAL *******************************/
+
 
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UsernameAlreadyExist(string username)
-        {
-            return _context.User.Any(x => x.Username == username);
-        }
+ 
     }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Deliveriamo.Controllers
@@ -8,7 +9,7 @@ namespace Deliveriamo.Controllers
     /// </summary>
     [Route("api/[controller]/[action]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class BaseApiController : ControllerBase
     {
     }
