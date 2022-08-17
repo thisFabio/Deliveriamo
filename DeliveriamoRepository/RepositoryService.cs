@@ -17,9 +17,14 @@ namespace DeliveriamoRepository
             _context = context;
         }
         /****************************** PRODUCT *******************************/
-        public async Task<Product> AddProduct(Product product)
+        public async Task<Product> AddProduct(Product product, string userId)
         {
             await _context.Product.AddAsync(product);
+            await _context.UserProduct.AddAsync(new UserProduct()
+            {
+                ProductId = product.Id,
+                UserId = Convert.ToInt32(userId)
+            });
             return product;
         }
 

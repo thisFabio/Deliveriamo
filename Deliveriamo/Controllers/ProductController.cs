@@ -18,7 +18,8 @@ namespace Deliveriamo.Controllers
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequestDto request)
         {
-            var result = await _productService.AddProduct(request);
+            var userId = User.Claims.First(x => x.Type == "userid").Value;
+            var result = await _productService.AddProduct(request, userId);
             return new ObjectResult(result);
         }
 

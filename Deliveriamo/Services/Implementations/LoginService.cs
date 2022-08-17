@@ -46,7 +46,7 @@ namespace Deliveriamo.Services.Implementations
             if (user != null)
             {
                 // if there is association, generate token
-                output.Token = GenerateToken(user.Role?.Id.ToString());
+                output.Token = GenerateToken(user.Role?.Id.ToString(), user.Username);
                
             };
 
@@ -55,7 +55,7 @@ namespace Deliveriamo.Services.Implementations
             return output;
         }
 
-        private string GenerateToken(string role)
+        private string GenerateToken(string role, string id)
         {
             var result = string.Empty;
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -68,7 +68,7 @@ namespace Deliveriamo.Services.Implementations
                 Subject = new ClaimsIdentity(new Claim[]
                 {
                     
-                    new Claim("userid","1"),
+                    new Claim("userid",id),
                     new Claim(ClaimTypes.Role, role) 
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(60),

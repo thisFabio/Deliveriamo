@@ -4,11 +4,11 @@ namespace Deliveriamo.Services.Interfaces
 {
     public interface IProductService
     {
-        Task<AddProductResponseDto> AddProduct(AddProductRequestDto request);
+        Task<AddProductResponseDto> AddProduct(AddProductRequestDto request, string userId);
         Task<DeleteProductResponseDto> DeleteProduct(DeleteProductRequestDto request);
         Task<UpdateProductResponseDto> UpdateProduct(UpdateProductRequestDto request);
 
-        Task<GetProductByShopKeeperResponseDto> GetProductByShopKeeper (GetProductByShopKeeperRequestDto request);
+        Task<GetProductByShopKeeperResponseDto> GetProductByShopKeeperId (GetProductByShopKeeperRequestDto request);
 
 
 

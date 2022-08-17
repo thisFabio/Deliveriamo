@@ -19,7 +19,7 @@ namespace DeliveriamoRepository
 
         /*************************** PRODUCT ************************************/
 
-        Task<Product> AddProduct (Product product);
+        Task<Product> AddProduct (Product product, string userId);
         Task<Product> UpdateProduct(Product product);
         Task<Product> DeleteProduct(Product product);
 

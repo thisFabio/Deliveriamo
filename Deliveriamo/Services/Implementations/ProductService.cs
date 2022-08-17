@@ -22,7 +22,7 @@ namespace Deliveriamo.Services.Implementations
         }
 
 
-        public async Task<AddProductResponseDto> AddProduct(AddProductRequestDto request)
+        public async Task<AddProductResponseDto> AddProduct(AddProductRequestDto request, string userId)
         {
             var response = new AddProductResponseDto();
 
@@ -43,7 +43,7 @@ namespace Deliveriamo.Services.Implementations
 
                 try
                 {
-                    await _repository.AddProduct(product);
+                    await _repository.AddProduct(product, userId);
                     await _repository.SaveChanges();
 
                 }
@@ -72,7 +72,7 @@ namespace Deliveriamo.Services.Implementations
             return response;
         }
 
-        public async Task<GetProductByShopKeeperResponseDto> GetProductByShopKeeper(GetProductByShopKeeperRequestDto request)
+        public async Task<GetProductByShopKeeperResponseDto> GetProductByShopKeeperId(GetProductByShopKeeperRequestDto request)
         {
             var response = new GetProductByShopKeeperResponseDto();
                     
