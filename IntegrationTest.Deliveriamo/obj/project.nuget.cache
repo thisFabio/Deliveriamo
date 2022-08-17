@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "4o6xy8+bhtJGvxbITAJrRRx4DpXo/ZaEMzHa7qt3GFrKIknmXT2l4BnujVsIXofx9mMwU3PoTLBmSLE3EV4hBg==",
+  "dgSpecHash": "muP/ND71oNIXM9fMU2nd+Qri3r3KCm0OV6xJzyikFTaUrAwbAlNCmO2tvyOBWLNQqRJv8h8qbtKb1ffVzpyw5A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Felice\\source\\repos\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj",
+  "projectFilePath": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Felice\\.nuget\\packages\\castle.core\\5.0.0\\castle.core.5.0.0.nupkg.sha512",
     "C:\\Users\\Felice\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
