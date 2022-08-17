@@ -21,7 +21,7 @@ namespace DeliveriamoMain
 
             builder.Services.AddDbContext<DeliveriamoContext>(options => options.UseSqlServer(builder.Configuration
                                        .GetConnectionString("DeliveriamoDB")
-                                        .Replace("@machine", Environment.MachineName + @"\SQLEXPRESS")));
+                                        .Replace("@machine", Environment.MachineName)));
 
             builder.Services.AddSingleton<IConfiguration>(provider => builder.Configuration);
             builder.Services.AddTransient<IRepositoryService, RepositoryService>();

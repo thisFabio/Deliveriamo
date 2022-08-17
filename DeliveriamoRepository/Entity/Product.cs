@@ -27,5 +27,12 @@ namespace DeliveriamoRepository.Entity
 
         public bool Status { get; set; } = true;
 
+        public DateTime CreationTime { get; set; }
+
+        public DateTime LastUpdate { get; set; }
+
+
+
+
     }
 }

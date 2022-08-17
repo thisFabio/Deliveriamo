@@ -21,5 +21,19 @@ namespace Deliveriamo.Controllers
             var result = await _productService.AddProduct(request);
             return new ObjectResult(result);
         }
+
+        [HttpPut]
+        public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductRequestDto request)
+        {
+            var result = await _productService.UpdateProduct(request);
+            return new ObjectResult(result);
+        }
+
+        [HttpDelete]
+        public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductRequestDto request)
+        {
+            var result = await _productService.DeleteProduct(request);
+            return new ObjectResult(result);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace DeliveriamoRepository
         {
             _context = context;
         }
-
+        /****************************** PRODUCT *******************************/
         public async Task<Product> AddProduct(Product product)
         {
             await _context.Product.AddAsync(product);
@@ -25,9 +25,17 @@ namespace DeliveriamoRepository
 
         public async Task<Product> DeleteProduct(Product product)
         {
-            _context.Product.Remove(product);
+             _context.Product.Remove(product);
             return product;
         }
+
+        public async Task<Product> UpdateProduct(Product product)
+        {
+            _context.Product.Update(product);
+            return product;
+        }
+        /****************************** USER *******************************/
+
 
         public async Task<User> AddUser(User user)
         {
@@ -66,15 +74,19 @@ namespace DeliveriamoRepository
 
             return output;
         }
+        public async Task<bool> UsernameAlreadyExist(string username)
+        {
+            return _context.User.Any(x => x.Username == username);
+        }
+
+        /****************************** GENERAL *******************************/
+
 
         public async Task SaveChanges()
         {
             await _context.SaveChangesAsync();
         }
 
-        public async Task<bool> UsernameAlreadyExist(string username)
-        {
-            return _context.User.Any(x => x.Username == username);
-        }
+ 
     }
 }
