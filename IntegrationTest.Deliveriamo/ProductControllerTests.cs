@@ -1,4 +1,5 @@
-﻿using Deliveriamo.DTOs.Product;
+﻿using Deliveriamo.DTOs.Login;
+using Deliveriamo.DTOs.Product;
 using DeliveriamoMain;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -6,6 +7,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -24,7 +26,9 @@ namespace IntegrationTest.Deliveriamo
                 AllowAutoRedirect = true
             });
             _httpClient.DefaultRequestHeaders.Add("accept", "application/json");
-
+            var token = GetToken().Result;
+            _httpClient.DefaultRequestHeaders.Authorization =
+    new AuthenticationHeaderValue("Bearer", token);
         }
 
 
@@ -42,7 +46,7 @@ namespace IntegrationTest.Deliveriamo
             HttpContent httpContent = SetPostRequest(request);
 
             //act 
-            var response = await _httpClient.PostAsync("/api/Product/AddProduct", httpContent); 
+            var response = await _httpClient.PostAsync("/api/Product/AddProduct", httpContent);
             // leggo il content della generica HttpresponseMessage, e la deserializzo in un oggetto
             var deserializedRepsonse = JsonConvert.DeserializeObject<AddProductResponseDto>(await response.Content.ReadAsStringAsync());
             // Assert
@@ -50,7 +54,7 @@ namespace IntegrationTest.Deliveriamo
             deserializedRepsonse.Success.Should().BeTrue();
             // l'id deve essere valorizzato
             deserializedRepsonse.Id.Should().Be(1);
-  
+
         }
 
 
@@ -106,6 +110,24 @@ namespace IntegrationTest.Deliveriamo
             httpContent.Headers.Remove("Content-Type");
             httpContent.Headers.Add("Content-Type", "application/json");
             return httpContent;
+        }
+
+
+        private async Task<string> GetToken()
+        {
+            var request = new LoginRequestDto()
+            {
+                Username = "ciccio",
+                Password = "torta"
+            };
+            HttpContent httpContent = SetPostRequest(request);
+
+            //act 
+            var response = await _httpClient.PostAsync("/api/Login/Login", httpContent); //api/[controller]/[action]
+            // leggo il content della generica HttpresponseMessage, e la deserializzo in un oggetto
+            var deserializedRepsonse = JsonConvert.DeserializeObject<LoginResponseDto>(await response.Content.ReadAsStringAsync());
+            // Assert
+            return deserializedRepsonse.Token;
         }
 
     }

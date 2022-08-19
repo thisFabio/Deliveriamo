@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj": {}
+    "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj": {}
   },
   "projects": {
-    "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj": {
+    "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj",
+        "projectUniqueName": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj",
         "projectName": "DeliveriamoRepository",
-        "projectPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj",
-        "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\obj\\",
+        "projectPath": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj",
+        "packagesPath": "C:\\Users\\Felice\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Felice\\source\\repos\\Deliveriamo\\DeliveriamoRepository\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Felice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -75,17 +80,21 @@
         }
       }
     },
-    "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj": {
+    "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj",
+        "projectUniqueName": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj",
         "projectName": "Deliveriamo",
-        "projectPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj",
-        "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\Deliveriamo\\obj\\",
+        "projectPath": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj",
+        "packagesPath": "C:\\Users\\Felice\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\Deliveriamo\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Felice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -93,14 +102,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj": {
-                "projectPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj"
+              "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj": {
+                "projectPath": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\DeliveriamoRepository\\DeliveriamoRepository.csproj"
               }
             }
           }
@@ -179,17 +189,21 @@
         }
       }
     },
-    "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj": {
+    "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj",
+        "projectUniqueName": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj",
         "projectName": "IntegrationTest.Deliveriamo",
-        "projectPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj",
-        "packagesPath": "C:\\Users\\fabio\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\IntegrationTest.Deliveriamo\\obj\\",
+        "projectPath": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj",
+        "packagesPath": "C:\\Users\\Felice\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\IntegrationTest.Deliveriamo\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\fabio\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Felice\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -197,14 +211,15 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj": {
-                "projectPath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj"
+              "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj": {
+                "projectPath": "C:\\Users\\Felice\\Source\\Repos\\Deliveriamo\\Deliveriamo\\Deliveriamo.csproj"
               }
             }
           }

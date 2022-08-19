@@ -46,7 +46,7 @@ namespace Deliveriamo.Services.Implementations
             if (user != null)
             {
                 // if there is association, generate token
-                output.Token = GenerateToken(user.Role?.Id.ToString(), user.Username);
+                output.Token = GenerateToken(user.Role?.Id.ToString(), user.Id.ToString());
                
             };
 
