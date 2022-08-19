@@ -22,6 +22,13 @@ namespace Deliveriamo.Controllers
             return new ObjectResult(result);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetAllProducts([FromQuery] GetAllProductsRequestDto request)
+        {
+            var result = await _productService.GetAllProducts(request);
+            return new ObjectResult(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequestDto request)
         {

@@ -39,6 +39,59 @@ namespace DeliveriamoRepository
             _context.Product.Update(product);
             return product;
         }
+        public async Task<Product> GetProductById(int productId)
+        {
+            return await _context.Product.FirstOrDefaultAsync(x => x.Id == productId);
+
+        }
+        public async Task<List<Product>> GetAllProducts()
+
+        {
+            var dbResult = _context.Product.Select(x => new Product()
+           {
+                Id = x.Id,
+                Name = x.Name,
+                PriceUnit = x.PriceUnit,
+                Description = x.Description,
+                CategoryId = x.CategoryId,
+                Barcode = x.Barcode,
+                UrlImage = x.UrlImage,
+                Status = x.Status,
+                CreationTime = x.CreationTime,
+                LastUpdate = x.LastUpdate
+
+           }).ToList();
+
+            return dbResult;
+
+        }
+
+        public async Task<List<Product>> GetProducts(string userId)
+        {
+            // converting string to int in order to check if statement.
+            int id;
+            Int32.TryParse(userId, out id);
+
+            if (String.IsNullOrEmpty(userId) || id == 0)
+            {
+                // get all products because there is no valid entry
+                return await _context.Product.ToListAsync();
+            }
+            else
+            {
+                // getting a list of products filtered by shopkeeper ID 
+                var result = _context.UserProduct
+                    .Where(x => x.UserId == uint.Parse(userId))
+                    .Select(y => y.Product).ToList();
+
+                if (result.Count == 0)
+                {
+                    result = await _context.Product.ToListAsync();
+                }
+                return result;
+            }
+        }
+
         /****************************** USER *******************************/
 
 
@@ -92,36 +145,5 @@ namespace DeliveriamoRepository
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<Product>> GetProducts(string userId)
-        {
-            // converting string to int in order to check if statement.
-            int id;
-            Int32.TryParse(userId, out id);
-
-            if(String.IsNullOrEmpty(userId) || id == 0)
-            {
-                // get all products because there is no valid entry
-                return await _context.Product.ToListAsync();
-            }
-            else
-            {
-                // getting a list of products filtered by shopkeeper ID 
-                var result = _context.UserProduct
-                    .Where(x=> x.UserId == uint.Parse(userId))
-                    .Select(y=> y.Product).ToList();
-
-                if(result.Count == 0)
-                {
-                    result = await _context.Product.ToListAsync();
-                }
-                return result;
-            }
-        }
-
-        public async Task<Product> GetProductById(int productId)
-        {
-            return  await _context.Product.FirstOrDefaultAsync(x=> x.Id == productId);
-            
-        }
     }
 }

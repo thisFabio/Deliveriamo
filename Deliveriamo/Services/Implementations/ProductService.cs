@@ -72,14 +72,38 @@ namespace Deliveriamo.Services.Implementations
             return response;
         }
 
+        public async Task<GetAllProductsResponseDto> GetAllProducts(GetAllProductsRequestDto request)
+        {
+            var response = new GetAllProductsResponseDto();
+
+            var dbProductList = await _repository.GetAllProducts();
+            await _repository.SaveChanges();
+            // converting list of productso to ProductDto
+            response.Products = dbProductList.Select(x => new ProductDto(
+            
+                     x.Id,
+                     x.Name,
+                     x.PriceUnit,
+                     x.Description,
+                     x.CategoryId,
+                     x.Barcode,
+                     x.UrlImage,
+                     x.Status,
+                     x.CreationTime,
+                     x.LastUpdate
+            
+            )).ToList();
+            return response;
+        }
+
         public async Task<GetProductByShopKeeperIdResponseDto> GetProductByShopKeeperId(GetProductByShopKeeperIdRequestDto request)
         {
             var response = new GetProductByShopKeeperIdResponseDto();
 
            var dbProductList = await _repository.GetProducts(request.Id.ToString());
 
-
-                response.Products = dbProductList.Select(x => new ProductDto(
+            // converting list of productso to ProductDto
+            response.Products = dbProductList.Select(x => new ProductDto(
                      x.Id,
                      x.Name,
                      x.PriceUnit,

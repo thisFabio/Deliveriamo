@@ -24,6 +24,9 @@ namespace DeliveriamoRepository
         Task<Product> DeleteProduct(Product product);
         Task<List<Product>> GetProducts(string userId);
         Task<Product> GetProductById(int productId);
+        Task<List<Product>> GetAllProducts();
+
+
 
 
         /*************************** GENERAL ************************************/
