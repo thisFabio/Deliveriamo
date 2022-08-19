@@ -8,7 +8,7 @@ namespace Deliveriamo.Services.Interfaces
         Task<DeleteProductResponseDto> DeleteProduct(DeleteProductRequestDto request);
         Task<UpdateProductResponseDto> UpdateProduct(UpdateProductRequestDto request);
 
-        Task<GetProductByShopKeeperResponseDto> GetProductByShopKeeperId (GetProductByShopKeeperRequestDto request);
+        Task<GetProductByShopKeeperIdResponseDto> GetProductByShopKeeperId (GetProductByShopKeeperIdRequestDto request);
 
 
 

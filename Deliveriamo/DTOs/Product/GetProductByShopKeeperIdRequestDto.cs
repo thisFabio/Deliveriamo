@@ -1,6 +1,6 @@
 ﻿namespace Deliveriamo.DTOs.Product
 {
-    public class GetProductByShopKeeperRequestDto
+    public class GetProductByShopKeeperIdRequestDto
     {
         public int Id { get; set; }
 

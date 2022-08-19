@@ -22,6 +22,9 @@ namespace DeliveriamoRepository
         Task<Product> AddProduct (Product product, string userId);
         Task<Product> UpdateProduct(Product product);
         Task<Product> DeleteProduct(Product product);
+        Task<List<Product>> GetProducts(string userId);
+        Task<Product> GetProductById(int productId);
+
 
         /*************************** GENERAL ************************************/
         Task SaveChanges();

@@ -12,13 +12,13 @@ namespace Deliveriamo.Services.Implementations
     {
 
         private readonly IRepositoryService _repository;
-        private readonly DeliveriamoContext _context;
 
 
-        public ProductService(IRepositoryService repository, DeliveriamoContext context)
+
+        public ProductService(IRepositoryService repository)
         {
             _repository = repository;
-            _context = context;
+     
         }
 
 
@@ -63,7 +63,7 @@ namespace Deliveriamo.Services.Implementations
         {
             var response = new DeleteProductResponseDto();
 
-            var product = _context.Product.FirstOrDefault(x=> x.Id == request.Id);
+            var product = await _repository.GetProductById(request.Id);
             await _repository.DeleteProduct(product);
             await _repository.SaveChanges();
             response.Id = product.Id;
@@ -72,18 +72,35 @@ namespace Deliveriamo.Services.Implementations
             return response;
         }
 
-        public async Task<GetProductByShopKeeperResponseDto> GetProductByShopKeeperId(GetProductByShopKeeperRequestDto request)
+        public async Task<GetProductByShopKeeperIdResponseDto> GetProductByShopKeeperId(GetProductByShopKeeperIdRequestDto request)
         {
-            var response = new GetProductByShopKeeperResponseDto();
-                    
+            var response = new GetProductByShopKeeperIdResponseDto();
+
+           var dbProductList = await _repository.GetProducts(request.Id.ToString());
+
+
+                response.Products = dbProductList.Select(x => new ProductDto(
+                     x.Id,
+                     x.Name,
+                     x.PriceUnit,
+                     x.Description,
+                     x.CategoryId,
+                     x.Barcode,
+                     x.UrlImage,
+                     x.Status,
+                     x.CreationTime,
+                     x.LastUpdate
+
+                     )).ToList();
+
             return response;
         }
 
         public async Task<UpdateProductResponseDto> UpdateProduct(UpdateProductRequestDto request)
         {
             var response = new UpdateProductResponseDto();
-                
-            Product product = _context.Product.FirstOrDefault(x=> x.Id == request.Id);
+                // TODO -fix in repository creating a method.
+            Product product = await _repository.GetProductById(request.Id);
 
             if (product == null)
             {

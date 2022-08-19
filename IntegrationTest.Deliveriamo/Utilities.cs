@@ -14,6 +14,9 @@ namespace IntegrationTest.Deliveriamo
     {
         internal static void InitializeDbForTests(DeliveriamoContext db)
         {
+
+
+
             var role = new Role()
             {
                 Id = 1,
@@ -27,7 +30,35 @@ namespace IntegrationTest.Deliveriamo
                 Description = "Category 1 Description"
             };
 
+
             db.Category.Add(category);
+            db.SaveChanges();
+
+            List<Product> products = new List<Product>
+             {
+                 new Product()
+                 {
+                     Id = 1,
+                     Name = "prova",
+                     Description = "prova",
+                     PriceUnit = 11,
+                     CategoryId = 1,
+                     Status = true
+
+                 },
+                 new Product()
+                 {
+                     Id = 2,
+                     Name = "eghryh",
+                     Description = "eth",
+                     PriceUnit = 121,
+                     CategoryId = 1,
+                     Status = true
+
+                 }
+             };
+
+            db.Product.AddRange(products);
             db.SaveChanges();
 
             var user= new UserBuilder()
@@ -46,6 +77,16 @@ namespace IntegrationTest.Deliveriamo
            db.Role.Add(role);
             db.SaveChanges();
            db.User.Add(user);
+            db.SaveChanges();
+
+            var userProduct = new UserProduct()
+            {
+                ProductId = 1,
+                UserId = 1
+
+            };
+
+            db.UserProduct.Add(userProduct);
             db.SaveChanges();
 
             var test = db.User.ToList();

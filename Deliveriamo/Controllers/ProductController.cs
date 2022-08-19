@@ -15,6 +15,13 @@ namespace Deliveriamo.Controllers
             _productService = productService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetProductByShopKeeperId([FromQuery] GetProductByShopKeeperIdRequestDto request)
+        {
+            var result = await _productService.GetProductByShopKeeperId(request);
+            return new ObjectResult(result);
+        }
+
         [HttpPost]
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequestDto request)
         {
@@ -36,5 +43,6 @@ namespace Deliveriamo.Controllers
             var result = await _productService.DeleteProduct(request);
             return new ObjectResult(result);
         }
+
     }
 }
