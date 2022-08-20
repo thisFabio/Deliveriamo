@@ -47,22 +47,7 @@ namespace DeliveriamoRepository
         public async Task<List<Product>> GetAllProducts()
 
         {
-            var dbResult = _context.Product.Select(x => new Product()
-           {
-                Id = x.Id,
-                Name = x.Name,
-                PriceUnit = x.PriceUnit,
-                Description = x.Description,
-                CategoryId = x.CategoryId,
-                Barcode = x.Barcode,
-                UrlImage = x.UrlImage,
-                Status = x.Status,
-                CreationTime = x.CreationTime,
-                LastUpdate = x.LastUpdate
-
-           }).ToList();
-
-            return dbResult;
+            return await _context.Product.ToListAsync();
 
         }
 
@@ -135,6 +120,18 @@ namespace DeliveriamoRepository
         public async Task<bool> UsernameAlreadyExist(string username)
         {
             return _context.User.Any(x => x.Username == username);
+        }
+
+
+        public async Task<List<User>> GetUsers()
+        {
+            return await  _context.User.ToListAsync();   
+        }
+
+        public async Task<User> GetUserById(int Id)
+        {
+            return await _context.User.FirstOrDefaultAsync(x=>x.Id == Id);
+
         }
 
         /****************************** GENERAL *******************************/

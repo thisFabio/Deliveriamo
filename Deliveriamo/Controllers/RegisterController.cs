@@ -1,5 +1,6 @@
 ﻿using Deliveriamo.DTOs.Register;
 using Deliveriamo.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Deliveriamo.Controllers
@@ -14,6 +15,7 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {
             RegisterResponseDto response = new RegisterResponseDto();

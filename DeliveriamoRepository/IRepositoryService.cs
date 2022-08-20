@@ -17,6 +17,10 @@ namespace DeliveriamoRepository
         Task<User> AddUserShop(User user);
         Task<bool> UsernameAlreadyExist(string username);
 
+        Task<List<User>> GetUsers();
+        Task<User> GetUserById(int Id);
+
+
         /*************************** PRODUCT ************************************/
 
         Task<Product> AddProduct (Product product, string userId);

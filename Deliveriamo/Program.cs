@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Deliveriamo.Services.Implementations;
 using Deliveriamo.Services.Interfaces;
 using System.Text;
+using Microsoft.EntityFrameworkCore.Sqlite;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
@@ -29,6 +30,8 @@ namespace DeliveriamoMain
             builder.Services.AddTransient<IRegisterService, RegisterService>();
             builder.Services.AddTransient<ICryptoService, CryptoService>();
             builder.Services.AddTransient<IProductService, ProductService>();
+            builder.Services.AddTransient<IUserService, UserService>();
+
 
 
 
@@ -93,11 +96,10 @@ namespace DeliveriamoMain
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
-            {
+
                 app.UseSwagger();
                 app.UseSwaggerUI();
-            }
+            
 
             app.UseHttpsRedirection();
 
