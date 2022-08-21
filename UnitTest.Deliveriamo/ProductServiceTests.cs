@@ -89,6 +89,10 @@ namespace UnitTest.Deliveriamo
         [Theory]
         [InlineData(0,2)]
         [InlineData(1, 1)]
+        [InlineData(null, 1)]
+        [InlineData(null, null)]
+        [InlineData(-1, null)]
+
         public async void GetProductByShopKeeperId_should_return_expected(int inputRequest, int expected)
         {
             //Arrange
@@ -140,19 +144,35 @@ namespace UnitTest.Deliveriamo
 
             // created mocked service 
             var _service = new ProductService(mockedRepo.Object);
+            var result = new GetProductByShopKeeperIdResponseDto();
+            Exception exc = new Exception();
 
-
-            //Act
-            var result = await _service.GetProductByShopKeeperId(new GetProductByShopKeeperIdRequestDto()
+            try
             {
-                Id = inputRequest
-            });
+                result = await _service.GetProductByShopKeeperId(new GetProductByShopKeeperIdRequestDto()
+                {
+                    Id = inputRequest
+                });
+
+            }
+            catch (Exception ex)
+            {
+
+                exc = ex;
+            }
+            //Act
 
             //Assert
+            if (exc.Source == null)
+            {
+                result.Products.Should().NotBeNull();
+                result.Products.Count().Should().Be(expected);
 
-            result.Products.Should().NotBeNull();
-            result.Products.Count().Should().Be(expected);
-
+            }
+            else
+            {
+                Assert.Equal(exc.Message, "Product not found");
+            }
 
         }
         //[Fact]

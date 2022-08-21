@@ -101,13 +101,13 @@ namespace Deliveriamo.Services.Implementations
             var response = new GetProductByShopKeeperIdResponseDto();
             if (request.Id <= 0 )
             {
-                throw new Exception($"Product not found");
+                throw new Exception("Product not found");
             }
            var dbProductList = await _repository.GetProducts(request.Id.ToString());
 
             if (dbProductList.Count() == 0)
             {
-                throw new Exception($"Product not found");
+                throw new Exception("Product not found");
             }
 
             // converting list of productso to ProductDto

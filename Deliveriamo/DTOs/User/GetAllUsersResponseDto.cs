@@ -2,6 +2,6 @@
 {
     public class GetAllUsersResponseDto : BaseResponseDto
     {
-        public List<UsersDto>? Users { get; set; }
+        public List<UsersDto> Users { get; set; }
     }
 }
