@@ -74,7 +74,25 @@ namespace IntegrationTest.Deliveriamo
                 .WithId(1)
                 .Build();
 
-           db.Role.Add(role);
+
+
+            var shopper = new UserBuilder()
+               .WithEnabled(true)
+               .WithUsername("ciccio")
+               .WithPassword("57ffec0a0664048a8d7142d12d9ed6eb")
+               .WithFirstname("pippo")
+               .WithDob(new DateTime(2001 - 01 - 01))
+               .WithLastname("Rossi")
+               .WithGender('M')
+               .WithShopKeeper(true)
+               .WithRole(role)
+               .WithRoleId(2)
+               .WithId(1)
+               .Build();
+            db.User.Add(shopper);
+            db.SaveChanges();
+
+            db.Role.Add(role);
             db.SaveChanges();
            db.User.Add(user);
             db.SaveChanges();

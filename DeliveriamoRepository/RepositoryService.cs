@@ -134,6 +134,15 @@ namespace DeliveriamoRepository
 
         }
 
+
+        /*************************** DASHBOARD ************************************/
+        public async Task<List<User>> GetAllShopKeepers(){
+            
+            return await _context.User.Where(x => x.ShopKeeper == true).ToListAsync();
+        }
+
+
+
         /****************************** GENERAL *******************************/
 
 
