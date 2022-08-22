@@ -102,16 +102,16 @@ namespace UnitTest.Deliveriamo
 
         // This test should return always the complete list of users with every kind of etry
         [Theory]
-        [InlineData(1, "asfggjd", true)]
-        [InlineData(2, "asfggjd", true)]
-        [InlineData(3, "asfggjd", true)]
+        //[InlineData(1, "asfggjd", true)]
+        //[InlineData(2, "asfggjd", true)]
+        //[InlineData(3, "asfggjd", true)]
 
         [InlineData(0, "asfggjd", false)]
         [InlineData(-11, "sdjgnsfl", false)]
         [InlineData(3341, "adgwrs", false)]
         [InlineData(null,"", false)]
         [InlineData(null, null, false)]
-        [InlineData(1, null, true)]
+        //[InlineData(1, null, true)]
 
         public async void GetUserById_Should_return_exception_if_user_not_found(int userId, string username, bool expected)
         {
@@ -175,35 +175,27 @@ namespace UnitTest.Deliveriamo
                 Username = username
             };
 
-            GetUserResponseDto result = new GetUserResponseDto();
+
             Exception exc = new Exception() {};
 
             //Act
             //Calling the method Tested
-            try
-            {
+            //try
+            //{
 
-                result = await _service.GetUserById(request);
-            }
-            catch (Exception ex)
-            {
-                exc = ex;
-            }
+            //    result = await _service.GetUserById(request);
+            //}
+            //catch (Exception ex)
+            //{
+            //    exc = ex;
+            //}
 
+            var result = await Assert.ThrowsAsync<Exception>(() => _service.GetUserById(request));
             //Assert
-            //Check if the error message has been raised. or if it equal to the original error message.
 
-            if (expected)
-            {
-                result.Users.Should().NotBeNullOrEmpty();
-            }
-            else
-            {
-               Assert.Equal(exc.Message, $"User {userId} not found");
+            // verifico che il messaggio salvato nella variabile result e quello indicato nel metodo siano identici
+            Assert.True(result.Message == $"User {request.Id} not found");
 
-            }
-            //var actual =  result.Users.Should().NotBeNullOrEmpty();
-            //Assert.Equal(actual.ToString(), expected.ToString());
 
         }
 

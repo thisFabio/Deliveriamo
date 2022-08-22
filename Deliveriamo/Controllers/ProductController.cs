@@ -18,7 +18,17 @@ namespace Deliveriamo.Controllers
         [HttpGet]
         public async Task<IActionResult> GetProductByShopKeeperId([FromQuery] GetProductByShopKeeperIdRequestDto request)
         {
-            var result = await _productService.GetProductByShopKeeperId(request);
+            GetProductByShopKeeperIdResponseDto result = new();
+            try
+            {
+                result = await _productService.GetProductByShopKeeperId(request);
+
+            }
+            catch (Exception ex)
+            {
+
+                result.SetExeption(ex.Message);
+            }
             return new ObjectResult(result);
         }
 

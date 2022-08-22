@@ -99,7 +99,7 @@ namespace IntegrationTest.Deliveriamo
 
         [Theory]
         [InlineData(1,1)]
-        [InlineData(0, 2)]
+        [InlineData(2, 2)]
         [InlineData(3, 2)]
 
         public async void GetProductByShopKeeperId_should_return_only_products_from_the_same_shop(int inputId, int expected)
@@ -121,6 +121,30 @@ namespace IntegrationTest.Deliveriamo
             deserializedRepsonse.Success.Should().BeTrue();
             // l'id deve essere valorizzato
             deserializedRepsonse.Products.Count().Should().Be(expected);
+
+        }
+
+        [Fact]
+        public async void GetProductByShopKeeperId_should_return_exception_when_Id_0()
+        {
+            // arrange
+            var request = new GetProductByShopKeeperIdRequestDto()
+            {
+                Id = 0
+            };
+
+            //act 
+            var response = await _httpClient.GetAsync($"/api/Product/GetProductByShopKeeperId?Id={request.Id}");
+            // leggo il content della generica HttpresponseMessage, e la deserializzo in un oggetto
+            var deserializedRepsonse = JsonConvert.DeserializeObject<GetProductByShopKeeperIdResponseDto>(await response.Content.ReadAsStringAsync());
+
+            // Assert
+            // success è parte della base response. deve essere false
+            deserializedRepsonse.Success.Should().BeFalse();
+            //il prodotto è null
+            deserializedRepsonse.Products.Should().BeNull();
+            // il messaggio di errore dovrebbe essere il seguente
+            deserializedRepsonse.ErrorMessage.Should().Be("Product not found");
 
         }
 
