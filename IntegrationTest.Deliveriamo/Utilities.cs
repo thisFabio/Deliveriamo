@@ -85,9 +85,8 @@ namespace IntegrationTest.Deliveriamo
                .WithLastname("Rossi")
                .WithGender('M')
                .WithShopKeeper(true)
-               .WithRole(role)
-               .WithRoleId(2)
-               .WithId(1)
+               .WithRoleId(1)
+               .WithId(10)
                .Build();
             db.User.Add(shopper);
             db.SaveChanges();

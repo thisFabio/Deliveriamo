@@ -9,6 +9,7 @@
         public DateTime Dob { get; set; }
         public char Gender { get; set; }
         public int Role { get; set; }
+        public string ImageUrl { get; set; }
 
     }
 }

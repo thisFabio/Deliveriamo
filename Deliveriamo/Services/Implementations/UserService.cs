@@ -29,7 +29,8 @@ namespace Deliveriamo.Services.Implementations
                 x.Id,
                 x.Username,
                 x.Firstname,
-                x.Lastname
+                x.Lastname,
+                x.ImageUrl
             )).ToList();
 
             return result;
@@ -45,7 +46,7 @@ namespace Deliveriamo.Services.Implementations
             {
                 throw new Exception($"User {request.Id} not found");
             }
-            var user = new UsersDto(dbUser.Id, dbUser.Username, dbUser.Firstname, dbUser.Lastname);
+            var user = new UsersDto(dbUser.Id, dbUser.Username, dbUser.Firstname, dbUser.Lastname, dbUser.ImageUrl);
             
             result.Users.Add(user);
 

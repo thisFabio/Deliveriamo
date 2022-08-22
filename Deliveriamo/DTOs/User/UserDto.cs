@@ -6,7 +6,7 @@ namespace Deliveriamo.DTOs.User
 {
     public class UserDto : UsersDto
     {
-        public UserDto(int id, string username, string firstname, string lastname, DateTime dob, char gender, string phoneNumber, int roleId, bool enabled, Role role, bool shopKeeper, string businessTypeName, string extendedCompanyName, string businessName, string vatNumber, string companyStreetAddress, string companyCivicNumber, string companyPostalCode, string companyCity, string companyCountry) : base(id, username, firstname, lastname)
+        public UserDto(int id, string username, string firstname, string lastname, DateTime dob, char gender, string phoneNumber, int roleId, bool enabled, Role role, bool shopKeeper, string businessTypeName, string extendedCompanyName, string businessName, string vatNumber, string companyStreetAddress, string companyCivicNumber, string companyPostalCode, string companyCity, string companyCountry, string imageUrl) : base(id, username, firstname, lastname, imageUrl)
         {
             Dob = dob;
             Gender = gender;

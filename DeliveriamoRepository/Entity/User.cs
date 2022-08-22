@@ -47,6 +47,7 @@ namespace DeliveriamoRepository.Entity
         public string CompanyPostalCode { get; set; }
         public string CompanyCity { get; set; }
         public string CompanyCountry { get; set; }
+        public string ImageUrl { get; set; }
 
 
 

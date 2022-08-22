@@ -84,7 +84,7 @@ namespace UnitTest.Deliveriamo
                 .WithRole(mockedRole)
                 .WithUsername("ciccio")
                 .Build();
-
+            mockedUser.ImageUrl = "";
             // create a test db in memoria -- not a mocked one
             var optionsDb = new DbContextOptionsBuilder<DeliveriamoContext>().UseInMemoryDatabase("TestDeliveriamo").Options;
             var dbContext = new DeliveriamoContext(optionsDb);

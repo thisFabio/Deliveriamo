@@ -23,7 +23,8 @@ namespace Deliveriamo.Services.Implementations
             {
                 Id = x.Id,
                 Name = x.BusinessName,
-                CompanyStreetAddress = x.CompanyStreetAddress
+                CompanyStreetAddress = x.CompanyStreetAddress,
+                ImageUrl = x.ImageUrl
             }).ToList();
 
 
