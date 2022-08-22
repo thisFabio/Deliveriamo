@@ -31,7 +31,9 @@ namespace DeliveriamoRepository
         Task<List<Product>> GetAllProducts();
 
 
-
+        /*************************** DASHBOARD ************************************/
+        Task<List<User>> GetAllShopKeepers();
+        
 
         /*************************** GENERAL ************************************/
         Task SaveChanges();
