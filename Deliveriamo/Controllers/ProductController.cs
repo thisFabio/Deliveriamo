@@ -1,4 +1,5 @@
-﻿using Deliveriamo.DTOs.Product;
+﻿using Deliveriamo.DTOs.Dashboard;
+using Deliveriamo.DTOs.Product;
 using Deliveriamo.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,8 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(GetProductByShopKeeperIdResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> GetProductByShopKeeperId([FromQuery] GetProductByShopKeeperIdRequestDto request)
         {
             GetProductByShopKeeperIdResponseDto result = new();
@@ -33,6 +36,8 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(GetAllProductsResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> GetAllProducts([FromQuery] GetAllProductsRequestDto request)
         {
             var result = await _productService.GetAllProducts(request);
@@ -40,6 +45,8 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(200, Type = typeof(AddProductResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> AddProduct([FromBody] AddProductRequestDto request)
         {
             var userId = User.Claims.First(x => x.Type == "userid").Value;
@@ -48,6 +55,8 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpPut]
+        [ProducesResponseType(200, Type = typeof(UpdateProductResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductRequestDto request)
         {
             var result = await _productService.UpdateProduct(request);
@@ -55,6 +64,8 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpDelete]
+        [ProducesResponseType(200, Type = typeof(DeleteProductResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> DeleteProduct([FromBody] DeleteProductRequestDto request)
         {
             var result = await _productService.DeleteProduct(request);

@@ -1,4 +1,5 @@
-﻿using Deliveriamo.DTOs.Register;
+﻿using Deliveriamo.DTOs.Product;
+using Deliveriamo.DTOs.Register;
 using Deliveriamo.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,6 +17,8 @@ namespace Deliveriamo.Controllers
 
         [HttpPost]
         [AllowAnonymous]
+        [ProducesResponseType(200, Type = typeof(RegisterResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> Register([FromBody] RegisterRequestDto request)
         {
             RegisterResponseDto response = new RegisterResponseDto();
@@ -34,6 +37,8 @@ namespace Deliveriamo.Controllers
 
 
         [HttpPost]
+        [ProducesResponseType(200, Type = typeof(RegisterResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> RegisterShop([FromBody] RegisterShopRequestDto request)
         {
             RegisterResponseDto response = new RegisterResponseDto();

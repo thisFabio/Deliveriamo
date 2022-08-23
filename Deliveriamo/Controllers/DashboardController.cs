@@ -17,7 +17,8 @@ namespace Deliveriamo.Controllers
             _service = service;
         }
 
-        [HttpGet]
+        [HttpGet] //Action
+        [ProducesResponseType(200,Type=typeof(GetShopKeepersResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
         public async Task<IActionResult> GetShopKeepers([FromQuery] GetShopKeepersRequestDto request)
         {
             var result = await _service.GetShopKeepers(request);

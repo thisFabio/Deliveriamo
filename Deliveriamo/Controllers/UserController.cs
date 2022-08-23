@@ -1,4 +1,5 @@
 ﻿
+using Deliveriamo.DTOs.Product;
 using Deliveriamo.DTOs.User;
 using Deliveriamo.Services.Implementations;
 using Deliveriamo.Services.Interfaces;
@@ -17,6 +18,8 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(GetAllUsersResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> GetAllUsers([FromQuery] GetAllUsersRequestDto request)
         {
             var result = await _service.GetAllUsers(request);
@@ -24,6 +27,8 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(GetUserResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
         public async Task<IActionResult> GetUserById([FromQuery] GetUserRequestDto request)
         {
             var result = await _service.GetUserById(request);
