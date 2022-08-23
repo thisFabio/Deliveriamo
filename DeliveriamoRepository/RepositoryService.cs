@@ -143,6 +143,24 @@ namespace DeliveriamoRepository
 
 
 
+        /****************************** CATEGORY *******************************/
+
+
+        public async Task<Category> GetCategoryById(int categoryId)
+        {
+            return await _context.Category.FirstOrDefaultAsync(x=> x.Id == categoryId);
+        }
+
+        public async Task<List<Category>> GetCategories()
+        {
+            return await _context.Category.ToListAsync();
+        }
+
+        public async Task<Category> DeleteCategory(Category category)
+        {
+             _context.Category.Remove(category);
+            return category;
+        }
         /****************************** GENERAL *******************************/
 
 
@@ -150,6 +168,6 @@ namespace DeliveriamoRepository
         {
             await _context.SaveChangesAsync();
         }
-
     }
+
 }

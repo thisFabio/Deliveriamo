@@ -11,8 +11,16 @@ namespace DeliveriamoRepository
     {
         Task<User> CheckLogin (string username,string hash);
 
+        /*************************** CATEGORY ************************************/
+
+        Task<Category> GetCategoryById(int categoryId);
+        Task<List<Category>> GetCategories();
+
+        Task<Category> DeleteCategory(Category category);
+
 
         /*************************** USER ************************************/
+
         Task<User> AddUser (User user);
         Task<User> AddUserShop(User user);
         Task<bool> UsernameAlreadyExist(string username);
