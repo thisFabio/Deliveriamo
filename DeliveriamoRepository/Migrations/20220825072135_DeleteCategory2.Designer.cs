@@ -4,6 +4,7 @@ using DeliveriamoRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveriamoRepository.Migrations
 {
     [DbContext(typeof(DeliveriamoContext))]
-    partial class DeliveriamoContextModelSnapshot : ModelSnapshot
+    [Migration("20220825072135_DeleteCategory2")]
+    partial class DeleteCategory2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,7 +42,7 @@ namespace DeliveriamoRepository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("BusinessType", (string)null);
+                    b.ToTable("BusinessType");
                 });
 
             modelBuilder.Entity("DeliveriamoRepository.Entity.Category", b =>
@@ -61,7 +63,7 @@ namespace DeliveriamoRepository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category", (string)null);
+                    b.ToTable("Category");
                 });
 
             modelBuilder.Entity("DeliveriamoRepository.Entity.Product", b =>
@@ -105,7 +107,7 @@ namespace DeliveriamoRepository.Migrations
 
                     b.HasIndex("CategoryId");
 
-                    b.ToTable("Product", (string)null);
+                    b.ToTable("Product");
                 });
 
             modelBuilder.Entity("DeliveriamoRepository.Entity.Role", b =>
@@ -122,7 +124,7 @@ namespace DeliveriamoRepository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Role", (string)null);
+                    b.ToTable("Role");
                 });
 
             modelBuilder.Entity("DeliveriamoRepository.Entity.ShopKeeperType", b =>
@@ -145,7 +147,7 @@ namespace DeliveriamoRepository.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ShopKeeperType", (string)null);
+                    b.ToTable("ShopKeeperType");
                 });
 
             modelBuilder.Entity("DeliveriamoRepository.Entity.User", b =>
@@ -230,7 +232,7 @@ namespace DeliveriamoRepository.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("User", (string)null);
+                    b.ToTable("User");
                 });
 
             modelBuilder.Entity("DeliveriamoRepository.Entity.UserProduct", b =>
@@ -253,7 +255,7 @@ namespace DeliveriamoRepository.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserProduct", (string)null);
+                    b.ToTable("UserProduct");
                 });
 
             modelBuilder.Entity("DeliveriamoRepository.Entity.Product", b =>

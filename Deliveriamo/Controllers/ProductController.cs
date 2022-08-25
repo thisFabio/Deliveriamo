@@ -36,6 +36,27 @@ namespace Deliveriamo.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(200, Type = typeof(GetProductByIdResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+
+        public async Task<IActionResult> GetProductById([FromQuery] GetProductByIdRequestDto request)
+        {
+            GetProductByIdResponseDto result = new();
+            try
+            {
+                result = await _productService.GetProductById(request);
+
+            }
+            catch (Exception ex)
+            {
+
+                result.SetExeption(ex.Message);
+            }
+            return new ObjectResult(result);
+        }
+
+
+
+        [HttpGet]
         [ProducesResponseType(200, Type = typeof(GetAllProductsResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
 
         public async Task<IActionResult> GetAllProducts([FromQuery] GetAllProductsRequestDto request)

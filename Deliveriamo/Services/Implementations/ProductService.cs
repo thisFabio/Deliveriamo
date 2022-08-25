@@ -96,6 +96,32 @@ namespace Deliveriamo.Services.Implementations
             return response;
         }
 
+        public async Task<GetProductByIdResponseDto> GetProductById(GetProductByIdRequestDto request)
+        {
+
+            var response = new GetProductByIdResponseDto();
+            var product = await _repository.GetProductById(request.Id);
+            if (product == null)
+            {
+                throw new Exception($"Product {request.Id} not found");
+            }
+
+            response.Product = new ProductDto(
+
+                product.Id,
+                product.Name,
+               product.PriceUnit,
+                product.Description,
+                product.CategoryId,
+                product.Barcode,
+                product.UrlImage,
+                product.Status,
+                product.CreationTime,
+                product.LastUpdate);
+
+            return response;
+        }
+
         public async Task<GetProductByShopKeeperIdResponseDto> GetProductByShopKeeperId(GetProductByShopKeeperIdRequestDto request)
         {
             var response = new GetProductByShopKeeperIdResponseDto();

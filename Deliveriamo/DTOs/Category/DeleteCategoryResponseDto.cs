@@ -2,5 +2,6 @@
 {
     public class DeleteCategoryResponseDto : BaseResponseDto
     {
+        public CategoryDto Category { get; set; }
     }
 }

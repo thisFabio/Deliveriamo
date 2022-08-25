@@ -22,6 +22,8 @@ namespace DeliveriamoRepository
         public DbSet<Product> Product { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<UserProduct> UserProduct { get; set; }
+        public DbSet<ShopKeeperType> ShopKeeperType { get; set; }
+
 
 
 

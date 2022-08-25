@@ -10,6 +10,9 @@ namespace Deliveriamo.Services.Interfaces
 
         Task<GetProductByShopKeeperIdResponseDto> GetProductByShopKeeperId (GetProductByShopKeeperIdRequestDto request);
 
+        Task<GetProductByIdResponseDto> GetProductById(GetProductByIdRequestDto request);
+
+
         Task<GetAllProductsResponseDto> GetAllProducts(GetAllProductsRequestDto request);
 
 
