@@ -43,6 +43,10 @@ namespace DeliveriamoRepository
         public DbSet<Category> Category { get; set; }
         public DbSet<UserProduct> UserProduct { get; set; }
         public DbSet<ShopKeeperType> ShopKeeperType { get; set; }
+        public DbSet<Order> Order { get; set; }
+        public DbSet<OrderProduct> OrderProduct { get; set; }
+
+
 
 
 

@@ -148,6 +148,12 @@ namespace IntegrationTest.Deliveriamo
 
         }
 
+        // TODO: DELETE PRODUCT INTEGRATION TEST
+
+        // TODO: UPDATE PRODUCT INTEGRATION TEST
+
+
+
         private async Task<AddProductResponseDto> SendRequest(HttpContent httpContent)
         {
             var response = await _httpClient.PostAsync("/api/Product/AddProduct", httpContent);

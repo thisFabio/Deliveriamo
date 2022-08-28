@@ -1,4 +1,6 @@
-﻿using DeliveriamoRepository;
+﻿using Deliveriamo.DTOs.User;
+using Deliveriamo.Services.Implementations;
+using DeliveriamoRepository;
 using DeliveriamoRepository.Entity;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
@@ -106,6 +108,88 @@ namespace UnitTest.Deliveriamo
             {
                 response.Should().BeNull();
             }
+
+        }
+
+        // UPDATE USER TEST
+
+        // UPDATE PRODUCT TEST
+
+        // GET USER BY ID TEST
+
+        // TODO: GET CATEGORY BY ID
+        public async void GetCategoryById_Should_return_exception_if_user_not_found(int userId, string username, bool expected)
+        {
+            // Arrange
+            //creating 2 user object in order to run test
+            List<User> usersList = new List<User>()
+            {
+                new User()
+                {
+                Firstname = "asdfadf",
+                Lastname = "ciccio",
+                Gender = 'M',
+                Dob = new DateTime(1999, 5, 25),
+                Enabled = true,
+                Username = "qqq",
+                Password = "bbb",// torta
+                Role = new Role() { Id = 1, RoleName = "admin" },
+                RoleId = 1,
+                Id = 1
+                },
+                new User()
+                {
+                Firstname = "aaaaaa",
+                Lastname = "sfbtdgnrh",
+                Gender = 'M',
+                Dob = new DateTime(1988, 1, 17),
+                Enabled = true,
+                Username = "sdbbg",
+                Password = "1234",// torta
+                Role = new Role() { Id = 1, RoleName = "admin" },
+                RoleId = 3,
+                Id = 2
+                },
+                new User()
+                {
+                Firstname = "asdfadf",
+                Lastname = "mirimrirg",
+                Gender = 'F',
+                Dob = new DateTime(1993, 11, 10),
+                Enabled = true,
+                Username = "rrrr",
+                Password = "eeee",// torta
+                Role = new Role() { Id = 1, RoleName = "admin" },
+                RoleId = 1,
+                Id = 3
+                }
+
+            };
+
+
+            // Mocking fake repository in order to run test.
+            var mockedRepo = new Mock<IRepositoryService>();
+            mockedRepo.Setup(x => x.GetUserById(userId)).Returns(Task.FromResult(usersList.FirstOrDefault(x => x.Id == userId)));
+
+            // create a mocked service 
+            var _service = new UserService(mockedRepo.Object);
+
+            GetUserRequestDto request = new GetUserRequestDto()
+            {
+                Id = userId,
+                Username = username
+            };
+
+
+            Exception exc = new Exception() { };
+
+
+            var result = await Assert.ThrowsAsync<Exception>(() => _service.GetUserById(request));
+            //Assert
+
+            // verifico che il messaggio salvato nella variabile result e quello indicato nel metodo siano identici
+            Assert.True(result.Message == $"User {request.Id} not found");
+
 
         }
 

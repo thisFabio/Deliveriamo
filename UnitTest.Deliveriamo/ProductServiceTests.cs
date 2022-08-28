@@ -175,39 +175,16 @@ namespace UnitTest.Deliveriamo
             }
 
         }
-        //[Fact]
-        //    public async void AddProduct_Should_return_valid_Product()
-        //    {
-        //        //Arrange
-        //        var mockedProduct = new Product()
-        //        { 
-        //            Name = "Product 1",
-        //            Description = "Product 1 Description",
-        //            PriceUnit = 10,
-        //            CategoryId = 1
-        //        };
 
-        //        var mockedRepo = new Mock<IRepositoryService>();
-        //        mockedRepo.Setup(x => x.AddProduct(mockedProduct)).Returns(Task.FromResult(mockedProduct));
-        //        mockedRepo.Setup(x => x.SaveChanges()).Returns(Task.CompletedTask);
+        // TODO: GET ALL PRODUCT TEST
 
-        //        var productService = new ProductService(mockedRepo.Object);
+        // TODO: GET PRODUCT BY ID TEST
+        
+        // TODO: ADD PRODUCT TEST
 
-        //        // act 
-        //        var res = await productService.AddProduct(new AddProductRequestDto()
-        //        {
-        //            Name = mockedProduct.Name,
-        //            CategoryId = mockedProduct.CategoryId,
-        //            Description = mockedProduct.Description,
-        //            PriceUnit = mockedProduct.PriceUnit
-        //        });
+        // TODO: UPDATE PRODUCT TEST
 
+        // TODO: DELETE PRODUCT TEST
 
-        //        // assert
-        //        res.Success.Should().BeTrue();
-        //        res.Id.Should().Be(0);
-
-
-        //    //}
     }
 }
