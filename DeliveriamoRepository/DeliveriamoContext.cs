@@ -1,5 +1,6 @@
 ﻿using DeliveriamoRepository.Entity;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace DeliveriamoRepository
 {
@@ -14,6 +15,25 @@ namespace DeliveriamoRepository
             : base(context)
         {
 
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // instructions how to delete Category record from DB. if there are products linked to the category, deletion is forbidden.
+            modelBuilder
+                .Entity<Category>()
+                .HasMany(e => e.Products)
+                .WithOne(e => e.Category)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            // instructions how to delete User record from DB. if there are products linked to the User(checking UserProduct Table)
+            // deletion is forbidden.
+
+            modelBuilder
+                .Entity<User>()
+                .HasMany(e => e.UserProduct)
+                .WithOne(e => e.User)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         public DbSet<User> User { get; set; }

@@ -17,5 +17,6 @@
         public string Lastname { get; set; }
         public string ImageUrl { get; set; }
 
+
     }
 }

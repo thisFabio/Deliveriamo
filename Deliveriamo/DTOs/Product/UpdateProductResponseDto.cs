@@ -1,6 +1,6 @@
 ﻿namespace Deliveriamo.DTOs.Product
 {
-    public class UpdateProductResponseDto
+    public class UpdateProductResponseDto : BaseResponseDto
     {
         public string Name { get; set; }
 

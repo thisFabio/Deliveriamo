@@ -48,8 +48,9 @@ namespace DeliveriamoRepository.Entity
         public string CompanyCity { get; set; }
         public string CompanyCountry { get; set; }
         public string ImageUrl { get; set; }
-
         public int? ShopKeeperTypeId { get; set; }
+
+        public List<UserProduct> UserProduct { get; set; }
 
 
 

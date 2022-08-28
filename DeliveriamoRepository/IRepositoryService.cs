@@ -16,7 +16,13 @@ namespace DeliveriamoRepository
         Task<Category> GetCategoryById(int categoryId);
         Task<List<Category>> GetCategories();
 
+        Task<Category> UpdateCategory(Category category);
+
+        Task<Category> AddCategory(Category category);
+
+
         Task<Category> DeleteCategory(Category category);
+
 
 
         /*************************** USER ************************************/
@@ -27,6 +33,8 @@ namespace DeliveriamoRepository
 
         Task<List<User>> GetUsers();
         Task<User> GetUserById(int Id);
+        Task<User> DeleteUser(User user);
+        Task<User> UpdateUser(User user);
 
 
         /*************************** PRODUCT ************************************/

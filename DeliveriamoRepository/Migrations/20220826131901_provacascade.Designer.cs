@@ -4,6 +4,7 @@ using DeliveriamoRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveriamoRepository.Migrations
 {
     [DbContext(typeof(DeliveriamoContext))]
-    partial class DeliveriamoContextModelSnapshot : ModelSnapshot
+    [Migration("20220826131901_provacascade")]
+    partial class provacascade
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -261,7 +263,7 @@ namespace DeliveriamoRepository.Migrations
                     b.HasOne("DeliveriamoRepository.Entity.Category", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
@@ -287,9 +289,9 @@ namespace DeliveriamoRepository.Migrations
                         .IsRequired();
 
                     b.HasOne("DeliveriamoRepository.Entity.User", "User")
-                        .WithMany("UserProduct")
+                        .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Product");
@@ -300,11 +302,6 @@ namespace DeliveriamoRepository.Migrations
             modelBuilder.Entity("DeliveriamoRepository.Entity.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("DeliveriamoRepository.Entity.User", b =>
-                {
-                    b.Navigation("UserProduct");
                 });
 #pragma warning restore 612, 618
         }

@@ -133,6 +133,17 @@ namespace DeliveriamoRepository
             return await _context.User.FirstOrDefaultAsync(x=>x.Id == Id);
 
         }
+        public async Task<User> DeleteUser(User user)
+        {
+            _context.User.Remove(user);
+            return user;
+        }
+
+        public async Task<User> UpdateUser(User user)
+        {
+            _context.User.Update(user);
+            return user;
+        }
 
 
         /*************************** DASHBOARD ************************************/
@@ -161,6 +172,17 @@ namespace DeliveriamoRepository
              _context.Category.Remove(category);
             return category;
         }
+        public async Task<Category> UpdateCategory(Category category)
+        {
+            _context.Category.Update(category);
+            return category;
+        }
+
+        public async Task<Category> AddCategory(Category category)
+        {
+            _context.AddAsync(category);
+            return category;
+        }
         /****************************** GENERAL *******************************/
 
 
@@ -168,6 +190,7 @@ namespace DeliveriamoRepository
         {
             await _context.SaveChangesAsync();
         }
+
     }
 
 }

@@ -21,6 +21,8 @@ namespace DeliveriamoRepository.Entity
         public string Description { get; set; }
         public int CategoryId { get; set; }
 
+        public Category Category { get; set; }
+
         public string Barcode { get; set; }
 
         public string UrlImage { get; set; }
