@@ -1,4 +1,5 @@
-﻿using Deliveriamo.DTOs;
+﻿using Castle.Components.DictionaryAdapter.Xml;
+using Deliveriamo.DTOs;
 using Deliveriamo.DTOs.Register;
 using Deliveriamo.DTOs.User;
 using Deliveriamo.Services.Exceptions;
@@ -7,6 +8,7 @@ using Deliveriamo.Services.Interfaces;
 using DeliveriamoRepository;
 using DeliveriamoRepository.Entity;
 using FluentAssertions;
+using FluentAssertions.Common;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Moq;
@@ -100,7 +102,7 @@ namespace UnitTest.Deliveriamo
             result.Users.Count().Should().BeGreaterThanOrEqualTo(0);
         }
 
-        // This test should return always the complete list of users with every kind of etry
+        // This test should return always the complete list of users with every kind of entry
         [Theory]
         //[InlineData(1, "asfggjd", true)]
         //[InlineData(2, "asfggjd", true)]
@@ -200,8 +202,197 @@ namespace UnitTest.Deliveriamo
         }
 
         // TODO: DELETE USER
+        [Theory]
+        [InlineData(100)]
+        [InlineData(-1)]
+        [InlineData(0)]
+
+
+        public async void DeleteUser_Should_Raise_Exception_if_user_not_found(int userid)
+        {
+            //Arrange
+
+            var fakeUserList = new List<User>();
+            var _repositoryService = new Mock<IRepositoryService>();
+
+
+            var mockedRole = new Role() { Id = 1, RoleName = "admin" };
+            // Creating first fake user
+            var mockedUser = new UserBuilder()
+                .WithId(33)
+                .WithFirstname("pippo")
+                .WithLastname("pluto")
+                .WithGender('f')
+                .WithPassword("bluemoon")
+                .WithDob(DateTime.Now)
+                .WithRole(mockedRole)
+                .WithRoleId(1)
+                .WithUsername("marione90")
+                .WithShopKeeper(true)
+                .WithPhoneNumber("0456789")
+                .WithBusinessTypeName("Pizzeria")
+                .WithExtendedCompanyName("Sorbillo srl")
+                .WithBusinessName("Da Sorbillo")
+                .WithVatNumber("123456789")
+                .WithCompanyStreetAddress("Corso Italia")
+                .WithCompanyCivicNumber("1")
+                .WithCompanyCity("Napoli")
+                .WithCompanyPostalCode("12345")
+                .WithCompanyCountry("Italia")
+                .Build();
+
+            
+            //// fai finta che... quando chiamo il metodo DeleteUser --> return expected.
+            _repositoryService.Setup(x => x.DeleteUser(mockedUser)).Returns(Task.FromResult(mockedUser));
+            _repositoryService.Setup(x => x.GetUserById(33)).Returns(Task.FromResult(mockedUser));
+
+            
+            // create a mocked service 
+            var _service = new UserService(_repositoryService.Object);
+
+            DeleteUserRequestDto userRequest = new()
+            {
+                Id = userid
+            };
+
+            //Act
+            Exception exc = new Exception() { };
+            var result = await Assert.ThrowsAsync<Exception>(() => _service.DeleteUser(userRequest));
+
+            //Assert
+
+            // verifico che il messaggio salvato nella variabile result e quello indicato nel metodo siano identici
+            Assert.True(result.Message == $"User {userRequest.Id} not found");
+
+        }
+        [Fact]
+        public async void DeleteUser_Should_work()
+        {
+            //Arrange
+            var _repositoryService = new Mock<IRepositoryService>();
+
+
+            var mockedRole = new Role() { Id = 1, RoleName = "admin" };
+            // Creating first fake user
+            var mockedUser = new UserBuilder()
+                .WithId(33)
+                .WithFirstname("pippo")
+                .WithLastname("pluto")
+                .WithGender('f')
+                .WithPassword("bluemoon")
+                .WithDob(DateTime.Now)
+                .WithRole(mockedRole)
+                .WithRoleId(1)
+                .WithUsername("marione90")
+                .WithShopKeeper(true)
+                .WithPhoneNumber("0456789")
+                .WithBusinessTypeName("Pizzeria")
+                .WithExtendedCompanyName("Sorbillo srl")
+                .WithBusinessName("Da Sorbillo")
+                .WithVatNumber("123456789")
+                .WithCompanyStreetAddress("Corso Italia")
+                .WithCompanyCivicNumber("1")
+                .WithCompanyCity("Napoli")
+                .WithCompanyPostalCode("12345")
+                .WithCompanyCountry("Italia")
+                .Build();
+
+            _repositoryService.Setup(x => x.DeleteUser(mockedUser)).Returns(Task.FromResult(mockedUser));
+            _repositoryService.Setup(x => x.GetUserById(33)).Returns(Task.FromResult(mockedUser));
+
+            var _userService = new UserService(_repositoryService.Object);
+            //Act
+            var result = await _userService.DeleteUser(new DeleteUserRequestDto() { Id = 33 });
+            //Assert
+            result.Id.Should().Be(33);
+        }
 
         // TODO : UPDATE USER
+        [Fact]
+        public async void UpdateUser_Should_Work_Properly()
+        {
+            //Arrange
+            var mockedRole = new Role() { Id = 1, RoleName = "admin" };
+            // Creating first fake user
+            var mockedUser = new UserBuilder()
+                .WithId(33)
+                .WithFirstname("pippo")
+                .WithLastname("pluto")
+                .WithGender('f')
+                .WithPassword("bluemoon")
+                .WithDob(DateTime.Now)
+                .WithRole(mockedRole)
+                .WithRoleId(1)
+                .WithUsername("marione90")
+                .WithShopKeeper(true)
+                .WithPhoneNumber("0456789")
+                .WithBusinessTypeName("Pizzeria")
+                .WithExtendedCompanyName("Sorbillo srl")
+                .WithBusinessName("Da Sorbillo")
+                .WithVatNumber("123456789")
+                .WithCompanyStreetAddress("Corso Italia")
+                .WithCompanyCivicNumber("1")
+                .WithCompanyCity("Napoli")
+                .WithCompanyPostalCode("12345")
+                .WithCompanyCountry("Italia")
+                .Build();
 
+            var _repositoryService = new Mock<IRepositoryService>();
+            _repositoryService.Setup(x => x.GetUserById(It.IsAny<int>())).Returns(Task.FromResult(mockedUser));
+
+
+            var userService = new UserService(_repositoryService.Object);
+            //Act
+
+            var  response = await userService.UpdateUser(new UpdateUserRequestDto() { BusinessName = "Da Marianna" });
+
+            //Assert
+            //fluent assertion
+            response.BusinessName.Should().Be("Da Marianna");
+        }
+        [Theory]
+        [InlineData(100)]
+        [InlineData(-1)]
+        [InlineData(0)]
+        public async void UpdateUser_Should_Handle_Invalid_Entries(int userId)
+        {
+            //Arrange
+            var mockedRole = new Role() { Id = 1, RoleName = "admin" };
+            // Creating first fake user
+            var mockedUser = new UserBuilder()
+                .WithId(33)
+                .WithFirstname("pippo")
+                .WithLastname("pluto")
+                .WithGender('f')
+                .WithPassword("bluemoon")
+                .WithDob(DateTime.Now)
+                .WithRole(mockedRole)
+                .WithRoleId(1)
+                .WithUsername("marione90")
+                .WithShopKeeper(true)
+                .WithPhoneNumber("0456789")
+                .WithBusinessTypeName("Pizzeria")
+                .WithExtendedCompanyName("Sorbillo srl")
+                .WithBusinessName("Da Sorbillo")
+                .WithVatNumber("123456789")
+                .WithCompanyStreetAddress("Corso Italia")
+                .WithCompanyCivicNumber("1")
+                .WithCompanyCity("Napoli")
+                .WithCompanyPostalCode("12345")
+                .WithCompanyCountry("Italia")
+                .Build();
+
+            var _repositoryService = new Mock<IRepositoryService>();
+            _repositoryService.Setup(x => x.GetUserById(33)).Returns(Task.FromResult(mockedUser));
+
+
+            var userService = new UserService(_repositoryService.Object);
+            //Act
+            Exception exc = new Exception() { };
+            var result = await Assert.ThrowsAsync<Exception>(() => userService.UpdateUser(new UpdateUserRequestDto() { Id = userId}));
+
+            //Assert
+            result.Message.Should().Be($"User {userId} not found");
+        }
     }
 }

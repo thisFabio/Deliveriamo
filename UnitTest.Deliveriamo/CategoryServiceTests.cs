@@ -102,18 +102,6 @@ namespace UnitTest.Deliveriamo
             result.Users.Count().Should().BeGreaterThanOrEqualTo(0);
         }
 
-        // This test should return always the complete list of users with every kind of etry
-        [Theory]
-        //[InlineData(1, "asfggjd", true)]
-        //[InlineData(2, "asfggjd", true)]
-        //[InlineData(3, "asfggjd", true)]
-
-        [InlineData(0, "asfggjd", false)]
-        [InlineData(-11, "sdjgnsfl", false)]
-        [InlineData(3341, "adgwrs", false)]
-        [InlineData(null,"", false)]
-        [InlineData(null, null, false)]
-        //[InlineData(1, null, true)]
 
         // TODO: ADD CATEGORY
 

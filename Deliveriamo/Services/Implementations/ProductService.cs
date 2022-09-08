@@ -49,7 +49,7 @@ namespace Deliveriamo.Services.Implementations
                 }
                 catch (Exception ex)
                 {
-
+                    
                     throw ex;
                 }
             }

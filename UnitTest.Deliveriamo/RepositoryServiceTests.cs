@@ -111,13 +111,7 @@ namespace UnitTest.Deliveriamo
 
         }
 
-        // UPDATE USER TEST
 
-        // UPDATE PRODUCT TEST
-
-        // GET USER BY ID TEST
-
-        // TODO: GET CATEGORY BY ID
         public async void GetCategoryById_Should_return_exception_if_user_not_found(int userId, string username, bool expected)
         {
             // Arrange
