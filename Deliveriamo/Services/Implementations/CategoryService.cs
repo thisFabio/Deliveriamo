@@ -69,6 +69,7 @@ namespace Deliveriamo.Services.Implementations
 
             var response = new DeleteCategoryResponseDto();
 
+
             // getting the category requested.
             var category =  await _repository.GetCategoryById(request.Id);
 
@@ -77,16 +78,18 @@ namespace Deliveriamo.Services.Implementations
                 throw new Exception($"Category {request.Id} not valid.");
 
             }
-            //let's save the whole product list.
-            var products = await _repository.GetAllProducts();
-
-            // to find if there are products assigned to the category to be deleted.
-            var categoryProduct = products.Find(x => x.CategoryId == request.Id);
 
 
                 await _repository.DeleteCategory(category);
                 await _repository.SaveChanges();
+            response.Category = new();
+            response.Category.Products = new();
 
+            response.Category.Products = category.Products.Select
+                (x => new DTOs.Product.ProductDto(x.Id, x.Name, x.PriceUnit, x.Description, x.CategoryId, x.Barcode, x.UrlImage, x.Status, x.CreationTime, x.LastUpdate)).ToList();
+            response.Category.Id = category.Id;
+            response.Category.Description = category.Description;
+             
             return response;
 
         }

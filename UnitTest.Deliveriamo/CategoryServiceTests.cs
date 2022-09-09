@@ -1,4 +1,5 @@
 ﻿using Deliveriamo.DTOs;
+using Deliveriamo.DTOs.Category;
 using Deliveriamo.DTOs.Register;
 using Deliveriamo.DTOs.User;
 using Deliveriamo.Services.Exceptions;
@@ -104,10 +105,81 @@ namespace UnitTest.Deliveriamo
 
 
         // TODO: ADD CATEGORY
+        [Fact]
+        public async void Add_Category_should_work()
+        {
+            //Arrange
+            var mockedCategory = new Category()
+            {
+                Id = 1,
+                Name = "Alimentari",
+                Products = new List<Product>(),
+                Description = ""
 
-        // TODO: DELETE CATEGORY
+            };
+            
+            var _repositoryService = new Mock<IRepositoryService>();
+            _repositoryService.Setup(x=> x.DeleteCategory(mockedCategory)).Returns(Task.FromResult(mockedCategory));
 
-        // TODO : UPDATE CATEGORY
+            var _categoryService = new UserService(_repositoryService.Object);
 
+            //Act
+            var result = _categoryService.DeleteUser(new DeleteUserRequestDto()
+            {
+                Id =1
+            });
+
+            //Assert
+            result.Id.Should().Be(1);
+        }
+
+        [Fact]
+
+        public async void DeleteCategory_should_work_properly()
+        {
+            //Arrange
+            var mockedCategory = new Category()
+            {
+                Id = 1,
+                Name = "Alimentari",
+                Products = new List<Product>(),
+                Description = ""
+
+            };
+
+            var _repositoryService = new Mock<IRepositoryService>();
+            _repositoryService.Setup(x => x.GetCategoryById(1)).Returns(Task.FromResult<Category>(mockedCategory));
+            _repositoryService.Setup(x => x.DeleteCategory(mockedCategory)).Returns(Task.FromResult(mockedCategory));
+
+            var _categoryService = new CategoryService(_repositoryService.Object);
+            //Act
+            var response = await _categoryService.DeleteCategory(new DeleteCategoryRequestDto() { Id = 1 });
+            //Assert
+            Assert.Equal(mockedCategory.Id, response.Category.Id);
+        }
+
+        [Fact]
+        public async void UpdateCategory_should_work_properly()
+        {
+            //Arrange
+            var mockedCategory = new Category()
+            {
+                Id = 1,
+                Name = "Alimentari",
+                Products = new List<Product>(),
+                Description = ""
+
+            };
+
+            var _repositoryService = new Mock<IRepositoryService>();
+            _repositoryService.Setup(x=>x.GetCategoryById(1)).Returns(Task.FromResult<Category>(mockedCategory));
+            _repositoryService.Setup(x => x.UpdateCategory(mockedCategory)).Returns(Task.FromResult(mockedCategory));
+
+            var _categoryService = new CategoryService(_repositoryService.Object);
+            //Act
+            var response = await _categoryService.UpdateCategory(new UpdateCategoryRequestDto() { Id = 1, Description="generi alimentari" });
+            //Assert 
+            response.Description.Should().Be("generi alimentari");
+        }
     }
 }

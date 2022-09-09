@@ -9,6 +9,6 @@ namespace Deliveriamo.DTOs.Category
 
         public string Description { get; set; }
 
-        public List<ProductDto>? Products { get; set; }
+        public List<ProductDto>? Products { get; set; } 
     }
 }
