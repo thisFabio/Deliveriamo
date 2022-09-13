@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DeliveriamoRepository", "De
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{2A01FAA7-87A3-45E5-9514-D1C2412BB055}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DeliveriamoApp", "DeliveriamoApp\DeliveriamoApp.csproj", "{E99C46C0-6B33-4F4A-87DE-43F2FA806E89}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,12 @@ Global
 		{B4780525-17C4-46DE-8264-12B23B1F9229}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4780525-17C4-46DE-8264-12B23B1F9229}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4780525-17C4-46DE-8264-12B23B1F9229}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E99C46C0-6B33-4F4A-87DE-43F2FA806E89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E99C46C0-6B33-4F4A-87DE-43F2FA806E89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E99C46C0-6B33-4F4A-87DE-43F2FA806E89}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{E99C46C0-6B33-4F4A-87DE-43F2FA806E89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E99C46C0-6B33-4F4A-87DE-43F2FA806E89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E99C46C0-6B33-4F4A-87DE-43F2FA806E89}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

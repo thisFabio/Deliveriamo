@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "XHmXmGps1YoPZL2EVQ/ereRn81EtXTIg+E0lE/ecagWSRWHjmkd/67Rgna9Uh1mM7UuCrH2dgz/XhY8xjnQ1kg==",
+  "dgSpecHash": "037kMfYarQajvlod6lb0BvBcgHWIU/eJ52QNVokoYm+xtYMxC4B96b1oPrxJMK3FYMAKzb6c3TMDqfAuNVEjKg==",
   "success": true,
   "projectFilePath": "C:\\Users\\fabio\\source\\repos\\thisFabio\\Deliveriamo\\IntegrationTest.Deliveriamo\\IntegrationTest.Deliveriamo.csproj",
   "expectedPackageFiles": [
@@ -177,7 +177,7 @@
     "C:\\Users\\fabio\\.nuget\\packages\\xunit.core\\2.4.1\\xunit.core.2.4.1.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\xunit.extensibility.core\\2.4.1\\xunit.extensibility.core.2.4.1.nupkg.sha512",
     "C:\\Users\\fabio\\.nuget\\packages\\xunit.extensibility.execution\\2.4.1\\xunit.extensibility.execution.2.4.1.nupkg.sha512",
-    "C:\\Users\\fabio\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.3\\xunit.runner.visualstudio.2.4.3.nupkg.sha512"
+    "C:\\Users\\fabio\\.nuget\\packages\\xunit.runner.visualstudio\\2.4.5\\xunit.runner.visualstudio.2.4.5.nupkg.sha512"
   ],
   "logs": []
 }
