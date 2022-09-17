@@ -2,5 +2,7 @@
 {
     public class GetShopKeepersRequestDto
     {
+        public string ShopKeeperName { get; set; }
+
     }
 }

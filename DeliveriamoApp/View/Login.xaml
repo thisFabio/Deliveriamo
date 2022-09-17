@@ -13,5 +13,6 @@
         <Label Text="Password" />
         <Entry Placeholder="password" Text="{Binding Password}" IsPassword="True"/>
         <Button Text="Entra" Command="{Binding Login}" />
+        <ActivityIndicator IsRunning="{Binding IsLoading}" />
     </VerticalStackLayout>
 </ContentPage>

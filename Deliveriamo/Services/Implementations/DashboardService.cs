@@ -19,7 +19,10 @@ namespace Deliveriamo.Services.Implementations
 
             var shopKeepers = await _repo.GetAllShopKeepers();
 
-            response.ShopKeepers = shopKeepers.Select(x => new ShopKeeperDto()
+            response.ShopKeepers = shopKeepers
+                .Where(x=>String.IsNullOrEmpty(request.ShopKeeperName)||x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower())||
+                x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower()))
+                .Select(x => new ShopKeeperDto()
             {
                 Id = x.Id,
                 Name = x.BusinessName,

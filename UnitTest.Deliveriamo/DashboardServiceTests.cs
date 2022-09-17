@@ -28,7 +28,7 @@ namespace UnitTest.Deliveriamo
 
             var mockedRepo = new Mock<IRepositoryService>();
             mockedRepo.Setup(x => x.GetAllShopKeepers()).Returns(Task.FromResult(listOfShopKeepers));
-            var request = new GetShopKeepersRequestDto();
+            var request = new GetShopKeepersRequestDto() { ShopKeeperName = "ShopKeeper" };
             var service = new DashboardService(mockedRepo.Object);
             
             // Act

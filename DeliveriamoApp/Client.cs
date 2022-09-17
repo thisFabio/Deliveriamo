@@ -368,21 +368,21 @@ namespace DeliveriamoClient
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<GetShopKeepersResponseDto> GetShopKeepersAsync(GetShopKeepersRequestDto request)
+        public virtual System.Threading.Tasks.Task<GetShopKeepersResponseDto> GetShopKeepersAsync(string shopKeeperName)
         {
-            return GetShopKeepersAsync(request, System.Threading.CancellationToken.None);
+            return GetShopKeepersAsync(shopKeeperName, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<GetShopKeepersResponseDto> GetShopKeepersAsync(GetShopKeepersRequestDto request, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetShopKeepersResponseDto> GetShopKeepersAsync(string shopKeeperName, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Dashboard/GetShopKeepers?");
-            if (request != null)
+            if (shopKeeperName != null)
             {
-                urlBuilder_.Append(System.Uri.EscapeDataString("request") + "=").Append(System.Uri.EscapeDataString(ConvertToString(request, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+                urlBuilder_.Append(System.Uri.EscapeDataString("ShopKeeperName") + "=").Append(System.Uri.EscapeDataString(ConvertToString(shopKeeperName, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -1764,12 +1764,6 @@ namespace DeliveriamoClient
 
         [Newtonsoft.Json.JsonProperty("products", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<ProductDto> Products { get; set; }
-
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.16.1.0 (NJsonSchema v10.7.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class GetShopKeepersRequestDto
-    {
 
     }
 

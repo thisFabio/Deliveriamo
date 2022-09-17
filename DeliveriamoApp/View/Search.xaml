@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:DeliveriamoApp.ViewModel"
+             x:Class="DeliveriamoApp.View.Search"
+             Title="Search">
+    <ContentPage.BindingContext>
+        <local:SearchViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <SearchBar x:Name="searchBar"
+                   SearchCommand="{Binding PerformSearch}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+        <ScrollView MaximumHeightRequest="300" VerticalOptions="Fill">
+            <ListView
+                    ItemsSource="{Binding SearchResults}"
+                    SelectedItem="{Binding SelectedShopKeeper}"
+                    VerticalOptions="Center"> 
+        
+                    
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Padding="10" ColumnSpacing="5">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                            <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="Small"
+                                        Text="{Binding Name}"
+                                        VerticalOptions="CenterAndExpand"
+                                        Padding="30"/>
+                            <Label
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        FontAttributes="Bold"
+                                        FontSize="Small"
+                                        Text="{Binding CompanyStreetAddress}"
+                                        VerticalOptions="CenterAndExpand"
+                                        Padding="30"/>
+                            
+                            <Image Source="{Binding ImageUrl}" HeightRequest="30" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
+                            
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>
