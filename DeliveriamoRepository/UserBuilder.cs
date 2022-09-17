@@ -82,9 +82,9 @@ namespace UnittestDeliveriamo.Entity
             return this;
         }
 
-        public UserBuilder WithBusinessTypeName(string BusinessTypeName)
+        public UserBuilder WithBusinessTypeId(int BusinessTypeId)
         {
-            user.BusinessTypeName = BusinessTypeName;
+            user.BusinessTypeId = BusinessTypeId;
             return this;
         }
         public UserBuilder WithBusinessName(string BusinessName)

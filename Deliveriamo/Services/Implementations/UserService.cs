@@ -76,7 +76,7 @@ namespace Deliveriamo.Services.Implementations
                 user.RoleId = request.RoleId;
                 user.Enabled = request.Enabled;
                 user.ShopKeeper = request.ShopKeeper;
-                user.BusinessTypeName = request.BusinessTypeName;
+                user.BusinessTypeId = request.BusinessTypeId;
                 user.BusinessName = request.BusinessName;
                 user.ExtendedCompanyName = request.ExtendedCompanyName;
                 user.VatNumber = request.VatNumber;
@@ -102,7 +102,7 @@ namespace Deliveriamo.Services.Implementations
                 result.RoleId = user.RoleId;
                 result.Enabled = user.Enabled;
                 result.ShopKeeper = user.ShopKeeper;
-                result.BusinessTypeName = user.BusinessTypeName;
+                result.BusinessTypeId= user.BusinessTypeId;
                 result.BusinessName = user.BusinessName;
                 result.ExtendedCompanyName = user.ExtendedCompanyName;
                 result.VatNumber = user.VatNumber;

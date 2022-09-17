@@ -55,7 +55,7 @@ namespace Deliveriamo.DTOs
                 String.IsNullOrEmpty(request.Lastname) ||
                 !(request.Dob <= DateTime.Now && request.Dob >= new DateTime(1900, 1, 1)) ||
                 !Char.IsLetter(request.Gender) ||
-                String.IsNullOrEmpty(request.BusinessTypeName) ||
+                request.BusinessTypeId < 0 ||
                 String.IsNullOrEmpty(request.ExtendedCompanyName) ||
                 String.IsNullOrEmpty(request.BusinessName) ||
                 String.IsNullOrEmpty(request.PhoneNumber) ||
@@ -82,7 +82,7 @@ namespace Deliveriamo.DTOs
                     Gender = request.Gender,
                     Enabled = true,
                     ShopKeeper = true,
-                    BusinessTypeName = request.BusinessTypeName,
+                    BusinessTypeId = request.BusinessTypeId,
                     ExtendedCompanyName = request.ExtendedCompanyName,
                     BusinessName = request.BusinessName,
                     PhoneNumber = request.PhoneNumber,

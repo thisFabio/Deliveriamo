@@ -26,6 +26,11 @@ namespace Deliveriamo.Services.Implementations
         {
             var response = new AddProductResponseDto();
 
+            if (request.PriceUnit < 0 || request.CategoryId < 0 || String.IsNullOrEmpty(request.Name) || String.IsNullOrEmpty(request.Description) || request.Status == null || String.IsNullOrEmpty(userId))
+            {
+                throw new Exception($"Impossible to Add this product, invalid data entry");
+            }
+
             Product product = new Product()
             {
                 Name = request.Name,
@@ -157,7 +162,7 @@ namespace Deliveriamo.Services.Implementations
         public async Task<UpdateProductResponseDto> UpdateProduct(UpdateProductRequestDto request)
         {
             var response = new UpdateProductResponseDto();
-                // TODO -fix in repository creating a method.
+                
             Product product = await _repository.GetProductById(request.Id);
 
             if (product == null)

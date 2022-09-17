@@ -6,7 +6,7 @@ namespace Deliveriamo.DTOs.User
 {
     public class UserDto : UsersDto
     {
-        public UserDto(int id, string username, string firstname, string lastname, DateTime dob, char gender, string phoneNumber, int roleId, bool enabled, Role role, bool shopKeeper, string businessTypeName, string extendedCompanyName, string businessName, string vatNumber, string companyStreetAddress, string companyCivicNumber, string companyPostalCode, string companyCity, string companyCountry, string imageUrl) : base(id, username, firstname, lastname, imageUrl)
+        public UserDto(int id, string username, string firstname, string lastname, DateTime dob, char gender, string phoneNumber, int roleId, bool enabled, Role role, bool shopKeeper, int businessTypeId, string extendedCompanyName, string businessName, string vatNumber, string companyStreetAddress, string companyCivicNumber, string companyPostalCode, string companyCity, string companyCountry, string imageUrl) : base(id, username, firstname, lastname, imageUrl)
         {
             Dob = dob;
             Gender = gender;
@@ -15,7 +15,7 @@ namespace Deliveriamo.DTOs.User
             Enabled = enabled;
             Role = role;
             ShopKeeper = shopKeeper;
-            BusinessTypeName = businessTypeName;
+            BusinessTypeId = businessTypeId;
             ExtendedCompanyName = extendedCompanyName;
             BusinessName = businessName;
             VatNumber = vatNumber;
@@ -34,7 +34,7 @@ namespace Deliveriamo.DTOs.User
         public bool Enabled { get; set; }
         public Role Role { get; set; }
         public bool ShopKeeper { get; set; } = false;
-        public string BusinessTypeName { get; set; }
+        public int BusinessTypeId { get; set; }
         public string ExtendedCompanyName { get; set; }
         public string BusinessName { get; set; }
         public string VatNumber { get; set; }

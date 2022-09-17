@@ -24,7 +24,7 @@ namespace UnitTest.Deliveriamo
     public class CategoryServiceTests
     {
 
-        // TODO: FIX GET ALL CATEGORIES
+        // GET ALL CATEGORIES
 
         // This test should return always the complete list of users with every kind of etry
         [Theory]
@@ -104,7 +104,7 @@ namespace UnitTest.Deliveriamo
         }
 
 
-        // TODO: ADD CATEGORY
+        // ADD CATEGORY
         [Fact]
         public async void Add_Category_should_work()
         {

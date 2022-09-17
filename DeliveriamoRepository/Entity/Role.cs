@@ -5,7 +5,7 @@ namespace DeliveriamoRepository.Entity
 {
     public class Role
     {
-        //TODO : Fill properties
+        
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

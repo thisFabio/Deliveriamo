@@ -37,8 +37,8 @@ namespace DeliveriamoRepository.Entity
         [Required]
         public bool ShopKeeper { get; set; } = false;
 
-        [ForeignKey("BusinessTypeName")]
-        public string BusinessTypeName { get; set; }
+        [ForeignKey("BusinessType")]
+        public int BusinessTypeId { get; set; }
         public string ExtendedCompanyName { get; set; }
         public string BusinessName { get; set; }
         public string VatNumber { get; set; }
@@ -48,8 +48,6 @@ namespace DeliveriamoRepository.Entity
         public string CompanyCity { get; set; }
         public string CompanyCountry { get; set; }
         public string ImageUrl { get; set; }
-        public int? ShopKeeperTypeId { get; set; }
-
         public List<UserProduct> UserProduct { get; set; }
 
 

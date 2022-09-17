@@ -201,7 +201,7 @@ namespace UnitTest.Deliveriamo
 
         }
 
-        // TODO: DELETE USER
+        //DELETE USER
         [Theory]
         [InlineData(100)]
         [InlineData(-1)]
@@ -230,7 +230,7 @@ namespace UnitTest.Deliveriamo
                 .WithUsername("marione90")
                 .WithShopKeeper(true)
                 .WithPhoneNumber("0456789")
-                .WithBusinessTypeName("Pizzeria")
+                .WithBusinessTypeId(1)
                 .WithExtendedCompanyName("Sorbillo srl")
                 .WithBusinessName("Da Sorbillo")
                 .WithVatNumber("123456789")
@@ -286,7 +286,7 @@ namespace UnitTest.Deliveriamo
                 .WithUsername("marione90")
                 .WithShopKeeper(true)
                 .WithPhoneNumber("0456789")
-                .WithBusinessTypeName("Pizzeria")
+                .WithBusinessTypeId(1)
                 .WithExtendedCompanyName("Sorbillo srl")
                 .WithBusinessName("Da Sorbillo")
                 .WithVatNumber("123456789")
@@ -307,7 +307,7 @@ namespace UnitTest.Deliveriamo
             result.Id.Should().Be(33);
         }
 
-        // TODO : UPDATE USER
+        // UPDATE USER
         [Fact]
         public async void UpdateUser_Should_Work_Properly()
         {
@@ -326,7 +326,7 @@ namespace UnitTest.Deliveriamo
                 .WithUsername("marione90")
                 .WithShopKeeper(true)
                 .WithPhoneNumber("0456789")
-                .WithBusinessTypeName("Pizzeria")
+                .WithBusinessTypeId(1)
                 .WithExtendedCompanyName("Sorbillo srl")
                 .WithBusinessName("Da Sorbillo")
                 .WithVatNumber("123456789")
@@ -371,7 +371,7 @@ namespace UnitTest.Deliveriamo
                 .WithUsername("marione90")
                 .WithShopKeeper(true)
                 .WithPhoneNumber("0456789")
-                .WithBusinessTypeName("Pizzeria")
+                .WithBusinessTypeId(1)
                 .WithExtendedCompanyName("Sorbillo srl")
                 .WithBusinessName("Da Sorbillo")
                 .WithVatNumber("123456789")

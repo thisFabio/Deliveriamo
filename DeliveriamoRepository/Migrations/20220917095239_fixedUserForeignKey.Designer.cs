@@ -4,6 +4,7 @@ using DeliveriamoRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveriamoRepository.Migrations
 {
     [DbContext(typeof(DeliveriamoContext))]
-    partial class DeliveriamoContextModelSnapshot : ModelSnapshot
+    [Migration("20220917095239_fixedUserForeignKey")]
+    partial class fixedUserForeignKey
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -242,6 +244,9 @@ namespace DeliveriamoRepository.Migrations
 
                     b.Property<bool>("ShopKeeper")
                         .HasColumnType("bit");
+
+                    b.Property<int?>("ShopKeeperTypeId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .IsRequired()

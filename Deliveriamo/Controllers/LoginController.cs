@@ -15,7 +15,7 @@ namespace Deliveriamo.Controllers
             _service = service;
         }
 
-        //TODO aggiornare questo metodo affinchè funzioni, fare un to lower anche sul campo db!
+        // aggiornare questo metodo affinchè funzioni, fare un to lower anche sul campo db!
         [HttpPost]
         [AllowAnonymous]
         [ProducesResponseType(200, Type = typeof(LoginResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.

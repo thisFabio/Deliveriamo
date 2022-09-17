@@ -18,17 +18,48 @@ namespace Deliveriamo.Services.Implementations
             var response = new GetShopKeepersResponseDto();
 
             var shopKeepers = await _repo.GetAllShopKeepers();
-
-            response.ShopKeepers = shopKeepers
-                .Where(x=>String.IsNullOrEmpty(request.ShopKeeperName)||x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower())||
-                x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower()))
-                .Select(x => new ShopKeeperDto()
+            if (request.IsRestaurant == true)
             {
-                Id = x.Id,
-                Name = x.BusinessName,
-                CompanyStreetAddress = x.CompanyStreetAddress,
-                ImageUrl = x.ImageUrl
-            }).ToList();
+                response.ShopKeepers = shopKeepers
+                    .Where(x => String.IsNullOrEmpty(request.ShopKeeperName) || x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower()) ||
+                    x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower())
+                    && request.IsRestaurant == true)
+                    .Select(x => new ShopKeeperDto()
+                    {
+                        Id = x.Id,
+                        Name = x.BusinessName,
+                        CompanyStreetAddress = x.CompanyStreetAddress,
+                        ImageUrl = x.ImageUrl
+                    }).ToList();
+            }
+            else if(request.IsSupermarket == true)
+            {
+                response.ShopKeepers = shopKeepers
+                    .Where(x => String.IsNullOrEmpty(request.ShopKeeperName) || x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower()) ||
+                    x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower())
+                    && request.IsSupermarket == true)
+                    .Select(x => new ShopKeeperDto()
+                    {
+                        Id = x.Id,
+                        Name = x.BusinessName,
+                        CompanyStreetAddress = x.CompanyStreetAddress,
+                        ImageUrl = x.ImageUrl
+                    }).ToList();
+
+            }
+            else
+            {
+                response.ShopKeepers = shopKeepers
+                    .Where(x => String.IsNullOrEmpty(request.ShopKeeperName) || x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower()) ||
+                    x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower()))
+                    .Select(x => new ShopKeeperDto()
+                    {
+                        Id = x.Id,
+                        Name = x.BusinessName,
+                        CompanyStreetAddress = x.CompanyStreetAddress,
+                        ImageUrl = x.ImageUrl
+                    }).ToList();
+            }
 
 
             return response;

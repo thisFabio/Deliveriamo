@@ -15,7 +15,7 @@ namespace Deliveriamo.DTOs.User
         public bool Enabled { get; set; }
         public Role Role { get; set; }
         public bool ShopKeeper { get; set; } = false;
-        public string BusinessTypeName { get; set; }
+        public int BusinessTypeId { get; set; }
         public string ExtendedCompanyName { get; set; }
         public string BusinessName { get; set; }
         public string VatNumber { get; set; }

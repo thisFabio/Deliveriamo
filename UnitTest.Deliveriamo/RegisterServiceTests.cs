@@ -126,7 +126,7 @@ namespace UnitTest.Deliveriamo
                 .WithUsername("marione90")
                 .WithShopKeeper(true)
                 .WithPhoneNumber("0456789")
-                .WithBusinessTypeName("Pizzeria")
+                .WithBusinessTypeId(1)
                 .WithExtendedCompanyName("Sorbillo srl")
                 .WithBusinessName("Da Sorbillo")
                 .WithVatNumber("123456789")
@@ -148,7 +148,7 @@ namespace UnitTest.Deliveriamo
             repositoryService.SaveChanges();
 
             //Assert
-            //TODO - verificare che ci sia il match delle nuove proprietà.
+            //verificare che ci sia il match delle nuove proprietà.
             result.Id.Should().Be(mockedUser.Id);
         }
 
@@ -169,7 +169,7 @@ namespace UnitTest.Deliveriamo
                 .WithUsername("marione90")
                 .WithShopKeeper(true)
                 .WithPhoneNumber("0456789")
-                .WithBusinessTypeName("Pizzeria")
+                .WithBusinessTypeId(1)
                 .WithExtendedCompanyName("Sorbillo srl")
                 .WithBusinessName("Da Sorbillo")
                 .WithVatNumber("123456789")
@@ -213,7 +213,7 @@ namespace UnitTest.Deliveriamo
                 Gender = 'F',
                 Dob = DateTime.Now,
                 ShopKeeper = true,
-                BusinessTypeName = "supermercato",
+                BusinessTypeId = 2,
                 BusinessName = "provazienda",
                 ExtendedCompanyName = "prova azienda srl",
                 PhoneNumber = "0987654321",
@@ -269,7 +269,7 @@ namespace UnitTest.Deliveriamo
                 Gender = 'F',
                 Dob = DateTime.Now,
                 ShopKeeper = true,
-                BusinessTypeName = "supermercato",
+                BusinessTypeId = 2,
                 BusinessName = "provazienda",
                 ExtendedCompanyName = "prova azienda srl",
                 VatNumber = "987654321",

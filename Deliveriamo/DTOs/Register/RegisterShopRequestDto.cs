@@ -3,7 +3,7 @@
     public class RegisterShopRequestDto : RegisterRequestDto
     {
         public bool ShopKeeper { get; set; } = true;
-        public string BusinessTypeName { get; set; }
+        public int BusinessTypeId { get; set; }
         public string ExtendedCompanyName { get; set; }
         public string BusinessName { get; set; }
         public string PhoneNumber { get; set; }
