@@ -34,6 +34,7 @@ namespace DeliveriamoRepository
                 .HasMany(e => e.UserProduct)
                 .WithOne(e => e.User)
                 .OnDelete(DeleteBehavior.Restrict);
+
         }
 
         public DbSet<User> User { get; set; }

@@ -21,9 +21,9 @@ namespace Deliveriamo.Services.Implementations
             if (request.IsRestaurant == true)
             {
                 response.ShopKeepers = shopKeepers
-                    .Where(x => String.IsNullOrEmpty(request.ShopKeeperName) || x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower()) ||
-                    x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower())
-                    && request.IsRestaurant == true)
+                    .Where(x => (String.IsNullOrEmpty(request.ShopKeeperName) || x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower()) ||
+                    x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower()))
+                    && x.BusinessTypeId==1)
                     .Select(x => new ShopKeeperDto()
                     {
                         Id = x.Id,
@@ -35,9 +35,9 @@ namespace Deliveriamo.Services.Implementations
             else if(request.IsSupermarket == true)
             {
                 response.ShopKeepers = shopKeepers
-                    .Where(x => String.IsNullOrEmpty(request.ShopKeeperName) || x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower()) ||
-                    x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower())
-                    && request.IsSupermarket == true)
+                    .Where(x => (String.IsNullOrEmpty(request.ShopKeeperName) || x.BusinessName.ToLower().Contains(request.ShopKeeperName.ToLower()) ||
+                    x.CompanyStreetAddress.ToLower().Contains(request.ShopKeeperName.ToLower()) || x.CompanyCity.ToLower().Contains(request.ShopKeeperName.ToLower()))
+                    && x.BusinessTypeId == 2)
                     .Select(x => new ShopKeeperDto()
                     {
                         Id = x.Id,

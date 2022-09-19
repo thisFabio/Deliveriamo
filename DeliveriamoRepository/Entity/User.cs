@@ -36,9 +36,8 @@ namespace DeliveriamoRepository.Entity
         public Role Role { get; set; }
         [Required]
         public bool ShopKeeper { get; set; } = false;
-
-        [ForeignKey("BusinessType")]
         public int BusinessTypeId { get; set; }
+        public BusinessType BusinessType { get; set; }
         public string ExtendedCompanyName { get; set; }
         public string BusinessName { get; set; }
         public string VatNumber { get; set; }
