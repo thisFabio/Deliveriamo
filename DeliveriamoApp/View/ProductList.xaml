@@ -2,20 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:DeliveriamoApp.ViewModel"
-             x:Class="DeliveriamoApp.View.Search"
-             Title="Search">
+             x:Class="DeliveriamoApp.View.ProductList"
+             Title="ProductList">
     <ContentPage.BindingContext>
-        <local:SearchViewModel />
+        <local:ProductListViewModel />
     </ContentPage.BindingContext>
-    <StackLayout>
-        <SearchBar x:Name="searchBar"
-                   SearchCommand="{Binding PerformSearch}"
-                   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"/>
+    <VerticalStackLayout>
         <ScrollView MaximumHeightRequest="300" VerticalOptions="Fill">
             <ListView
-                    ItemsSource="{Binding SearchResults}"
-                    SelectedItem="{Binding SelectedShopKeeper}"
-                    ItemSelected="ListView_ItemSelected"
+                    ItemsSource="{Binding ProductsListResult}"
+                    SelectedItem="{Binding SelectedProduct}"
                     VerticalOptions="Center">
 
 
@@ -36,7 +32,7 @@
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         FontAttributes="Bold"
-                                        FontSize="Small"
+                                        FontSize="Title"
                                         Text="{Binding Name}"
                                         VerticalOptions="CenterAndExpand"
                                         Padding="30"/>
@@ -44,12 +40,12 @@
                                         Grid.Row="0"
                                         Grid.Column="2"
                                         FontAttributes="Bold"
-                                        FontSize="Micro"
-                                        Text="{Binding CompanyStreetAddress}"
+                                        FontSize="Subtitle"
+                                        Text="{Binding PriceUnit, StringFormat='{0}€'}"
                                         VerticalOptions="CenterAndExpand"
                                         Padding="30"/>
 
-                                <Image Source="{Binding ImageUrl}" HeightRequest="30" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
+                                <Image Source="{Binding UrlImage}" HeightRequest="30" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
 
                             </Grid>
                         </ViewCell>
@@ -57,5 +53,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollView>
-    </StackLayout>
+    </VerticalStackLayout>
 </ContentPage>

@@ -21,7 +21,7 @@ namespace DeliveriamoApp.ViewModel
                     new AuthenticationHeaderValue("Bearer", ((App)App.Current).Token);
 
                 var client = new Client("https://localhost:7232", httpClient);
-                var res = await client.GetShopKeepersAsync(query);  
+                var res = await client.GetShopKeepersAsync(query, ((App)App.Current).IsRestaurant, ((App)App.Current).IsSupermarket);
 
 
                 if (res.Success)
@@ -37,7 +37,10 @@ namespace DeliveriamoApp.ViewModel
         });
 
         private ShopKeeperDto selectedShopKeeper;
-        public ShopKeeperDto SelectedShopKeeper { get
+        private List<ShopKeeperDto> searchResults;
+        public ShopKeeperDto SelectedShopKeeper
+        {
+            get
             {
                 return selectedShopKeeper;
             }
@@ -46,7 +49,6 @@ namespace DeliveriamoApp.ViewModel
                 this.SetProperty(ref selectedShopKeeper, value);
             }
         }
-        private List<ShopKeeperDto> searchResults;
         public List<ShopKeeperDto> SearchResults
         {
             get

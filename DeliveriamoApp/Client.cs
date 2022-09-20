@@ -368,21 +368,29 @@ namespace DeliveriamoClient
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<GetShopKeepersResponseDto> GetShopKeepersAsync(string shopKeeperName)
+        public virtual System.Threading.Tasks.Task<GetShopKeepersResponseDto> GetShopKeepersAsync(string shopKeeperName, bool? isRestaurant, bool? isSupermarket)
         {
-            return GetShopKeepersAsync(shopKeeperName, System.Threading.CancellationToken.None);
+            return GetShopKeepersAsync(shopKeeperName, isRestaurant, isSupermarket, System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<GetShopKeepersResponseDto> GetShopKeepersAsync(string shopKeeperName, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<GetShopKeepersResponseDto> GetShopKeepersAsync(string shopKeeperName, bool? isRestaurant, bool? isSupermarket, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/Dashboard/GetShopKeepers?");
             if (shopKeeperName != null)
             {
                 urlBuilder_.Append(System.Uri.EscapeDataString("ShopKeeperName") + "=").Append(System.Uri.EscapeDataString(ConvertToString(shopKeeperName, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (isRestaurant != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("IsRestaurant") + "=").Append(System.Uri.EscapeDataString(ConvertToString(isRestaurant, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
+            }
+            if (isSupermarket != null)
+            {
+                urlBuilder_.Append(System.Uri.EscapeDataString("IsSupermarket") + "=").Append(System.Uri.EscapeDataString(ConvertToString(isSupermarket, System.Globalization.CultureInfo.InvariantCulture))).Append("&");
             }
             urlBuilder_.Length--;
 
@@ -1916,8 +1924,8 @@ namespace DeliveriamoClient
         [Newtonsoft.Json.JsonProperty("shopKeeper", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ShopKeeper { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessTypeName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BusinessTypeName { get; set; }
+        [Newtonsoft.Json.JsonProperty("businessTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int BusinessTypeId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("extendedCompanyName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ExtendedCompanyName { get; set; }
@@ -2111,8 +2119,8 @@ namespace DeliveriamoClient
         [Newtonsoft.Json.JsonProperty("shopKeeper", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ShopKeeper { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessTypeName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BusinessTypeName { get; set; }
+        [Newtonsoft.Json.JsonProperty("businessTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int BusinessTypeId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("extendedCompanyName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ExtendedCompanyName { get; set; }
@@ -2176,8 +2184,8 @@ namespace DeliveriamoClient
         [Newtonsoft.Json.JsonProperty("shopKeeper", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public bool ShopKeeper { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("businessTypeName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public string BusinessTypeName { get; set; }
+        [Newtonsoft.Json.JsonProperty("businessTypeId", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public int BusinessTypeId { get; set; }
 
         [Newtonsoft.Json.JsonProperty("extendedCompanyName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string ExtendedCompanyName { get; set; }

@@ -14,11 +14,14 @@ public partial class Home : ContentPage
 
 	private async void SupermercatiButton_Clicked(object sender, EventArgs e)
 	{
-		await Navigation.PushAsync(new Search());
+		((App)App.Current).IsSupermarket = true;
+        await Navigation.PushAsync(new Search());
 	}
 
 	private async void RistorantiButton_Clicked(object sender, EventArgs e)
 	{
+        ((App)App.Current).IsRestaurant = true;
         await Navigation.PushAsync(new Search());
     }
+
 }
