@@ -1,3 +1,4 @@
+
 namespace DeliveriamoApp.View;
 
 public partial class Home : ContentPage
@@ -5,14 +6,10 @@ public partial class Home : ContentPage
 	public Home()
 	{
 		InitializeComponent();
-		if (String.IsNullOrEmpty(((App)App.Current).Token))
-		{
-			 
-		} 
 
     }
 
-	private async void SupermercatiButton_Clicked(object sender, EventArgs e)
+    private async void SupermercatiButton_Clicked(object sender, EventArgs e)
 	{
 		((App)App.Current).IsSupermarket = true;
         await Navigation.PushAsync(new Search());
