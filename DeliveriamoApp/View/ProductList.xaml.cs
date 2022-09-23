@@ -1,4 +1,4 @@
-//using Deliveriamo.Services.Interfaces;
+
 using DeliveriamoApp.ViewModel;
 using DeliveriamoClient;
 
@@ -6,7 +6,7 @@ namespace DeliveriamoApp.View;
 
 public partial class ProductList : ContentPage
 {
-	//private ShopKeeperDto shopKeeperSource;
+	private ShopKeeperDto shopKeeperSource;
 	private ProductListViewModel model;
 
 	public ProductList()
@@ -19,11 +19,11 @@ public partial class ProductList : ContentPage
 	{
         InitializeComponent();
 
-  //      this.shopKeeperSource = shopKeeperSource;
-		//// cast del viewmodel --
-		//model = (ProductListViewModel)BindingContext;
-		//// richiamo il comando PerformeSearch per eseguire la query (GetProductsByShopKeeperId)
-		//model.PerformSearch.Execute(shopKeeperSource.Id);
+		this.shopKeeperSource = shopKeeperSource;
+		// cast del viewmodel --
+		model = (ProductListViewModel)BindingContext;
+		// richiamo il comando PerformeSearch per eseguire la query (GetProductsByShopKeeperId)
+		model.PerformSearch.Execute(shopKeeperSource.Id);
 	}
 
 }
