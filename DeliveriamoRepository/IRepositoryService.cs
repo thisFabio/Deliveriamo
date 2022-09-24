@@ -46,6 +46,15 @@ namespace DeliveriamoRepository
         Task<Product> GetProductById(int productId);
         Task<List<Product>> GetAllProducts();
 
+        /*************************** ORDER ************************************/
+
+        Task<Order> AddOrder(Order order, string userId);
+        Task<Order> AddOrderProduct(Order order, List<int> products);
+
+        Task<Order> UpdateOrder(Order order);
+        Task<Order> DeleteOrder(Order order);
+        Task<List<Order>> GetAllOrders();
+
 
         /*************************** DASHBOARD ************************************/
         Task<List<User>> GetAllShopKeepers();

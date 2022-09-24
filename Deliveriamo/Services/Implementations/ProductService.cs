@@ -28,7 +28,7 @@ namespace Deliveriamo.Services.Implementations
 
             if (request.PriceUnit < 0 || request.CategoryId < 0 || String.IsNullOrEmpty(request.Name) || String.IsNullOrEmpty(request.Description) || request.Status == null || String.IsNullOrEmpty(userId))
             {
-                throw new Exception($"Impossible to Add this product, invalid data entry");
+                throw new Exception($"Impossible to Add this product, invalid data entry"); 
             }
 
             Product product = new Product()

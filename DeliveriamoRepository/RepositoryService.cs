@@ -183,6 +183,46 @@ namespace DeliveriamoRepository
             _context.AddAsync(category);
             return category;
         }
+
+        /****************************** ORDER *******************************/
+
+        public async Task<Order> AddOrder(Order order, string userId)
+        {
+            await _context.Order.AddAsync(order);
+ 
+            return order;
+        }
+        public async Task<Order> AddOrderProduct(Order order, List<int> productsId)
+        {
+            foreach (var product in productsId)
+            {
+                await _context.OrderProduct.AddAsync(new OrderProduct()
+                {
+                    OrderId = order.Id,
+                    ProductId = product
+
+                }); 
+
+            }
+                return null;
+        }
+
+        public async Task<Order> UpdateOrder(Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<Order> DeleteOrder(Order order)
+        {
+            throw new NotImplementedException();
+        }
+
+        public async Task<List<Order>> GetAllOrders()
+        {
+            return await _context.Order.Include(x => x.OrderProducts).ThenInclude(y => y.Product).ToListAsync();
+        }
+
+
         /****************************** GENERAL *******************************/
 
 

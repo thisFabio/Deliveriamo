@@ -33,6 +33,7 @@ namespace DeliveriamoRepository.Entity
 
         public DateTime LastUpdate { get; set; }
 
+        public List<OrderProduct> OrderProducts { get; set; }
 
 
 

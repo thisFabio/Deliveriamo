@@ -4,6 +4,7 @@ using DeliveriamoRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeliveriamoRepository.Migrations
 {
     [DbContext(typeof(DeliveriamoContext))]
-    partial class DeliveriamoContextModelSnapshot : ModelSnapshot
+    [Migration("20220923202822_newOrderTableFields")]
+    partial class newOrderTableFields
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -116,10 +118,6 @@ namespace DeliveriamoRepository.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("OrderId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("OrderProduct");
                 });
@@ -292,25 +290,6 @@ namespace DeliveriamoRepository.Migrations
                     b.ToTable("UserProduct");
                 });
 
-            modelBuilder.Entity("DeliveriamoRepository.Entity.OrderProduct", b =>
-                {
-                    b.HasOne("DeliveriamoRepository.Entity.Order", "Order")
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("DeliveriamoRepository.Entity.Product", "Product")
-                        .WithMany("OrderProducts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Order");
-
-                    b.Navigation("Product");
-                });
-
             modelBuilder.Entity("DeliveriamoRepository.Entity.Product", b =>
                 {
                     b.HasOne("DeliveriamoRepository.Entity.Category", "Category")
@@ -363,16 +342,6 @@ namespace DeliveriamoRepository.Migrations
             modelBuilder.Entity("DeliveriamoRepository.Entity.Category", b =>
                 {
                     b.Navigation("Products");
-                });
-
-            modelBuilder.Entity("DeliveriamoRepository.Entity.Order", b =>
-                {
-                    b.Navigation("OrderProducts");
-                });
-
-            modelBuilder.Entity("DeliveriamoRepository.Entity.Product", b =>
-                {
-                    b.Navigation("OrderProducts");
                 });
 
             modelBuilder.Entity("DeliveriamoRepository.Entity.User", b =>

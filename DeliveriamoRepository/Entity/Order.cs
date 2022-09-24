@@ -19,7 +19,11 @@ namespace DeliveriamoRepository.Entity
         public string OrderDescription { get; set; }
         public decimal OrderTotalAmount { get; set; }
         public DateTime OrderCreationDateTime { get; set; }
+        public DateTime LastUpdateDateTime { get; set; }
         public decimal DeliveryTime { get; set; }
+        public string  OrderStatus { get; set; }
+        public List<OrderProduct> OrderProducts { get; set; }
+
 
     }
 }
