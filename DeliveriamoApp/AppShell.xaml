@@ -18,6 +18,12 @@
             ContentTemplate="{DataTemplate local:Home}"
             Route="HomePage" />
     </FlyoutItem>
+    <FlyoutItem Title="Cart" >
+        <ShellContent
+            Title="Cart"
+            ContentTemplate="{DataTemplate local:Cart}"
+            Route="CartPage" />
+    </FlyoutItem>
     <!--<ShellContent
         Title="Login"
         ContentTemplate="{DataTemplate local:Login}"

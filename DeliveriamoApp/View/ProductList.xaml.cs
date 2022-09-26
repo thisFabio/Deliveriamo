@@ -26,4 +26,8 @@ public partial class ProductList : ContentPage
 		model.PerformSearch.Execute(shopKeeperSource.Id);
 	}
 
+	private void Button_Clicked(object sender, EventArgs e)
+	{
+
+	}
 }

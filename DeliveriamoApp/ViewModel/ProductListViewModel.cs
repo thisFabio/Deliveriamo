@@ -43,6 +43,7 @@ namespace DeliveriamoApp.ViewModel
 
             }
         }
+        
 
         // comando per eseguire le chiamate API(in questo caso CRUD)
         public ICommand PerformSearch => new Command<int>(async (int id) => // definisco il tipo di comando e il suo datatype in INPUT
@@ -66,6 +67,14 @@ namespace DeliveriamoApp.ViewModel
                 }
 
             }
+        });
+
+        // comando per aggiungere prodotti al carrello
+        public ICommand AddToCart => new Command(async () => // definisco il tipo di comando e il suo datatype in INPUT
+        {
+            // add product 
+            ((App)App.Current).CartItems.Add(SelectedProduct);
+
         });
     }
 }
