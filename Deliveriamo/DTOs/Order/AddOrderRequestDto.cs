@@ -9,8 +9,6 @@ namespace Deliveriamo.DTOs.Order
         public string PaymentMethod { get; set; }
         public string OrderDescription { get; set; }
         public decimal OrderTotalAmount { get; set; }
-        public decimal DeliveryTime { get; set; }
-        public OrderStatus OrderStatus { get; set; }
         public List<int> ProductIds { get; set; }
 
     }

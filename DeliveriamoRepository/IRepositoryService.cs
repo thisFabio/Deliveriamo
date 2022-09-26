@@ -54,6 +54,7 @@ namespace DeliveriamoRepository
         Task<Order> UpdateOrder(Order order);
         Task<Order> DeleteOrder(Order order);
         Task<List<Order>> GetAllOrders();
+        Task<Order> GetOrderById(int id);
 
 
         /*************************** DASHBOARD ************************************/

@@ -69,6 +69,12 @@ namespace Deliveriamo.Services.Implementations
             var response = new DeleteProductResponseDto();
 
             var product = await _repository.GetProductById(request.Id);
+            
+            if (product == null)
+            {
+                throw new Exception($"Product with id {request.Id} doesn't exist");
+            }
+
             await _repository.DeleteProduct(product);
             await _repository.SaveChanges();
             response.Id = product.Id;

@@ -209,12 +209,14 @@ namespace DeliveriamoRepository
 
         public async Task<Order> UpdateOrder(Order order)
         {
-            throw new NotImplementedException();
+            _context.Order.Update(order);
+            return order;
         }
 
         public async Task<Order> DeleteOrder(Order order)
         {
-            throw new NotImplementedException();
+            _context.Order.Remove(order);
+            return order;
         }
 
         public async Task<List<Order>> GetAllOrders()
@@ -222,7 +224,10 @@ namespace DeliveriamoRepository
             return await _context.Order.Include(x => x.OrderProducts).ThenInclude(y => y.Product).ToListAsync();
         }
 
-
+        public async Task<Order> GetOrderById(int id)
+        {
+            return await _context.Order.FirstOrDefaultAsync(x => x.Id == id);
+        }
         /****************************** GENERAL *******************************/
 
 

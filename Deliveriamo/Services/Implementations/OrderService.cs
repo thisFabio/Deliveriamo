@@ -23,8 +23,9 @@ namespace Deliveriamo.Services.Implementations
 
         public async Task<AddOrderResponseDto> AddOrder(AddOrderRequestDto request, string userId)
         {
+            
             var response = new AddOrderResponseDto();
-            if (Convert.ToInt32(userId) <= 0 || request.OrderTotalAmount < 0 || String.IsNullOrEmpty(request.PaymentMethod) || String.IsNullOrEmpty(request.OrderStatus))
+            if (Convert.ToInt32(userId) <= 0 || request.OrderTotalAmount < 0 || String.IsNullOrEmpty(request.PaymentMethod))
             {
                 throw new Exception($"Impossible to add this order, invalid data entry");
 
@@ -39,8 +40,8 @@ namespace Deliveriamo.Services.Implementations
                 OrderCreationDateTime = DateTime.Now,
                 LastUpdateDateTime = DateTime.Now,
                 DeliveryTime = 45,
-                OrderStatus = ((OrderStatus)request.OrderStatus).ToString(),
-            };
+                OrderStatus = OrderStatus.WaitingForApproval.ToString()
+        };
 
             if (order != null)
             {
@@ -73,9 +74,21 @@ namespace Deliveriamo.Services.Implementations
 
         }
 
-        public Task<DeleteOrderResponseDto> DeleteOrder(DeleteOrderRequestDto request)
+        public async Task<DeleteOrderResponseDto> DeleteOrder(DeleteOrderRequestDto request)
         {
-            throw new NotImplementedException();
+            var response = new DeleteOrderResponseDto();
+
+            var order = await _repository.GetOrderById(request.Id);
+            if (order == null)
+            {
+                throw new Exception($"Order with id {request.Id} doesn't exist");
+
+            }
+
+            await _repository.DeleteOrder(order);
+            await _repository.SaveChanges();
+
+            return response;
         }
 
         public async Task<GetAllOrdersResponseDto> GetAllOrders(GetAllOrdersRequestDto request, string userId)
@@ -102,9 +115,39 @@ namespace Deliveriamo.Services.Implementations
             return response;
         }
 
-        public Task<UpdateOrderResponseDto> UpdateOrder(UpdateOrderRequestDto request)
+        public async Task<UpdateOrderResponseDto> UpdateOrder(UpdateOrderRequestDto request)
         {
-            throw new NotImplementedException();
+            var response = new UpdateOrderResponseDto();
+
+            Order order = await _repository.GetOrderById(request.Id);
+
+            if (order == null)
+            {
+                throw new Exception($"Order with id {request.Id} doesn't exist");
+
+            }
+
+            // assignin modifications to the original order.
+            order.PaymentMethod = request.PaymentMethod;
+            order.UserId = request.UserId;
+            order.OrderDescription = request.OrderDescription;
+            order.OrderTotalAmount = request.OrderTotalAmount;
+            order.DeliveryTime = request.DeliveryTime;
+            order.OrderStatus = request.OrderStatus;
+
+            // update order record into DB
+            await _repository.UpdateOrder(order);
+            await _repository.SaveChanges();
+
+            //Assigning values to response
+            response.UserId = request.UserId;
+            response.PaymentMethod = request.PaymentMethod;
+            response.OrderTotalAmount = request.OrderTotalAmount;
+            response.OrderStatus = request.OrderStatus;
+            response.OrderDescription = request.OrderDescription;
+            response.DeliveryTime = request.DeliveryTime;
+
+            return response;
         }
     }
 }
