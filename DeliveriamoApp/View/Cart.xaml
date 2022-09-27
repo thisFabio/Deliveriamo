@@ -10,7 +10,7 @@
     <VerticalStackLayout>
         <ScrollView MaximumHeightRequest="300" VerticalOptions="Fill">
             <ListView
-                    ItemsSource="{Binding ProductsListResult}"
+                    ItemsSource="{Binding ProductList}"
                     SelectedItem="{Binding SelectedProduct}"
                     VerticalOptions="Center">
 
@@ -41,16 +41,24 @@
                                         Grid.Column="2"
                                         FontAttributes="Bold"
                                         FontSize="Subtitle"
+                                        Text="{Binding Description}"
+                                        VerticalOptions="CenterAndExpand"
+                                        Padding="30"/>
+                                <Label
+                                        Grid.Row="0"
+                                        Grid.Column="3"
+                                        FontAttributes="Bold"
+                                        FontSize="Subtitle"
                                         Text="{Binding PriceUnit, StringFormat='{0}€'}"
                                         VerticalOptions="CenterAndExpand"
                                         Padding="30"/>
 
                                 <Button 
-                                        Text="aggiungi al carrello" 
-                                        Grid.Row="0"
-                                        Grid.Column="3"
+                                        Text="rimuovi dal carrello" 
+                                        Grid.Row="1"
+                                        Grid.Column="0"
                                         Clicked="Button_Clicked"
-                                        Command="{Binding AddToCart}"/>
+                                        Command="{Binding RemoveFromCart}"/>
                                 <Image Source="{Binding UrlImage}" HeightRequest="30" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
 
                             </Grid>
