@@ -28,6 +28,9 @@ public partial class ProductList : ContentPage
 
 	private void Button_Clicked(object sender, EventArgs e)
 	{
+		
+        var vm = (ProductListViewModel)BindingContext;
+        ((App)App.Current).CartItems.Add(vm.SelectedProduct);
 
-	}
+    }
 }

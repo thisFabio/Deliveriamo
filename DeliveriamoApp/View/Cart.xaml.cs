@@ -1,3 +1,5 @@
+using DeliveriamoApp.ViewModel;
+
 namespace DeliveriamoApp.View;
 
 public partial class Cart : ContentPage
@@ -11,4 +13,11 @@ public partial class Cart : ContentPage
 	{
 
 	}
+
+    protected override void OnAppearing()
+    {
+        var vm = (CartViewModel)BindingContext;
+        vm.ProductList = ((App)App.Current).CartItems;
+
+    }
 }
