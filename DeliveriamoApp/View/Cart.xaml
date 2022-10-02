@@ -5,12 +5,12 @@
              x:Class="DeliveriamoApp.View.Cart"
              Title="Cart">
     <ContentPage.BindingContext>
-        <local:CartViewModel/>
+        <local:ProductListViewModel/>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <ScrollView MaximumHeightRequest="300" VerticalOptions="Fill">
             <ListView
-                    ItemsSource="{Binding ProductList}"
+                    ItemsSource="{Binding CartItems}"
                     SelectedItem="{Binding SelectedProduct}"
                     VerticalOptions="Center">
 

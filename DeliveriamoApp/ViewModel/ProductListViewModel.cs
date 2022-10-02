@@ -16,7 +16,19 @@ namespace DeliveriamoApp.ViewModel
     {
         private ProductDto selectedProduct;
         private List<ProductDto> productsListResult;
+        private List<ProductDto> cartItems;
+        public List<ProductDto> CartItems
+        {
+            get
+            {
+                return cartItems;
+            }
+            set
+            {
+                this.SetProperty(ref cartItems, value);
 
+            }
+        }
 
         public ProductDto SelectedProduct
         {

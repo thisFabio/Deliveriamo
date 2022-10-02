@@ -16,8 +16,10 @@ public partial class Cart : ContentPage
 
     protected override void OnAppearing()
     {
-        var vm = (CartViewModel)BindingContext;
-        vm.ProductList = ((App)App.Current).CartItems;
+		base.OnAppearing();
+		var vm = BindingContext;
+		BindingContext = vm;
+		//vm.ProductList = ((App)App.Current).CartItems;
 
-    }
+	}
 }

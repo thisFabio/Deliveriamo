@@ -50,7 +50,8 @@
                                         Grid.Row="0"
                                         Grid.Column="3"
                                         Clicked="Button_Clicked"
-                                        Command="{Binding AddToCart}"/>
+                                        CommandParameter="{Binding Id}"
+                                        />
                                 <Image Source="{Binding UrlImage}" HeightRequest="30" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
 
                             </Grid>
@@ -60,4 +61,4 @@
             </ListView>
         </ScrollView>
     </VerticalStackLayout>
-</ContentPage>
+</ContentPage> 

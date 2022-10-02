@@ -12,6 +12,27 @@ namespace DeliveriamoApp.ViewModel
 {
     public class CartViewModel : ObservableObject
     {
+        public CartViewModel()
+        {
+            ProductList = new List<ProductDto>()
+            {
+                new ProductDto()
+                {
+                    Id = 1,
+                    Name = "pippo"
+                },
+                new ProductDto()
+                {
+                    Id = 2,
+                    Name = "pluto"
+                },
+                new ProductDto()
+                {
+                    Id = 3,
+                    Name = "paperino"
+                }
+            };
+        }
 
         private List<ProductDto> productList = ((App)App.Current).CartItems;
         private ProductDto selectedProduct;

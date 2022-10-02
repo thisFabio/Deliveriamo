@@ -28,9 +28,21 @@ public partial class ProductList : ContentPage
 
 	private void Button_Clicked(object sender, EventArgs e)
 	{
-		
+
+		var btn = (Button)sender;
+		var id = (int)btn.CommandParameter;
         var vm = (ProductListViewModel)BindingContext;
-        ((App)App.Current).CartItems.Add(vm.SelectedProduct);
+		var product = vm.ProductsListResult.FirstOrDefault(x => x.Id == id);
+
+		if (vm.CartItems == null)
+		{
+			vm.CartItems = new List<ProductDto>();
+		}
+		var oldCartItems = vm.CartItems;
+
+		oldCartItems.Add(product);
+
+		vm.CartItems = oldCartItems;
 
     }
 }
