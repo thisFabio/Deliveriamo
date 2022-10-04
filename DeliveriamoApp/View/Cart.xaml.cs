@@ -1,4 +1,5 @@
 using DeliveriamoApp.ViewModel;
+using DeliveriamoClient;
 
 namespace DeliveriamoApp.View;
 
@@ -9,16 +10,18 @@ public partial class Cart : ContentPage
 		InitializeComponent();
 	}
 
-	private void Button_Clicked(object sender, EventArgs e)
+
+    private void Button_Clicked(object sender, EventArgs e)
 	{
 
 	}
 
-    protected override void OnAppearing()
+    protected async override void OnAppearing()
     {
-		base.OnAppearing();
-		var vm = BindingContext;
-		BindingContext = vm;
+
+		//base.OnAppearing();
+		//var vm = BindingContext;
+		//BindingContext = vm;
 		//vm.ProductList = ((App)App.Current).CartItems;
 
 	}

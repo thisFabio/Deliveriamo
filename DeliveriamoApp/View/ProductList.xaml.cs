@@ -26,7 +26,7 @@ public partial class ProductList : ContentPage
 		model.PerformSearch.Execute(shopKeeperSource.Id);
 	}
 
-	private void Button_Clicked(object sender, EventArgs e)
+	private async void Button_Clicked(object sender, EventArgs e)
 	{
 
 		var btn = (Button)sender;
@@ -44,5 +44,6 @@ public partial class ProductList : ContentPage
 
 		vm.CartItems = oldCartItems;
 
+		
     }
 }

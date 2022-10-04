@@ -7,14 +7,30 @@
     <ContentPage.BindingContext>
         <local:ProductListViewModel/>
     </ContentPage.BindingContext>
+    <!--<CollectionView ItemsSource="{Binding CartItems}">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Span="2" Orientation="Vertical">
+            </GridItemsLayout>
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <ContentView Padding="20">
+                    <Grid>
+                        <Label Text="Ciao bello!"/>
+
+                        <Label Text="{Binding Name}"/>
+                    <Label Text="{Binding PriceUnit}"/>
+                    </Grid>
+                </ContentView>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>-->
+    
     <VerticalStackLayout>
         <ScrollView MaximumHeightRequest="300" VerticalOptions="Fill">
             <ListView
                     ItemsSource="{Binding CartItems}"
-                    SelectedItem="{Binding SelectedProduct}"
                     VerticalOptions="Center">
-
-
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -28,12 +44,21 @@
                                     <ColumnDefinition Width="Auto" />
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
+                                <Label Text="Ciao"></Label>
                                 <Label
                                         Grid.Row="0"
                                         Grid.Column="1"
                                         FontAttributes="Bold"
                                         FontSize="Title"
                                         Text="{Binding Name}"
+                                        VerticalOptions="CenterAndExpand"
+                                        Padding="30"/>
+                                <Label
+                                        Grid.Row="0"
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        FontSize="Title"
+                                        Text="CIAO"
                                         VerticalOptions="CenterAndExpand"
                                         Padding="30"/>
                                 <Label
@@ -53,12 +78,12 @@
                                         VerticalOptions="CenterAndExpand"
                                         Padding="30"/>
 
-                                <Button 
+                                <!--<Button 
                                         Text="rimuovi dal carrello" 
                                         Grid.Row="1"
                                         Grid.Column="0"
                                         Clicked="Button_Clicked"
-                                        Command="{Binding RemoveFromCart}"/>
+                                        Command="{Binding RemoveFromCart}"/>-->
                                 <Image Source="{Binding UrlImage}" HeightRequest="30" Aspect="AspectFill" Grid.Row="0" Grid.Column="0"/>
 
                             </Grid>

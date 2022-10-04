@@ -26,6 +26,7 @@ namespace DeliveriamoApp.ViewModel
             set
             {
                 this.SetProperty(ref cartItems, value);
+                OnPropertyChanged();
 
             }
         }

@@ -2,6 +2,8 @@
 using DeliveriamoClient;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Text;
@@ -33,17 +35,14 @@ namespace DeliveriamoApp.ViewModel
                 }
             };
         }
-
-        private List<ProductDto> productList = ((App)App.Current).CartItems;
-        private ProductDto selectedProduct;
-
-        public ProductDto SelectedProduct 
-        { 
+        public ProductDto SelectedProduct
+        {
             get
             {
                 return selectedProduct;
-            } set 
-            { 
+            }
+            set
+            {
                 this.SetProperty(ref selectedProduct, value);
 
             }
@@ -58,10 +57,13 @@ namespace DeliveriamoApp.ViewModel
             set
             {
                 this.SetProperty(ref productList, value);
+                OnPropertyChanged(nameof(ProductList));
             }
 
         }
 
+        private List<ProductDto> productList = ((App)App.Current).CartItems;
+        private ProductDto selectedProduct;
         public ICommand RemoveFromCart => new Command(async () => // definisco il tipo di comando e il suo datatype in INPUT
         {
             ProductList.Remove(SelectedProduct);
