@@ -31,6 +31,7 @@ namespace DeliveriamoApp.ViewModel
             Login = new Command(async () =>
             {
                 IsLoading = true;
+                IsEnabled = false;
                 using(var httpClient = new HttpClient())
                 {
                     var client = new Client("https://localhost:7232",httpClient);
@@ -52,7 +53,9 @@ namespace DeliveriamoApp.ViewModel
                     }
 
                 }
+                IsEnabled = true;
                 IsLoading = false;
+
 
             });
         }

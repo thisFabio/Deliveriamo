@@ -35,7 +35,7 @@ namespace Deliveriamo.Services.Implementations
 
             return result;
         }
-        public async Task<GetUserResponseDto> GetUserById(GetUserRequestDto request)
+        public async Task<GetUserResponseDto> GetUserById(GetUserAddressRequestDto request)
         {
             var result = new GetUserResponseDto();
             result.Users = new List<UsersDto>();

@@ -74,7 +74,7 @@ namespace Deliveriamo.Controllers
             var result = await _productService.AddProduct(request, userId);
             return new ObjectResult(result);
         }
-
+                    
         [HttpPut]
         [ProducesResponseType(200, Type = typeof(UpdateProductResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
         public async Task<IActionResult> UpdateProduct([FromBody] UpdateProductRequestDto request)

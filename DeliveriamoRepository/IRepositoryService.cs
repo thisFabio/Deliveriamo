@@ -36,6 +36,19 @@ namespace DeliveriamoRepository
         Task<User> DeleteUser(User user);
         Task<User> UpdateUser(User user);
 
+        /*************************** USERADDRESS ************************************/
+
+
+        Task<UserAddress> GetUserAddressById(int id);
+        Task<List<UserAddress>> GetUserAddressListByUserId(int id);
+
+        Task<UserAddress> AddUserAddress(UserAddress userAddress);
+
+        Task<UserAddress> UpdateUserAddress(UserAddress userAddress);
+        Task<UserAddress> DeleteUserAddress(UserAddress userAddress);
+
+
+
 
         /*************************** PRODUCT ************************************/
 

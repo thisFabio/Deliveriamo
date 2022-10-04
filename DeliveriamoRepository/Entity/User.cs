@@ -48,6 +48,9 @@ namespace DeliveriamoRepository.Entity
         public string CompanyCountry { get; set; }
         public string ImageUrl { get; set; }
         public List<UserProduct> UserProduct { get; set; }
+        public List<UserAddress> UserAddress { get; set; }
+
+
 
 
 

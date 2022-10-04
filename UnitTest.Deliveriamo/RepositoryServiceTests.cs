@@ -168,7 +168,7 @@ namespace UnitTest.Deliveriamo
             // create a mocked service 
             var _service = new UserService(mockedRepo.Object);
 
-            GetUserRequestDto request = new GetUserRequestDto()
+            GetUserAddressRequestDto request = new GetUserAddressRequestDto()
             {
                 Id = userId,
                 Username = username

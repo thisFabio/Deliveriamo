@@ -45,6 +45,8 @@ namespace DeliveriamoRepository
         public DbSet<UserProduct> UserProduct { get; set; }
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderProduct> OrderProduct { get; set; }
+        public DbSet<UserAddress> UserAddress { get; set; }
+
 
 
 

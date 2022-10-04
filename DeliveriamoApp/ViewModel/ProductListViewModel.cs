@@ -17,6 +17,7 @@ namespace DeliveriamoApp.ViewModel
         private ProductDto selectedProduct;
         private List<ProductDto> productsListResult;
         private List<ProductDto> cartItems;
+
         public List<ProductDto> CartItems
         {
             get
@@ -26,7 +27,6 @@ namespace DeliveriamoApp.ViewModel
             set
             {
                 this.SetProperty(ref cartItems, value);
-                OnPropertyChanged();
 
             }
         }
@@ -56,7 +56,8 @@ namespace DeliveriamoApp.ViewModel
 
             }
         }
-        
+
+
 
         // comando per eseguire le chiamate API(in questo caso CRUD)
         public ICommand PerformSearch => new Command<int>(async (int id) => // definisco il tipo di comando e il suo datatype in INPUT

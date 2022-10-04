@@ -144,6 +144,40 @@ namespace DeliveriamoRepository
             _context.User.Update(user);
             return user;
         }
+        /****************************** USERADDRESS *******************************/
+
+        public async Task<List<UserAddress>> GetUserAddressListByUserId(int id)
+        {
+            var result = new List<UserAddress>();
+            if (_context.User.Any(x => x.Id == id))
+            {
+                 result =  await _context.UserAddress.Where(x => x.UserId == id).ToListAsync();
+            }
+
+            return result;
+        }
+        public async Task<UserAddress> GetUserAddressById(int id)
+        {
+            return  await _context.UserAddress.FirstOrDefaultAsync(x => x.Id == id);
+        }
+
+        public async Task<UserAddress> AddUserAddress(UserAddress userAddress)
+        {
+             await _context.UserAddress.AddAsync(userAddress);
+            return userAddress;
+        }
+
+        public async Task<UserAddress> UpdateUserAddress(UserAddress userAddress)
+        {
+             _context.UserAddress.Update(userAddress);
+            return userAddress;
+        }
+
+        public async Task<UserAddress> DeleteUserAddress(UserAddress userAddress)
+        {
+            _context.UserAddress.Remove(userAddress);
+            return userAddress;
+        }
 
 
         /*************************** DASHBOARD ************************************/
@@ -235,6 +269,9 @@ namespace DeliveriamoRepository
         {
             await _context.SaveChangesAsync();
         }
+
+
+
 
     }
 

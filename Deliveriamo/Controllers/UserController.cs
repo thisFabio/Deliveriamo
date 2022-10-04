@@ -27,7 +27,7 @@ namespace Deliveriamo.Controllers
 
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(GetUserResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
-        public async Task<IActionResult> GetUserById([FromQuery] GetUserRequestDto request)
+        public async Task<IActionResult> GetUserById([FromQuery] GetUserAddressRequestDto request)
         {
             var result = await _service.GetUserById(request);
             return new ObjectResult(result);

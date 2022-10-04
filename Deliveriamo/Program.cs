@@ -34,6 +34,8 @@ namespace DeliveriamoMain
             builder.Services.AddTransient<IDashboardService, DashboardService>();
             builder.Services.AddTransient<ICategoryService, CategoryService>();
             builder.Services.AddTransient<IOrderService, OrderService>();
+            builder.Services.AddTransient<IUserAddressService, UserAddressService>();
+
 
 
 

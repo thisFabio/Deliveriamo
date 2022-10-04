@@ -12,7 +12,7 @@
         <Entry Placeholder="username" Text="{Binding Username}"/>
         <Label Text="Password" />
         <Entry Placeholder="password" Text="{Binding Password}" IsPassword="True"/>
-        <Button Text="Entra" Command="{Binding Login}" />
+        <Button Text="Entra" Command="{Binding Login}" IsEnabled="{Binding IsEnabled}"/>
         <ActivityIndicator IsRunning="{Binding IsLoading}" />
     </VerticalStackLayout>
 </ContentPage>

@@ -1,6 +1,6 @@
 ﻿namespace Deliveriamo.DTOs.User
 {
-    public class GetUserRequestDto
+    public class GetUserAddressRequestDto
     {
         public int Id { get; set; }
         public string Username { get; set; }
