@@ -2,7 +2,7 @@
 {
     public class AddUserAddressRequestDto
     {
-        public int UserId { get; set; }
+        
         public string UserStreetAddress { get; set; }
         public string UserCivicNumber { get; set; }
         public string UserPostalCode { get; set; }

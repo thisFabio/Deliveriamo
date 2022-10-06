@@ -98,7 +98,6 @@ namespace Deliveriamo.Services.Implementations
 
             }
 
-            userAddress.UserId = request.UserId;
             userAddress.UserStreetAddress = request.UserStreetAddress;
             userAddress.UserCivicNumber = request.UserCivicNumber;
             userAddress.UserPostalCode = request.UserPostalCode;
