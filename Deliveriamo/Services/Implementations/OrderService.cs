@@ -40,8 +40,9 @@ namespace Deliveriamo.Services.Implementations
                 OrderCreationDateTime = DateTime.Now,
                 LastUpdateDateTime = DateTime.Now,
                 DeliveryTime = 45,
-                OrderStatus = OrderStatus.WaitingForApproval.ToString()
-        };
+                OrderStatus = OrderStatus.WaitingForApproval.ToString(),
+                ShopKeeperId = request.ShopKeeperId
+            };
 
             if (order != null)
             {
@@ -115,6 +116,39 @@ namespace Deliveriamo.Services.Implementations
             return response;
         }
 
+        public async Task<GetOrdersByUserIdResponseDto> GetOrdersByUserId(GetOrdersByUserIdRequestDto request, string userId)
+        {
+            var result = new GetOrdersByUserIdResponseDto();
+            var orderList = new List<Order>();
+            var user = await _repository.GetUserById(Int32.Parse(userId));
+
+            if (user.ShopKeeper == false)
+            {
+                orderList = await _repository.GetAllOrdersByUserId(Int32.Parse(userId));
+
+            }
+            else
+            {
+                orderList = await _repository.GetAllOrdersByShopKeeperId(Int32.Parse(userId));
+            }
+
+                result.Orders = orderList.Select(x => new OrderDto(x.Id, x.PaymentMethod, x.OrderDescription, x.OrderTotalAmount,
+                    x.OrderCreationDateTime, x.DeliveryTime, x.OrderStatus.ToEnum<OrderStatus>(), x.OrderProducts.Select(y => new DTOs.Product.ProductDto(
+                        y.Product.Id,
+                        y.Product.Name,
+                        y.Product.PriceUnit,
+                        y.Product.Description,
+                        y.Product.CategoryId,
+                        y.Product.Barcode,
+                        y.Product.UrlImage,
+                        y.Product.Status,
+                        y.Product.CreationTime,
+                        y.Product.LastUpdate
+                        )).ToList())).ToList();
+
+            return result;
+        }
+
         public async Task<UpdateOrderResponseDto> UpdateOrder(UpdateOrderRequestDto request)
         {
             var response = new UpdateOrderResponseDto();
@@ -134,6 +168,7 @@ namespace Deliveriamo.Services.Implementations
             order.OrderTotalAmount = request.OrderTotalAmount;
             order.DeliveryTime = request.DeliveryTime;
             order.OrderStatus = request.OrderStatus;
+            order.ShopKeeperId = request.ShopKeeperId;
 
             // update order record into DB
             await _repository.UpdateOrder(order);
@@ -146,6 +181,7 @@ namespace Deliveriamo.Services.Implementations
             response.OrderStatus = request.OrderStatus;
             response.OrderDescription = request.OrderDescription;
             response.DeliveryTime = request.DeliveryTime;
+            response.ShopKeeperId = request.ShopKeeperId;
 
             return response;
         }

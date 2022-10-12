@@ -28,6 +28,16 @@ namespace Deliveriamo.Controllers
             return new ObjectResult(result);
         }
 
+        [HttpGet]
+        [ProducesResponseType(200, Type = typeof(GetOrdersByUserIdResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
+        public async Task<IActionResult> GetOrdersByUserId([FromQuery] GetOrdersByUserIdRequestDto request)
+        {
+            var userId = User.Claims.First(x => x.Type == "userid").Value;
+
+            var result = await _orderService.GetOrdersByUserId(request, userId);
+            return new ObjectResult(result);
+        }
+
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(AddOrderResponseDto))] // indicazione per swagger che indica il tipo di risposta di questa response.
         public async Task<IActionResult> AddOrder([FromBody] AddOrderRequestDto request)

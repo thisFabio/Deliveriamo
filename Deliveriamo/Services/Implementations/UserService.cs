@@ -35,7 +35,7 @@ namespace Deliveriamo.Services.Implementations
 
             return result;
         }
-        public async Task<GetUserResponseDto> GetUserById(GetUserAddressRequestDto request)
+        public async Task<GetUserResponseDto> GetUserById(GetUserRequestDto request)
         {
             var result = new GetUserResponseDto();
             result.Users = new List<UsersDto>();
@@ -52,6 +52,7 @@ namespace Deliveriamo.Services.Implementations
 
             return result;
         }
+
         public async Task<UpdateUserResponseDto> UpdateUser(UpdateUserRequestDto request)
         {
             var result = new UpdateUserResponseDto();
@@ -132,5 +133,7 @@ namespace Deliveriamo.Services.Implementations
             response.Id = user.Id;
             return response;
         }
+
+
     }
 }

@@ -9,6 +9,9 @@ namespace Deliveriamo.Services.Interfaces
         Task<DeleteOrderResponseDto> DeleteOrder(DeleteOrderRequestDto request);
         Task<GetAllOrdersResponseDto> GetAllOrders(GetAllOrdersRequestDto request, string userId);
 
+        Task<GetOrdersByUserIdResponseDto> GetOrdersByUserId(GetOrdersByUserIdRequestDto request, string userId);
+
+
 
     }
 }

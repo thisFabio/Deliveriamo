@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DeliveriamoRepository.Entity
 {
@@ -15,6 +16,9 @@ namespace DeliveriamoRepository.Entity
         public int Id { get; set; }
         [Required]
         public int UserId { get; set; }
+        public virtual User User { get; set; }
+        public int? ShopKeeperId { get; set; }
+        public virtual User ShopKeeper { get; set; }
         public string PaymentMethod { get; set; }
         public string OrderDescription { get; set; }
         public decimal OrderTotalAmount { get; set; }

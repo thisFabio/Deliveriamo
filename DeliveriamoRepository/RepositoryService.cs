@@ -30,7 +30,7 @@ namespace DeliveriamoRepository
 
         public async Task<Product> DeleteProduct(Product product)
         {
-             _context.Product.Remove(product);
+            _context.Product.Remove(product);
             return product;
         }
 
@@ -96,7 +96,7 @@ namespace DeliveriamoRepository
         public async Task<User> CheckLogin(string username, string hash)
         {
             User output = null;
-            
+
             try
             {
                 if (String.IsNullOrEmpty(username) || String.IsNullOrEmpty(hash))
@@ -125,14 +125,24 @@ namespace DeliveriamoRepository
 
         public async Task<List<User>> GetUsers()
         {
-            return await  _context.User.ToListAsync();   
+            return await _context.User.ToListAsync();
         }
 
         public async Task<User> GetUserById(int Id)
         {
-            return await _context.User.FirstOrDefaultAsync(x=>x.Id == Id);
+            return await _context.User.FirstOrDefaultAsync(x => x.Id == Id);
 
         }
+        public async Task<User> GetShopkeeperIdByProductId(int Id)
+        {
+
+            var userProduct = await _context.UserProduct.Where(x => x.ProductId == Id).FirstOrDefaultAsync();
+
+            return await _context.User.FirstOrDefaultAsync(x => x.Id == userProduct.UserId);
+
+
+        }
+
         public async Task<User> DeleteUser(User user)
         {
             _context.User.Remove(user);
@@ -151,25 +161,26 @@ namespace DeliveriamoRepository
             var result = new List<UserAddress>();
             if (_context.User.Any(x => x.Id == id))
             {
-                 result =  await _context.UserAddress.Where(x => x.UserId == id).ToListAsync();
+                result = await _context.UserAddress.Where(x => x.UserId == id).ToListAsync();
             }
 
             return result;
         }
         public async Task<UserAddress> GetUserAddressById(int id)
         {
-            return  await _context.UserAddress.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.UserAddress.FirstOrDefaultAsync(x => x.Id == id);
         }
+
 
         public async Task<UserAddress> AddUserAddress(UserAddress userAddress)
         {
-             await _context.UserAddress.AddAsync(userAddress);
+            await _context.UserAddress.AddAsync(userAddress);
             return userAddress;
         }
 
         public async Task<UserAddress> UpdateUserAddress(UserAddress userAddress)
         {
-             _context.UserAddress.Update(userAddress);
+            _context.UserAddress.Update(userAddress);
             return userAddress;
         }
 
@@ -181,8 +192,9 @@ namespace DeliveriamoRepository
 
 
         /*************************** DASHBOARD ************************************/
-        public async Task<List<User>> GetAllShopKeepers(){
-            
+        public async Task<List<User>> GetAllShopKeepers()
+        {
+
             return await _context.User.Where(x => x.ShopKeeper == true).ToListAsync();
         }
 
@@ -193,7 +205,7 @@ namespace DeliveriamoRepository
 
         public async Task<Category> GetCategoryById(int categoryId)
         {
-            return await _context.Category.FirstOrDefaultAsync(x=> x.Id == categoryId);
+            return await _context.Category.FirstOrDefaultAsync(x => x.Id == categoryId);
         }
 
         public async Task<List<Category>> GetCategories()
@@ -203,7 +215,7 @@ namespace DeliveriamoRepository
 
         public async Task<Category> DeleteCategory(Category category)
         {
-             _context.Category.Remove(category);
+            _context.Category.Remove(category);
             return category;
         }
         public async Task<Category> UpdateCategory(Category category)
@@ -223,7 +235,7 @@ namespace DeliveriamoRepository
         public async Task<Order> AddOrder(Order order, string userId)
         {
             await _context.Order.AddAsync(order);
- 
+
             return order;
         }
         public async Task<Order> AddOrderProduct(Order order, List<int> productsId)
@@ -235,10 +247,10 @@ namespace DeliveriamoRepository
                     OrderId = order.Id,
                     ProductId = product
 
-                }); 
+                });
 
             }
-                return null;
+            return null;
         }
 
         public async Task<Order> UpdateOrder(Order order)
@@ -258,6 +270,18 @@ namespace DeliveriamoRepository
             return await _context.Order.Include(x => x.OrderProducts).ThenInclude(y => y.Product).ToListAsync();
         }
 
+        public async Task<List<Order>> GetAllOrdersByUserId(int userId)
+        {
+            return await _context.Order.Include(x => x.OrderProducts).ThenInclude(y => y.Product).Where(z => z.UserId == userId).ToListAsync();
+
+        }
+        public async Task<List<Order>> GetAllOrdersByShopKeeperId(int userId)
+        {
+
+            return await _context.Order.Include(x => x.OrderProducts).ThenInclude(y => y.Product).Where(z => z.ShopKeeperId == userId).ToListAsync();
+
+        }
+
         public async Task<Order> GetOrderById(int id)
         {
             return await _context.Order.FirstOrDefaultAsync(x => x.Id == id);
@@ -269,8 +293,6 @@ namespace DeliveriamoRepository
         {
             await _context.SaveChangesAsync();
         }
-
-
 
 
     }

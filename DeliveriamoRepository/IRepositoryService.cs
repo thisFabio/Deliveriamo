@@ -33,6 +33,9 @@ namespace DeliveriamoRepository
 
         Task<List<User>> GetUsers();
         Task<User> GetUserById(int Id);
+
+        Task<User> GetShopkeeperIdByProductId(int Id);
+
         Task<User> DeleteUser(User user);
         Task<User> UpdateUser(User user);
 
@@ -67,6 +70,8 @@ namespace DeliveriamoRepository
         Task<Order> UpdateOrder(Order order);
         Task<Order> DeleteOrder(Order order);
         Task<List<Order>> GetAllOrders();
+        Task<List<Order>> GetAllOrdersByUserId(int userId);
+        Task<List<Order>> GetAllOrdersByShopKeeperId(int userId);
         Task<Order> GetOrderById(int id);
 
 

@@ -9,5 +9,6 @@
         public decimal OrderTotalAmount { get; set; }
         public decimal DeliveryTime { get; set; }
         public string OrderStatus { get; set; }
+        public int ShopKeeperId { get; set; }
     }
 }

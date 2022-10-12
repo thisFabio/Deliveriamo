@@ -11,5 +11,7 @@ namespace Deliveriamo.DTOs.Order
         public decimal OrderTotalAmount { get; set; }
         public List<int> ProductIds { get; set; }
 
+        public int ShopKeeperId { get; set; }
+
     }
 }
