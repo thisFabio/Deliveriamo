@@ -3,6 +3,8 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -170,8 +172,7 @@ namespace DeliveriamoRepository
         {
             return await _context.UserAddress.FirstOrDefaultAsync(x => x.Id == id);
         }
-
-
+        
         public async Task<UserAddress> AddUserAddress(UserAddress userAddress)
         {
             await _context.UserAddress.AddAsync(userAddress);

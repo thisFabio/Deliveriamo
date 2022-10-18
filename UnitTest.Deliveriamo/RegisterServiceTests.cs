@@ -149,7 +149,7 @@ namespace UnitTest.Deliveriamo
 
             //Assert
             //verificare che ci sia il match delle nuove proprietà.
-            result.Id.Should().Be(mockedUser.Id);
+            result.Id.Should().Be(mockedUser.Id);   
         }
 
         [Fact]
