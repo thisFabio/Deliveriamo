@@ -239,6 +239,12 @@ namespace DeliveriamoRepository
 
             return order;
         }
+        public async Task<OrderStatus> AddOrderStatus(OrderStatus orderStatus)
+        {
+            await _context.OrderStatus.AddAsync(orderStatus);
+
+            return orderStatus;
+        }
         public async Task<Order> AddOrderProduct(Order order, List<int> productsId)
         {
             foreach (var product in productsId)
@@ -285,7 +291,7 @@ namespace DeliveriamoRepository
 
         public async Task<Order> GetOrderById(int id)
         {
-            return await _context.Order.Include(y=> y.OrderStatus).FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Order.Include(y=> y.OrderStatus).ThenInclude(z=> z.Status).FirstOrDefaultAsync(x => x.Id == id);
         }
         /****************************** GENERAL *******************************/
 

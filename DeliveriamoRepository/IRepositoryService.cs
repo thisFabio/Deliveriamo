@@ -65,6 +65,8 @@ namespace DeliveriamoRepository
         /*************************** ORDER ************************************/
 
         Task<Order> AddOrder(Order order, string userId);
+        Task<OrderStatus> AddOrderStatus(OrderStatus orderStatus);
+
         Task<Order> AddOrderProduct(Order order, List<int> products);
 
         Task<Order> UpdateOrder(Order order);

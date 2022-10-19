@@ -5,6 +5,7 @@ using Deliveriamo.Services.Exceptions;
 using DeliveriamoRepository;
 using Microsoft.EntityFrameworkCore;
 using Deliveriamo.DTOs.Enums;
+using OrderStatus = DeliveriamoRepository.Entity.OrderStatus;
 
 namespace Deliveriamo.Services.Implementations
 {
@@ -43,11 +44,23 @@ namespace Deliveriamo.Services.Implementations
                 ShopKeeperId = request.ShopKeeperId
             };
 
+
+
             if (order != null)
             {
                 try
                 {
                     await _repository.AddOrder(order, userId);
+                    await _repository.SaveChanges();
+
+                    OrderStatus orderStatus = new()
+                    {
+                        StatusId = 1,
+                        StatusTime = DateTime.Now,
+                        OrderId = order.Id
+                    };
+
+                    await _repository.AddOrderStatus(orderStatus);
                     await _repository.SaveChanges();
                     
 
@@ -156,11 +169,11 @@ namespace Deliveriamo.Services.Implementations
             var response = new GetOrderStatusResponseDto();
 
             // get order by idthe last updated status available.
-            var orderStatus = order.OrderStatus.Where(x => x.StatusTime == DateTime.MaxValue).FirstOrDefault();
+            var orderStatus = order.OrderStatus.OrderByDescending(x=> x.StatusTime).FirstOrDefault();
 
             response.StatusChangedTime = orderStatus.StatusTime;
             response.OrderStatusId = orderStatus.OrderId;
-            response.Status = orderStatus.Status.ToString();
+            response.Status = orderStatus.Status?.Name;
             
             return response;
         }
