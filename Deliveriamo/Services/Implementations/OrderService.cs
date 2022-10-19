@@ -40,7 +40,6 @@ namespace Deliveriamo.Services.Implementations
                 OrderCreationDateTime = DateTime.Now,
                 LastUpdateDateTime = DateTime.Now,
                 DeliveryTime = 45,
-                OrderStatus = OrderStatus.WaitingForApproval.ToString(),
                 ShopKeeperId = request.ShopKeeperId
             };
 
@@ -100,7 +99,7 @@ namespace Deliveriamo.Services.Implementations
             result = result.Where(x => x.UserId == Convert.ToInt32(userId)).ToList();
             
             response.Orders = result.Select(x=> new OrderDto(x.Id,x.PaymentMethod,x.OrderDescription,x.OrderTotalAmount,
-                x.OrderCreationDateTime,x.DeliveryTime,x.OrderStatus.ToEnum<OrderStatus>(),x.OrderProducts.Select(y=> new DTOs.Product.ProductDto(
+                x.OrderCreationDateTime,x.DeliveryTime,x.OrderProducts.Select(y=> new DTOs.Product.ProductDto(
                     y.Product.Id,
                     y.Product.Name,
                     y.Product.PriceUnit,
@@ -133,7 +132,7 @@ namespace Deliveriamo.Services.Implementations
             }
 
                 result.Orders = orderList.Select(x => new OrderDto(x.Id, x.PaymentMethod, x.OrderDescription, x.OrderTotalAmount,
-                    x.OrderCreationDateTime, x.DeliveryTime, x.OrderStatus.ToEnum<OrderStatus>(), x.OrderProducts.Select(y => new DTOs.Product.ProductDto(
+                    x.OrderCreationDateTime, x.DeliveryTime,x.OrderProducts.Select(y => new DTOs.Product.ProductDto(
                         y.Product.Id,
                         y.Product.Name,
                         y.Product.PriceUnit,
@@ -147,6 +146,23 @@ namespace Deliveriamo.Services.Implementations
                         )).ToList())).ToList();
 
             return result;
+        }
+
+        public async Task<GetOrderStatusResponseDto> GetOrderStatus(GetOrderStatusRequestDto request)
+        {
+            // get order by id
+
+            var order = await _repository.GetOrderById(request.OrderId);
+            var response = new GetOrderStatusResponseDto();
+
+            // get order by idthe last updated status available.
+            var orderStatus = order.OrderStatus.Where(x => x.StatusTime == DateTime.MaxValue).FirstOrDefault();
+
+            response.StatusChangedTime = orderStatus.StatusTime;
+            response.OrderStatusId = orderStatus.OrderId;
+            response.Status = orderStatus.Status.ToString();
+            
+            return response;
         }
 
         public async Task<UpdateOrderResponseDto> UpdateOrder(UpdateOrderRequestDto request)
@@ -167,7 +183,6 @@ namespace Deliveriamo.Services.Implementations
             order.OrderDescription = request.OrderDescription;
             order.OrderTotalAmount = request.OrderTotalAmount;
             order.DeliveryTime = request.DeliveryTime;
-            order.OrderStatus = request.OrderStatus;
             order.ShopKeeperId = request.ShopKeeperId;
 
             // update order record into DB

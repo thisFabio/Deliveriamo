@@ -285,7 +285,7 @@ namespace DeliveriamoRepository
 
         public async Task<Order> GetOrderById(int id)
         {
-            return await _context.Order.FirstOrDefaultAsync(x => x.Id == id);
+            return await _context.Order.Include(y=> y.OrderStatus).FirstOrDefaultAsync(x => x.Id == id);
         }
         /****************************** GENERAL *******************************/
 

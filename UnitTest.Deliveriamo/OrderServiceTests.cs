@@ -46,7 +46,6 @@ namespace UnitTest.Deliveriamo
                 OrderCreationDateTime = DateTime.Now,
                 LastUpdateDateTime = DateTime.Now,
                 DeliveryTime = 45,
-                OrderStatus = OrderStatus.WaitingForApproval.ToString(),
                 ShopKeeperId = request.ShopKeeperId
             };
 

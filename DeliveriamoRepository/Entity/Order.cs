@@ -25,8 +25,8 @@ namespace DeliveriamoRepository.Entity
         public DateTime OrderCreationDateTime { get; set; }
         public DateTime LastUpdateDateTime { get; set; }
         public decimal DeliveryTime { get; set; }
-        public string  OrderStatus { get; set; }
         public List<OrderProduct> OrderProducts { get; set; }
+        public List<OrderStatus> OrderStatus{ get; set; }
 
 
     }

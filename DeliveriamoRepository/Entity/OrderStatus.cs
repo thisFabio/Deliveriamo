@@ -20,7 +20,7 @@ namespace DeliveriamoRepository.Entity
         [Required]
         public int StatusId { get; set; }
         public Status Status { get; set; }
-        public DateTime LastUpdate { get; set; }
+        public DateTime StatusTime { get; set; }
 
 
 
