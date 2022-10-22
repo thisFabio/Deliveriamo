@@ -65,7 +65,6 @@ namespace DeliveriamoRepository
         /*************************** ORDER ************************************/
 
         Task<Order> AddOrder(Order order, string userId);
-        Task<OrderStatus> AddOrderStatus(OrderStatus orderStatus);
 
         Task<Order> AddOrderProduct(Order order, List<int> products);
 
@@ -75,6 +74,15 @@ namespace DeliveriamoRepository
         Task<List<Order>> GetAllOrdersByUserId(int userId);
         Task<List<Order>> GetAllOrdersByShopKeeperId(int userId);
         Task<Order> GetOrderById(int id);
+
+        /*************************** ORDER STATUS ************************************/
+
+        Task<OrderStatus> AddOrderStatus(OrderStatus orderStatus);
+        Task<OrderStatus> GetOrderStatusByOrderId(int orderId);
+
+        /*************************** STATUS FLOW ************************************/
+
+        Task<StatusFlow> GetStatusFlowByStatusId(int statusId);
 
 
         /*************************** DASHBOARD ************************************/

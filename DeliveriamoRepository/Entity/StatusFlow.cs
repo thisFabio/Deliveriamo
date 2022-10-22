@@ -9,18 +9,20 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace DeliveriamoRepository.Entity
 {
-    public class OrderStatus
+    public class StatusFlow
     {
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required]
-        public int OrderId { get; set; }
-        public Order Order { get; set; }
-        [Required]
-        public int StatusId { get; set; }
-        public Status Status { get; set; }
-        public DateTime StatusTime { get; set; }
+        [ForeignKey("StatusId")]
+        public virtual Status Status { get; set; }
+        [ForeignKey("NextStatusId")]
+        public virtual Status NextStatus { get; set; }
+
+        [ForeignKey("CanceledStatusId")]
+        public virtual Status CanceledStatus { get; set; }
+        
+
 
     }
 }
